@@ -46,28 +46,34 @@ export default function Index() {
 
   const testimonials = [
     {
-      name: "Sarah Johnson",
-      role: "Software Engineer",
+      name: "Sarah Chen",
+      role: "Software Engineer • H1-B Visa",
+      country: "USA",
       content:
-        "VM Visa made my work visa application seamless. Their expert guidance and support throughout the process was exceptional.",
+        "Found the perfect immigration lawyer through VM Visa. My H1-B application was approved in record time with expert guidance every step of the way.",
       rating: 5,
-      image: "/placeholder.svg",
+      image:
+        "https://images.unsplash.com/photo-1494790108755-2616b612b898?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80",
     },
     {
-      name: "Miguel Rodriguez",
-      role: "Business Owner",
+      name: "Ahmed Hassan",
+      role: "Business Owner • Investment Visa",
+      country: "Canada",
       content:
-        "Professional service and clear communication. They helped me bring my family to the US without any complications.",
+        "The immigration expert helped me navigate the complex investor visa process. Professional service and incredible attention to detail.",
       rating: 5,
-      image: "/placeholder.svg",
+      image:
+        "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80",
     },
     {
-      name: "Priya Patel",
-      role: "Student",
+      name: "Maria Gonzalez",
+      role: "Graduate Student • F1 Visa",
+      country: "Australia",
       content:
-        "Got my student visa approved in just 3 weeks! The team was incredibly helpful and responsive to all my questions.",
+        "VM Visa connected me with an amazing consultant who guided me through my student visa application. Approved in just 2 weeks!",
       rating: 5,
-      image: "/placeholder.svg",
+      image:
+        "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80",
     },
   ];
 
@@ -78,82 +84,87 @@ export default function Index() {
       <Navigation />
 
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-vm-gray-900 via-vm-gray-800 to-vm-gray-900 text-white overflow-hidden">
-        <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1436491865332-7a61a109cc05?ixlib=rb-4.0.3')] bg-cover bg-center opacity-20"></div>
-        <div className="absolute inset-0 bg-black/40"></div>
+      <section className="relative bg-gradient-to-b from-vm-gray-50 to-white overflow-hidden">
+        <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1521737604893-d14cc237f11d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2834&q=80')] bg-cover bg-center opacity-5"></div>
 
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-32">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div className="space-y-8">
-              <div className="space-y-4">
-                <h1 className="text-4xl lg:text-6xl font-bold leading-tight">
-                  Your Pathway to a{" "}
-                  <span className="text-vm-green">New Future</span>
-                </h1>
-                <p className="text-xl text-gray-300 leading-relaxed">
-                  Expert immigration services with personalized guidance,
-                  transparent processes, and proven success. Start your journey
-                  to a new country today.
-                </p>
+        <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-24">
+          {/* Top Icons */}
+          <div className="flex justify-center mb-12">
+            <div className="flex items-center space-x-16">
+              <div className="flex flex-col items-center group cursor-pointer">
+                <div className="w-16 h-16 bg-vm-green/10 rounded-2xl flex items-center justify-center mb-3 group-hover:bg-vm-green/20 transition-colors">
+                  <FileText className="w-8 h-8 text-vm-green" />
+                </div>
+                <span className="text-sm font-medium text-vm-gray-700">
+                  Documents
+                </span>
               </div>
+              <div className="flex flex-col items-center group cursor-pointer">
+                <div className="w-16 h-16 bg-vm-blue/10 rounded-2xl flex items-center justify-center mb-3 group-hover:bg-vm-blue/20 transition-colors">
+                  <Globe className="w-8 h-8 text-vm-blue" />
+                </div>
+                <span className="text-sm font-medium text-vm-gray-700">
+                  Global
+                </span>
+              </div>
+              <div className="flex flex-col items-center group cursor-pointer">
+                <div className="w-16 h-16 bg-vm-green/10 rounded-2xl flex items-center justify-center mb-3 group-hover:bg-vm-green/20 transition-colors">
+                  <Users className="w-8 h-8 text-vm-green" />
+                </div>
+                <span className="text-sm font-medium text-vm-gray-700">
+                  Experts
+                </span>
+              </div>
+            </div>
+          </div>
 
-              <div className="flex flex-col sm:flex-row gap-4">
-                <Link to="/signup">
-                  <Button
-                    size="lg"
-                    className="w-full sm:w-auto bg-vm-green hover:bg-vm-green-600 text-white text-lg px-8 py-4"
-                  >
-                    Start Your Application
-                    <ArrowRight className="ml-2 w-5 h-5" />
-                  </Button>
-                </Link>
+          {/* Main Hero Content */}
+          <div className="text-center space-y-8">
+            <div className="space-y-6">
+              <h1 className="text-4xl lg:text-6xl font-bold leading-tight text-vm-gray-900">
+                Connect with top{" "}
+                <span className="text-vm-green">immigration experts</span>{" "}
+                worldwide
+              </h1>
+              <p className="text-xl lg:text-2xl text-vm-gray-600 leading-relaxed max-w-4xl mx-auto">
+                Find verified immigration consultants, get expert guidance, and
+                navigate your visa journey with confidence. Professional
+                immigration services at your fingertips.
+              </p>
+            </div>
+
+            {/* Action Buttons */}
+            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+              <Link to="/signup">
+                <Button
+                  size="lg"
+                  className="w-full sm:w-auto bg-vm-green hover:bg-vm-green-600 text-white text-lg px-8 py-4 min-w-[160px]"
+                >
+                  Find experts
+                  <ArrowRight className="ml-2 w-5 h-5" />
+                </Button>
+              </Link>
+              <Link to="/signup/agent">
                 <Button
                   size="lg"
                   variant="outline"
-                  className="w-full sm:w-auto border-white text-white hover:bg-white hover:text-vm-gray-900 text-lg px-8 py-4"
+                  className="w-full sm:w-auto border-vm-green text-vm-green hover:bg-vm-green hover:text-white text-lg px-8 py-4 min-w-[160px]"
                 >
-                  <Play className="mr-2 w-5 h-5" />
-                  Watch Demo
+                  Join as expert
                 </Button>
-              </div>
-
-              <div className="flex items-center space-x-8 pt-4">
-                <div className="flex items-center space-x-2">
-                  <div className="flex -space-x-2">
-                    {[1, 2, 3, 4].map((i) => (
-                      <div
-                        key={i}
-                        className="w-8 h-8 rounded-full bg-vm-green border-2 border-white"
-                      ></div>
-                    ))}
-                  </div>
-                  <span className="text-sm text-gray-300">
-                    10,000+ satisfied clients
-                  </span>
-                </div>
-                <div className="flex items-center space-x-1">
-                  {[1, 2, 3, 4, 5].map((i) => (
-                    <Star
-                      key={i}
-                      className="w-4 h-4 fill-yellow-400 text-yellow-400"
-                    />
-                  ))}
-                  <span className="text-sm text-gray-300 ml-2">
-                    4.9/5 rating
-                  </span>
-                </div>
-              </div>
+              </Link>
             </div>
+          </div>
 
-            <div className="hidden lg:block">
-              <div className="relative">
-                <div className="absolute inset-0 bg-gradient-to-r from-vm-green/20 to-vm-blue/20 rounded-2xl transform rotate-6"></div>
-                <img
-                  src="https://images.unsplash.com/photo-1551836022-deb4988cc6c0?ixlib=rb-4.0.3"
-                  alt="Immigration consultation"
-                  className="relative rounded-2xl shadow-2xl w-full h-96 object-cover"
-                />
-              </div>
+          {/* Hero Image */}
+          <div className="mt-16 relative">
+            <div className="relative max-w-4xl mx-auto">
+              <img
+                src="https://cdn.builder.io/api/v1/image/assets%2Fcc6a575b231f4eceba6352aba1db9aab%2Fd78bfa4770e64ab8a212c7eff646f6b1?format=webp&width=800"
+                alt="Immigration consultation meeting"
+                className="w-full h-auto rounded-2xl shadow-2xl"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent rounded-2xl"></div>
             </div>
           </div>
         </div>
@@ -161,28 +172,40 @@ export default function Index() {
 
       {/* Stats Section */}
       <section className="py-16 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
-            {stats.map((stat, index) => (
-              <Card key={index} className="text-center border-0 shadow-none">
-                <CardContent className="p-6">
-                  <div className="flex justify-center mb-4">
-                    <div className="w-12 h-12 bg-vm-green/10 rounded-lg flex items-center justify-center">
-                      <stat.icon className="w-6 h-6 text-vm-green" />
-                    </div>
-                  </div>
-                  <div className="text-2xl lg:text-3xl font-bold text-vm-gray-900 mb-1">
-                    {stat.value}
-                  </div>
-                  <div className="text-sm font-semibold text-vm-gray-700 mb-1">
-                    {stat.label}
-                  </div>
-                  <div className="text-xs text-vm-gray-500">
-                    {stat.description}
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <Card className="text-center border border-vm-gray-200 shadow-lg hover:shadow-xl transition-shadow">
+              <CardContent className="p-8">
+                <div className="text-4xl lg:text-5xl font-bold text-vm-green mb-2">
+                  91%
+                </div>
+                <div className="text-lg font-semibold text-vm-gray-700">
+                  Success Rate
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card className="text-center border border-vm-gray-200 shadow-lg hover:shadow-xl transition-shadow">
+              <CardContent className="p-8">
+                <div className="text-4xl lg:text-5xl font-bold text-vm-blue mb-2">
+                  4-10
+                </div>
+                <div className="text-lg font-semibold text-vm-gray-700">
+                  Months Avg Processing
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card className="text-center border border-vm-gray-200 shadow-lg hover:shadow-xl transition-shadow">
+              <CardContent className="p-8">
+                <div className="text-4xl lg:text-5xl font-bold text-vm-green mb-2">
+                  150+
+                </div>
+                <div className="text-lg font-semibold text-vm-gray-700">
+                  Countries
+                </div>
+              </CardContent>
+            </Card>
           </div>
         </div>
       </section>
@@ -192,95 +215,117 @@ export default function Index() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-3xl lg:text-4xl font-bold text-vm-gray-900 mb-4">
-              Comprehensive Immigration Services
+              Expert Immigration Services Worldwide
             </h2>
-            <p className="text-lg text-vm-gray-600 max-w-2xl mx-auto">
-              From visa applications to permanent residency, we provide expert
-              guidance for all your immigration needs.
+            <p className="text-lg text-vm-gray-600 max-w-3xl mx-auto">
+              Connect with certified immigration professionals who understand
+              the complexities of global visa processes. Get personalized
+              guidance for your unique immigration journey.
             </p>
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {[
               {
-                icon: Globe,
-                title: "Work Visas",
+                icon: Briefcase,
+                title: "Work & Employment Visas",
                 description:
-                  "H1-B, L1, O1 and other employment-based visas for professionals and skilled workers.",
+                  "Connect with experts specializing in H1-B, L1, O1, and other employment-based visas.",
                 features: [
-                  "Expert consultation",
-                  "Document preparation",
-                  "24/7 support",
+                  "Visa strategy consultation",
+                  "Document review & prep",
+                  "Interview preparation",
                 ],
+                image:
+                  "https://images.unsplash.com/photo-1560472354-b33ff0c44a43?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80",
               },
               {
                 icon: Users,
-                title: "Family Immigration",
+                title: "Family Reunification",
                 description:
-                  "Reunite with your loved ones through family-based immigration petitions.",
+                  "Reunite with loved ones through family-based immigration with expert guidance.",
                 features: [
-                  "Spouse visas",
-                  "Parent petitions",
+                  "Spouse & partner visas",
+                  "Parent sponsorship",
                   "Child immigration",
                 ],
+                image:
+                  "https://images.unsplash.com/photo-1511895426328-dc8714191300?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80",
               },
               {
                 icon: Award,
-                title: "Student Visas",
+                title: "Study & Exchange Programs",
                 description:
-                  "F1, M1, and J1 visas for academic and exchange programs.",
+                  "Expert assistance for F1, M1, and J1 visas for international education.",
                 features: [
-                  "University applications",
-                  "Visa interviews",
-                  "Post-graduation options",
+                  "University guidance",
+                  "Visa application support",
+                  "Post-study options",
                 ],
+                image:
+                  "https://images.unsplash.com/photo-1523240795612-9a054b0db644?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80",
               },
               {
                 icon: Shield,
-                title: "Business Immigration",
+                title: "Business & Investment",
                 description:
-                  "E1, E2, EB5 investor visas and business immigration solutions.",
+                  "E1, E2, EB5 investor visas and business immigration solutions with certified experts.",
                 features: [
-                  "Investment guidance",
-                  "Business setup",
-                  "Legal compliance",
+                  "Investment strategy",
+                  "Business plan review",
+                  "Compliance guidance",
                 ],
-              },
-              {
-                icon: FileText,
-                title: "Green Card Services",
-                description: "Permanent residency applications and renewals.",
-                features: [
-                  "Priority processing",
-                  "Status tracking",
-                  "Interview preparation",
-                ],
+                image:
+                  "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80",
               },
               {
                 icon: CheckCircle,
-                title: "Citizenship",
+                title: "Permanent Residency",
                 description:
-                  "Naturalization process and citizenship test preparation.",
+                  "Green card applications and permanent residency pathways with expert support.",
                 features: [
-                  "Test preparation",
-                  "Document review",
+                  "Eligibility assessment",
+                  "Application tracking",
                   "Interview coaching",
                 ],
+                image:
+                  "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80",
+              },
+              {
+                icon: Globe,
+                title: "Citizenship & Naturalization",
+                description:
+                  "Complete naturalization support and citizenship test preparation.",
+                features: [
+                  "Eligibility review",
+                  "Test preparation",
+                  "Application support",
+                ],
+                image:
+                  "https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80",
               },
             ].map((service, index) => (
               <Card
                 key={index}
-                className="hover:shadow-lg transition-shadow duration-300"
+                className="hover:shadow-xl transition-all duration-300 overflow-hidden group"
               >
-                <CardContent className="p-6">
-                  <div className="flex items-center mb-4">
-                    <div className="w-12 h-12 bg-vm-green/10 rounded-lg flex items-center justify-center">
+                <div className="relative h-48 overflow-hidden">
+                  <img
+                    src={service.image}
+                    alt={service.title}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                  <div className="absolute top-4 left-4">
+                    <div className="w-12 h-12 bg-white/90 rounded-lg flex items-center justify-center">
                       <service.icon className="w-6 h-6 text-vm-green" />
                     </div>
-                    <h3 className="text-xl font-semibold text-vm-gray-900 ml-4">
-                      {service.title}
-                    </h3>
                   </div>
+                </div>
+                <CardContent className="p-6">
+                  <h3 className="text-xl font-semibold text-vm-gray-900 mb-3">
+                    {service.title}
+                  </h3>
                   <p className="text-vm-gray-600 mb-4">{service.description}</p>
                   <ul className="space-y-2">
                     {service.features.map((feature, featureIndex) => (
@@ -293,6 +338,15 @@ export default function Index() {
                       </li>
                     ))}
                   </ul>
+                  <div className="mt-4 pt-4 border-t border-vm-gray-100">
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      className="w-full border-vm-green text-vm-green hover:bg-vm-green hover:text-white"
+                    >
+                      Find Expert
+                    </Button>
+                  </div>
                 </CardContent>
               </Card>
             ))}
@@ -314,31 +368,38 @@ export default function Index() {
 
           <div className="grid md:grid-cols-3 gap-8">
             {testimonials.map((testimonial, index) => (
-              <Card key={index} className="border-0 shadow-lg">
+              <Card
+                key={index}
+                className="border-0 shadow-lg hover:shadow-xl transition-shadow"
+              >
                 <CardContent className="p-6">
                   <div className="flex items-center mb-4">
                     {[1, 2, 3, 4, 5].map((star) => (
                       <Star
                         key={star}
-                        className="w-4 h-4 fill-yellow-400 text-yellow-400"
+                        className="w-5 h-5 fill-yellow-400 text-yellow-400"
                       />
                     ))}
                   </div>
-                  <p className="text-vm-gray-600 mb-6 italic">
+                  <p className="text-vm-gray-600 mb-6 italic text-lg leading-relaxed">
                     "{testimonial.content}"
                   </p>
                   <div className="flex items-center">
                     <img
                       src={testimonial.image}
                       alt={testimonial.name}
-                      className="w-12 h-12 rounded-full bg-vm-gray-200"
+                      className="w-14 h-14 rounded-full object-cover border-2 border-vm-gray-100"
                     />
                     <div className="ml-4">
-                      <div className="font-semibold text-vm-gray-900">
+                      <div className="font-semibold text-vm-gray-900 text-lg">
                         {testimonial.name}
                       </div>
-                      <div className="text-sm text-vm-gray-500">
+                      <div className="text-sm text-vm-gray-500 mb-1">
                         {testimonial.role}
+                      </div>
+                      <div className="flex items-center text-xs text-vm-blue">
+                        <Globe className="w-3 h-3 mr-1" />
+                        {testimonial.country}
                       </div>
                     </div>
                   </div>
@@ -376,34 +437,50 @@ export default function Index() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-vm-green">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <section className="py-20 bg-gradient-to-r from-vm-green to-vm-green-600 relative overflow-hidden">
+        <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1507679799987-c73779587ccf?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80')] bg-cover bg-center opacity-10"></div>
+        <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl lg:text-4xl font-bold text-white mb-6">
-            Ready to Start Your Immigration Journey?
+            Begin Your Global Immigration Journey Today
           </h2>
           <p className="text-xl text-white/90 mb-8">
-            Join thousands of successful applicants who trusted VM Visa with
-            their future.
+            Connect with certified immigration experts worldwide. Over 10,000
+            successful visa applications and counting. Your dream destination
+            awaits.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link to="/signup">
               <Button
                 size="lg"
-                className="bg-white text-vm-green hover:bg-gray-100 text-lg px-8 py-4"
+                className="bg-white text-vm-green hover:bg-gray-100 text-lg px-8 py-4 min-w-[200px]"
               >
-                Get Started Today
+                Find Your Expert
                 <ArrowRight className="ml-2 w-5 h-5" />
               </Button>
             </Link>
-            <Link to="/contact">
+            <Link to="/signup/agent">
               <Button
                 size="lg"
                 variant="outline"
-                className="border-white text-white hover:bg-white hover:text-vm-green text-lg px-8 py-4"
+                className="border-white text-white hover:bg-white hover:text-vm-green text-lg px-8 py-4 min-w-[200px]"
               >
-                Schedule Consultation
+                Join as Expert
               </Button>
             </Link>
+          </div>
+          <div className="mt-8 flex items-center justify-center space-x-8 text-white/80">
+            <div className="flex items-center">
+              <Shield className="w-5 h-5 mr-2" />
+              <span className="text-sm">Verified Experts</span>
+            </div>
+            <div className="flex items-center">
+              <Globe className="w-5 h-5 mr-2" />
+              <span className="text-sm">150+ Countries</span>
+            </div>
+            <div className="flex items-center">
+              <Award className="w-5 h-5 mr-2" />
+              <span className="text-sm">91% Success Rate</span>
+            </div>
           </div>
         </div>
       </section>
