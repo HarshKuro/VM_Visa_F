@@ -366,18 +366,26 @@ export default function Index() {
               },
             ].map((service, index) => {
               // Icon mapping
-              const IconComponent =
-                service.icon === "graduation-cap"
-                  ? Award
-                  : service.icon === "briefcase"
-                    ? Briefcase
-                    : service.icon === "luggage"
-                      ? Globe
-                      : service.icon === "users"
-                        ? Users
-                        : service.icon === "trending-up"
-                          ? TrendingUp
-                          : CheckCircle;
+              const getIconComponent = (iconName: string) => {
+                switch (iconName) {
+                  case "graduation-cap":
+                    return Award;
+                  case "briefcase":
+                    return Briefcase;
+                  case "luggage":
+                    return Globe;
+                  case "users":
+                    return Users;
+                  case "trending-up":
+                    return TrendingUp;
+                  case "refresh-cw":
+                    return CheckCircle;
+                  default:
+                    return CheckCircle;
+                }
+              };
+
+              const IconComponent = getIconComponent(service.icon);
 
               return (
                 <Card
