@@ -219,7 +219,9 @@ export default function DocumentUpload() {
       doc.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
       doc.category.toLowerCase().includes(searchTerm.toLowerCase());
     const matchesCategory =
-      !selectedCategory || doc.category === selectedCategory;
+      !selectedCategory ||
+      selectedCategory === "all" ||
+      doc.category === selectedCategory;
     return matchesSearch && matchesCategory;
   });
 
@@ -314,7 +316,7 @@ export default function DocumentUpload() {
                   <SelectValue placeholder="All Categories" />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="">All Categories</SelectItem>
+                  <SelectItem value="all">All Categories</SelectItem>
                   {documentCategories.map((category) => (
                     <SelectItem key={category} value={category}>
                       {category}
