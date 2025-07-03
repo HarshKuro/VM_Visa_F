@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
 import Navigation from "@/components/Navigation";
 import AIChatAssistant from "@/components/AIChatAssistant";
 import {
@@ -12,10 +13,36 @@ import {
   Calendar,
   FileText,
   Clock,
+  Mail,
+  Phone,
+  MapPin,
+  Shield,
+  CheckCircle,
+  Settings,
+  Edit,
+  Award,
 } from "lucide-react";
 
 export default function AgentDashboard() {
   const [activeTab, setActiveTab] = useState("overview");
+
+  // Mock agent data
+  const agentProfile = {
+    name: "Sarah Johnson",
+    title: "Senior Immigration Consultant",
+    avatar: "https://images.unsplash.com/photo-1494790108755-2616b612b786?w=150&h=150&fit=crop&crop=face",
+    verified: true,
+    rating: 4.9,
+    experience: "8 years",
+    email: "sarah.johnson@vmvisa.com",
+    phone: "+1 (555) 123-4567",
+    location: "New York, NY",
+    specializations: ["H1-B Visas", "Green Cards", "Family Immigration"],
+    memberSince: "2019",
+    successRate: "96%",
+    completedCases: 287,
+    activeClients: 12,
+  };
 
   // Mock data for agent stats
   const agentStats = [
@@ -57,7 +84,164 @@ export default function AgentDashboard() {
     <div className="min-h-screen bg-vm-gray-50">
       <Navigation />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <div className="flex">
+        {/* Left Sidebar - Agent Profile */}
+        <div className="w-80 bg-white border-r border-vm-gray-200 min-h-screen">
+          <div className="p-6">
+            {/* Profile Header */}
+            <div className="text-center mb-6">
+              <div className="relative inline-block">
+                <img
+                  src={agentProfile.avatar}
+                  alt={agentProfile.name}
+                  className="w-20 h-20 rounded-full mx-auto mb-3"
+                />
+                {agentProfile.verified && (
+                  <div className="absolute -bottom-1 -right-1 bg-vm-green rounded-full p-1">
+                    <CheckCircle className="w-4 h-4 text-white" />
+                  </div>
+                )}
+              </div>
+              <h2 className="text-xl font-bold text-vm-gray-900 mb-1">
+                {agentProfile.name}
+              </h2>
+              <p className="text-sm text-vm-gray-600 mb-2">
+                {agentProfile.title}
+              </p>
+              <div className="flex items-center justify-center space-x-1 mb-3">
+                <div className="flex">
+                  {[...Array(5)].map((_, i) => (
+                    <Star
+                      key={i}
+                      className={`w-4 h-4 ${
+                        i < Math.floor(agentProfile.rating)
+                          ? "text-yellow-500 fill-current"
+                          : "text-vm-gray-300"
+                      }`}
+                    />
+                  ))}
+                </div>
+                <span className="text-sm font-medium text-vm-gray-700">
+                  {agentProfile.rating}
+                </span>
+              </div>
+              <Badge variant="outline" className="text-xs">
+                {agentProfile.experience} Experience
+              </Badge>
+            </div>
+
+            {/* Contact Information */}
+            <div className="mb-6">
+              <h3 className="text-sm font-semibold text-vm-gray-900 mb-3">
+                Contact Information
+              </h3>
+              <div className="space-y-3">
+                <div className="flex items-center space-x-3">
+                  <Mail className="w-4 h-4 text-vm-gray-500" />
+                  <span className="text-sm text-vm-gray-700">
+                    {agentProfile.email}
+                  </span>
+                </div>
+                <div className="flex items-center space-x-3">
+                  <Phone className="w-4 h-4 text-vm-gray-500" />
+                  <span className="text-sm text-vm-gray-700">
+                    {agentProfile.phone}
+                  </span>
+                </div>
+                <div className="flex items-center space-x-3">
+                  <MapPin className="w-4 h-4 text-vm-gray-500" />
+                  <span className="text-sm text-vm-gray-700">
+                    {agentProfile.location}
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            {/* Specializations */}
+            <div className="mb-6">
+              <h3 className="text-sm font-semibold text-vm-gray-900 mb-3">
+                Specializations
+              </h3>
+              <div className="flex flex-wrap gap-2">
+                {agentProfile.specializations.map((spec, index) => (
+                  <Badge key={index} variant="secondary" className="text-xs">
+                    {spec}
+                  </Badge>
+                ))}
+              </div>
+            </div>
+
+            {/* Quick Stats */}
+            <div className="mb-6">
+              <h3 className="text-sm font-semibold text-vm-gray-900 mb-3">
+                Performance Overview
+              </h3>
+              <div className="grid grid-cols-2 gap-4">
+                <div className="bg-vm-gray-50 rounded-lg p-3">
+                  <div className="text-lg font-bold text-vm-gray-900">
+                    {agentProfile.completedCases}
+                  </div>
+                  <div className="text-xs text-vm-gray-600">Cases Completed</div>
+                </div>
+                <div className="bg-vm-gray-50 rounded-lg p-3">
+                  <div className="text-lg font-bold text-vm-green">
+                    {agentProfile.successRate}
+                  </div>
+                  <div className="text-xs text-vm-gray-600">Success Rate</div>
+                </div>
+                <div className="bg-vm-gray-50 rounded-lg p-3">
+                  <div className="text-lg font-bold text-vm-blue">
+                    {agentProfile.activeClients}
+                  </div>
+                  <div className="text-xs text-vm-gray-600">Active Clients</div>
+                </div>
+                <div className="bg-vm-gray-50 rounded-lg p-3">
+                  <div className="text-lg font-bold text-vm-gray-900">
+                    {agentProfile.memberSince}
+                  </div>
+                  <div className="text-xs text-vm-gray-600">Member Since</div>
+                </div>
+              </div>
+            </div>
+
+            {/* Action Buttons */}
+            <div className="space-y-3">
+              <Button className="w-full bg-vm-green hover:bg-vm-green-600">
+                <Edit className="w-4 h-4 mr-2" />
+                Edit Profile
+              </Button>
+              <Button variant="outline" className="w-full">
+                <Settings className="w-4 h-4 mr-2" />
+                Account Settings
+              </Button>
+              <Button variant="outline" className="w-full">
+                <Award className="w-4 h-4 mr-2" />
+                View Certificates
+              </Button>
+            </div>
+
+            {/* Recent Activity Preview */}
+            <div className="mt-8">
+              <h3 className="text-sm font-semibold text-vm-gray-900 mb-3">
+                Recent Activity
+              </h3>
+              <div className="space-y-2">
+                <div className="text-xs text-vm-gray-600">
+                  • New proposal submitted
+                </div>
+                <div className="text-xs text-vm-gray-600">
+                  • Client consultation completed
+                </div>
+                <div className="text-xs text-vm-gray-600">
+                  • Document review finished
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Main Content Area */}
+        <div className="flex-1 p-8">
         {/* Welcome Header */}
         <div className="mb-8">
           <div className="bg-gradient-to-r from-vm-green to-vm-green-600 rounded-lg p-6 text-white">
