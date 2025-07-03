@@ -160,9 +160,13 @@ export default function AgentBrowser() {
         exp.toLowerCase().includes(searchTerm.toLowerCase()),
       );
     const matchesExpertise =
-      !selectedExpertise || agent.expertise.includes(selectedExpertise);
+      !selectedExpertise ||
+      selectedExpertise === "all" ||
+      agent.expertise.includes(selectedExpertise);
     const matchesLocation =
-      !selectedLocation || agent.location.includes(selectedLocation);
+      !selectedLocation ||
+      selectedLocation === "all" ||
+      agent.location.includes(selectedLocation);
 
     return matchesSearch && matchesExpertise && matchesLocation;
   });
@@ -211,7 +215,7 @@ export default function AgentBrowser() {
               <SelectValue placeholder="Expertise" />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="">All Expertise</SelectItem>
+              <SelectItem value="all">All Expertise</SelectItem>
               {expertiseOptions.map((exp) => (
                 <SelectItem key={exp} value={exp}>
                   {exp}
@@ -225,7 +229,7 @@ export default function AgentBrowser() {
               <SelectValue placeholder="Location" />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="">All Locations</SelectItem>
+              <SelectItem value="all">All Locations</SelectItem>
               {locationOptions.map((loc) => (
                 <SelectItem key={loc} value={loc}>
                   {loc}
@@ -418,8 +422,8 @@ export default function AgentBrowser() {
           <Button
             onClick={() => {
               setSearchTerm("");
-              setSelectedExpertise("");
-              setSelectedLocation("");
+              setSelectedExpertise("all");
+              setSelectedLocation("all");
             }}
             variant="outline"
           >
