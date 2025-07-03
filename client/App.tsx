@@ -7,6 +7,10 @@ import AgentSignup from "./pages/AgentSignup";
 import OrganizationSignup from "./pages/OrganizationSignup";
 import ClientDashboard from "./pages/ClientDashboard";
 import AgentProfileCompletion from "./pages/AgentProfileCompletion";
+import AgentProfileStep1 from "./pages/AgentProfileStep1";
+import AgentProfileStep2 from "./pages/AgentProfileStep2";
+import AgentProfileStep3 from "./pages/AgentProfileStep3";
+import AgentProfileStep4 from "./pages/AgentProfileStep4";
 import AgentDashboard from "./pages/AgentDashboard";
 import NotFound from "./pages/NotFound";
 import { Toaster } from "@/components/ui/toaster";
@@ -26,6 +30,10 @@ function App() {
           path="/agent-profile-completion"
           element={<AgentProfileCompletion />}
         />
+        <Route path="/agent-profile-step1" element={<AgentProfileStep1 />} />
+        <Route path="/agent-profile-step2" element={<AgentProfileStep2 />} />
+        <Route path="/agent-profile-step3" element={<AgentProfileStep3 />} />
+        <Route path="/agent-profile-step4" element={<AgentProfileStep4 />} />
         <Route path="/agent-dashboard" element={<AgentDashboard />} />
         {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
         <Route path="*" element={<NotFound />} />
