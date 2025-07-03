@@ -1,11 +1,28 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { ChevronDown, Globe, Menu, X } from "lucide-react";
+import {
+  ChevronDown,
+  Globe,
+  Menu,
+  X,
+  FileText,
+  MessageSquare,
+  Clock,
+  Upload,
+  Users,
+  BarChart3,
+} from "lucide-react";
 
 export default function Navigation() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [selectedCountry, setSelectedCountry] = useState("United States");
+  const location = useLocation();
+
+  // Check if user is on dashboard pages (logged in)
+  const isLoggedIn =
+    location.pathname.includes("-dashboard") ||
+    location.pathname.includes("/dashboard");
 
   const countries = [
     "United States",
@@ -57,46 +74,130 @@ export default function Navigation() {
             </div>
 
             {/* Navigation Links */}
-            <div className="flex items-center space-x-6">
-              <Link
-                to="/services"
-                className="text-sm font-medium text-vm-gray-700 hover:text-vm-gray-900 transition-colors"
-              >
-                Services
-              </Link>
-              <Link
-                to="/about"
-                className="text-sm font-medium text-vm-gray-700 hover:text-vm-gray-900 transition-colors"
-              >
-                About
-              </Link>
-              <Link
-                to="/contact"
-                className="text-sm font-medium text-vm-gray-700 hover:text-vm-gray-900 transition-colors"
-              >
-                Contact
-              </Link>
+            <div className="flex items-center space-x-1">
+              {isLoggedIn ? (
+                // Dashboard Navigation for logged-in users
+                <>
+                  {[
+                    { path: "#overview", label: "Overview", icon: BarChart3 },
+                    { path: "#requests", label: "My Requests", icon: FileText },
+                    {
+                      path: "#proposals",
+                      label: "Proposals",
+                      icon: MessageSquare,
+                    },
+                    {
+                      path: "#applications",
+                      label: "Applications",
+                      icon: Clock,
+                    },
+                    { path: "#documents", label: "Documents", icon: Upload },
+                    { path: "#agents", label: "Browse Agents", icon: Users },
+                  ].map((item) => {
+                    const Icon = item.icon;
+                    return (
+                      <button
+                        key={item.path}
+                        onClick={() => {
+                          // Trigger tab change in dashboard
+                          const event = new CustomEvent("dashboardTabChange", {
+                            detail: { tab: item.path.replace("#", "") },
+                          });
+                          window.dispatchEvent(event);
+                        }}
+                        className="group flex items-center space-x-2 px-3 py-2 rounded-lg text-sm font-medium text-vm-gray-700 hover:text-vm-green hover:bg-vm-green/5 transition-all duration-200 transform hover:scale-105"
+                      >
+                        <Icon className="w-4 h-4 transition-transform duration-200 group-hover:scale-110" />
+                        <span className="relative">
+                          {item.label}
+                          <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-vm-green transition-all duration-200 group-hover:w-full"></span>
+                        </span>
+                      </button>
+                    );
+                  })}
+                </>
+              ) : (
+                // Public Navigation for non-logged-in users
+                <>
+                  <Link
+                    to="/services"
+                    className="px-3 py-2 text-sm font-medium text-vm-gray-700 hover:text-vm-gray-900 hover:bg-vm-gray-50 rounded-lg transition-all duration-200"
+                  >
+                    Services
+                  </Link>
+                  <Link
+                    to="/about"
+                    className="px-3 py-2 text-sm font-medium text-vm-gray-700 hover:text-vm-gray-900 hover:bg-vm-gray-50 rounded-lg transition-all duration-200"
+                  >
+                    About
+                  </Link>
+                  <Link
+                    to="/contact"
+                    className="px-3 py-2 text-sm font-medium text-vm-gray-700 hover:text-vm-gray-900 hover:bg-vm-gray-50 rounded-lg transition-all duration-200"
+                  >
+                    Contact
+                  </Link>
+                </>
+              )}
             </div>
 
             {/* Auth Buttons */}
             <div className="flex items-center space-x-3">
-              <Link to="/login">
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  className="text-vm-gray-700 hover:text-vm-gray-900"
-                >
-                  Login
-                </Button>
-              </Link>
-              <Link to="/signup">
-                <Button
-                  size="sm"
-                  className="bg-vm-green hover:bg-vm-green-600 text-white"
-                >
-                  Sign Up
-                </Button>
-              </Link>
+              {isLoggedIn ? (
+                // User Profile & Logout for logged-in users
+                <div className="flex items-center space-x-3">
+                  <div className="relative group">
+                    <button className="flex items-center space-x-2 p-2 rounded-lg hover:bg-vm-gray-50 transition-all duration-200">
+                      <div className="w-8 h-8 bg-vm-green rounded-full flex items-center justify-center">
+                        <span className="text-white text-sm font-medium">
+                          JD
+                        </span>
+                      </div>
+                      <ChevronDown className="w-4 h-4 text-vm-gray-600" />
+                    </button>
+
+                    {/* Dropdown Menu */}
+                    <div className="absolute right-0 top-full mt-2 w-48 bg-white rounded-lg shadow-lg border border-vm-gray-200 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+                      <div className="py-2">
+                        <button className="block w-full px-4 py-2 text-left text-sm text-vm-gray-700 hover:bg-vm-gray-50 transition-colors">
+                          Profile Settings
+                        </button>
+                        <button className="block w-full px-4 py-2 text-left text-sm text-vm-gray-700 hover:bg-vm-gray-50 transition-colors">
+                          Notifications
+                        </button>
+                        <hr className="my-1 border-vm-gray-200" />
+                        <Link
+                          to="/"
+                          className="block w-full px-4 py-2 text-left text-sm text-red-600 hover:bg-red-50 transition-colors"
+                        >
+                          Logout
+                        </Link>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              ) : (
+                // Login/Signup buttons for non-logged-in users
+                <>
+                  <Link to="/login">
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      className="text-vm-gray-700 hover:text-vm-gray-900"
+                    >
+                      Login
+                    </Button>
+                  </Link>
+                  <Link to="/signup">
+                    <Button
+                      size="sm"
+                      className="bg-vm-green hover:bg-vm-green-600 text-white"
+                    >
+                      Sign Up
+                    </Button>
+                  </Link>
+                </>
+              )}
             </div>
           </div>
 
@@ -130,45 +231,114 @@ export default function Navigation() {
 
               {/* Navigation Links Mobile */}
               <div className="flex flex-col space-y-2 px-4">
-                <Link
-                  to="/services"
-                  className="text-sm font-medium text-vm-gray-700 hover:text-vm-gray-900 py-2 transition-colors"
-                >
-                  Services
-                </Link>
-                <Link
-                  to="/about"
-                  className="text-sm font-medium text-vm-gray-700 hover:text-vm-gray-900 py-2 transition-colors"
-                >
-                  About
-                </Link>
-                <Link
-                  to="/contact"
-                  className="text-sm font-medium text-vm-gray-700 hover:text-vm-gray-900 py-2 transition-colors"
-                >
-                  Contact
-                </Link>
+                {isLoggedIn ? (
+                  // Dashboard Navigation for mobile
+                  <>
+                    {[
+                      { path: "#overview", label: "Overview", icon: BarChart3 },
+                      {
+                        path: "#requests",
+                        label: "My Requests",
+                        icon: FileText,
+                      },
+                      {
+                        path: "#proposals",
+                        label: "Proposals",
+                        icon: MessageSquare,
+                      },
+                      {
+                        path: "#applications",
+                        label: "Applications",
+                        icon: Clock,
+                      },
+                      { path: "#documents", label: "Documents", icon: Upload },
+                      { path: "#agents", label: "Browse Agents", icon: Users },
+                    ].map((item) => {
+                      const Icon = item.icon;
+                      return (
+                        <button
+                          key={item.path}
+                          onClick={() => {
+                            const event = new CustomEvent(
+                              "dashboardTabChange",
+                              {
+                                detail: { tab: item.path.replace("#", "") },
+                              },
+                            );
+                            window.dispatchEvent(event);
+                            setIsMenuOpen(false);
+                          }}
+                          className="flex items-center space-x-3 text-sm font-medium text-vm-gray-700 hover:text-vm-green py-3 transition-colors"
+                        >
+                          <Icon className="w-4 h-4" />
+                          <span>{item.label}</span>
+                        </button>
+                      );
+                    })}
+                  </>
+                ) : (
+                  // Public Navigation for mobile
+                  <>
+                    <Link
+                      to="/services"
+                      className="text-sm font-medium text-vm-gray-700 hover:text-vm-gray-900 py-2 transition-colors"
+                    >
+                      Services
+                    </Link>
+                    <Link
+                      to="/about"
+                      className="text-sm font-medium text-vm-gray-700 hover:text-vm-gray-900 py-2 transition-colors"
+                    >
+                      About
+                    </Link>
+                    <Link
+                      to="/contact"
+                      className="text-sm font-medium text-vm-gray-700 hover:text-vm-gray-900 py-2 transition-colors"
+                    >
+                      Contact
+                    </Link>
+                  </>
+                )}
               </div>
 
               {/* Auth Buttons Mobile */}
               <div className="flex flex-col space-y-2 px-4 pt-4 border-t border-vm-gray-200">
-                <Link to="/login">
-                  <Button
-                    variant="ghost"
-                    size="sm"
-                    className="w-full justify-start text-vm-gray-700"
-                  >
-                    Login
-                  </Button>
-                </Link>
-                <Link to="/signup">
-                  <Button
-                    size="sm"
-                    className="w-full bg-vm-green hover:bg-vm-green-600 text-white"
-                  >
-                    Sign Up
-                  </Button>
-                </Link>
+                {isLoggedIn ? (
+                  <>
+                    <button className="flex items-center space-x-3 text-sm font-medium text-vm-gray-700 hover:text-vm-gray-900 py-2 transition-colors">
+                      <div className="w-6 h-6 bg-vm-green rounded-full flex items-center justify-center">
+                        <span className="text-white text-xs">JD</span>
+                      </div>
+                      <span>Profile Settings</span>
+                    </button>
+                    <Link
+                      to="/"
+                      className="text-sm font-medium text-red-600 hover:text-red-700 py-2 transition-colors"
+                    >
+                      Logout
+                    </Link>
+                  </>
+                ) : (
+                  <>
+                    <Link to="/login">
+                      <Button
+                        variant="ghost"
+                        size="sm"
+                        className="w-full justify-start text-vm-gray-700"
+                      >
+                        Login
+                      </Button>
+                    </Link>
+                    <Link to="/signup">
+                      <Button
+                        size="sm"
+                        className="w-full bg-vm-green hover:bg-vm-green-600 text-white"
+                      >
+                        Sign Up
+                      </Button>
+                    </Link>
+                  </>
+                )}
               </div>
             </div>
           </div>

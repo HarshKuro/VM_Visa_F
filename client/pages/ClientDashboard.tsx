@@ -71,6 +71,25 @@ export default function ClientDashboard() {
   const [showPostModal, setShowPostModal] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
 
+  // Listen for navigation events from header
+  useEffect(() => {
+    const handleTabChange = (event: CustomEvent) => {
+      setActiveTab(event.detail.tab);
+    };
+
+    window.addEventListener(
+      "dashboardTabChange",
+      handleTabChange as EventListener,
+    );
+
+    return () => {
+      window.removeEventListener(
+        "dashboardTabChange",
+        handleTabChange as EventListener,
+      );
+    };
+  }, []);
+
   // Mock data
   const [visaRequests] = useState<VisaRequest[]>([
     {
