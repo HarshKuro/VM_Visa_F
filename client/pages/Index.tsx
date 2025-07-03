@@ -23,20 +23,20 @@ export default function Index() {
 
   const immigrationImages = [
     {
-      src: "https://cdn.builder.io/api/v1/image/assets%2Fcc6a575b231f4eceba6352aba1db9aab%2Fd78bfa4770e64ab8a212c7eff646f6b1?format=webp&width=800",
-      alt: "Immigration consultation meeting",
+      src: "https://images.unsplash.com/photo-1588421357574-87938a86fa28?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+      alt: "Passport in hand - Immigration journey",
     },
     {
-      src: "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-      alt: "Professional immigration consultation",
+      src: "https://images.unsplash.com/photo-1564731075133-98d2a4c9b022?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+      alt: "World map with passport - Global immigration",
     },
     {
-      src: "https://images.unsplash.com/photo-1507679799987-c73779587ccf?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-      alt: "Global immigration services",
+      src: "https://images.unsplash.com/photo-1519452575417-564c1401ecc0?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+      alt: "Multiple passports - International travel",
     },
     {
-      src: "https://images.unsplash.com/photo-1600880292203-757bb62b4baf?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-      alt: "Immigration document review",
+      src: "https://images.unsplash.com/photo-1573833020516-2d94d0e72d10?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+      alt: "Visa stamps and passport pages",
     },
   ];
 
