@@ -300,146 +300,142 @@ export default function Index() {
         </div>
       </section>
 
-      {/* Services Section */}
-      <section className="py-20 bg-vm-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl lg:text-4xl font-bold text-vm-gray-900 mb-4">
-              Expert Immigration Services Worldwide
+      {/* Services Section - Upwork Style */}
+      <section className="py-20 lg:py-24 bg-[#F5F7FA]">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          {/* Heading & Subheading */}
+          <div className="text-center mb-12">
+            <h2
+              className="text-3xl lg:text-4xl font-semibold text-[#1A2E4E] mb-4"
+              style={{ fontFamily: "Poppins, sans-serif" }}
+            >
+              Our Immigration Services
             </h2>
-            <p className="text-lg text-vm-gray-600 max-w-3xl mx-auto">
-              Connect with certified immigration professionals who understand
-              the complexities of global visa processes. Get personalized
-              guidance for your unique immigration journey.
+            <p
+              className="text-lg text-[#4A4A4A] max-w-2xl mx-auto mb-10"
+              style={{ fontFamily: "Roboto, sans-serif", fontWeight: 400 }}
+            >
+              Expert support for every step of your global journey
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {/* Service Cards Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {[
               {
-                icon: Briefcase,
-                title: "Work & Employment Visas",
+                icon: "graduation-cap",
+                title: "Student Visa Assistance",
                 description:
-                  "Connect with experts specializing in H1-B, L1, O1, and other employment-based visas.",
-                features: [
-                  "Visa strategy consultation",
-                  "Document review & prep",
-                  "Interview preparation",
-                ],
-                image:
-                  "https://images.unsplash.com/photo-1560472354-b33ff0c44a43?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80",
+                  "Complete end-to-end support for F-1 and other study permits, from document prep to embassy interview coaching.",
+                link: "/services/student-visa",
               },
               {
-                icon: Users,
-                title: "Family Reunification",
+                icon: "briefcase",
+                title: "Work Permit Processing",
                 description:
-                  "Reunite with loved ones through family-based immigration with expert guidance.",
-                features: [
-                  "Spouse & partner visas",
-                  "Parent sponsorship",
-                  "Child immigration",
-                ],
-                image:
-                  "https://images.unsplash.com/photo-1511895426328-dc8714191300?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80",
+                  "Professional guidance for H1-B, L1, O1, and employment-based visas with expert document review and strategy.",
+                link: "/services/work-permit",
               },
               {
-                icon: Award,
-                title: "Study & Exchange Programs",
+                icon: "luggage",
+                title: "Tourist & Visitor Visas",
                 description:
-                  "Expert assistance for F1, M1, and J1 visas for international education.",
-                features: [
-                  "University guidance",
-                  "Visa application support",
-                  "Post-study options",
-                ],
-                image:
-                  "https://images.unsplash.com/photo-1523240795612-9a054b0db644?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80",
+                  "Streamlined support for B1/B2 tourist visas, ensuring proper documentation and interview preparation.",
+                link: "/services/tourist-visa",
               },
               {
-                icon: Shield,
-                title: "Business & Investment",
+                icon: "users",
+                title: "Family Sponsorship",
                 description:
-                  "E1, E2, EB5 investor visas and business immigration solutions with certified experts.",
-                features: [
-                  "Investment strategy",
-                  "Business plan review",
-                  "Compliance guidance",
-                ],
-                image:
-                  "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80",
+                  "Reunite with loved ones through family-based immigration with comprehensive application support.",
+                link: "/services/family-sponsorship",
               },
               {
-                icon: CheckCircle,
-                title: "Permanent Residency",
+                icon: "trending-up",
+                title: "Investor & Business Visas",
                 description:
-                  "Green card applications and permanent residency pathways with expert support.",
-                features: [
-                  "Eligibility assessment",
-                  "Application tracking",
-                  "Interview coaching",
-                ],
-                image:
-                  "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80",
+                  "E1, E2, EB5 investor visas and business immigration solutions with investment strategy guidance.",
+                link: "/services/investor-visa",
               },
               {
-                icon: Globe,
-                title: "Citizenship & Naturalization",
+                icon: "refresh-cw",
+                title: "Appeals & Renewals",
                 description:
-                  "Complete naturalization support and citizenship test preparation.",
-                features: [
-                  "Eligibility review",
-                  "Test preparation",
-                  "Application support",
-                ],
-                image:
-                  "https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80",
+                  "Expert assistance with visa appeals, renewals, and status changes to maintain your legal standing.",
+                link: "/services/appeals-renewals",
               },
-            ].map((service, index) => (
-              <Card
-                key={index}
-                className="hover:shadow-xl transition-all duration-300 overflow-hidden group"
-              >
-                <div className="relative h-48 overflow-hidden">
-                  <img
-                    src={service.image}
-                    alt={service.title}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
-                  <div className="absolute top-4 left-4">
-                    <div className="w-12 h-12 bg-white/90 rounded-lg flex items-center justify-center">
-                      <service.icon className="w-6 h-6 text-vm-green" />
+            ].map((service, index) => {
+              // Icon mapping
+              const IconComponent =
+                service.icon === "graduation-cap"
+                  ? Award
+                  : service.icon === "briefcase"
+                    ? Briefcase
+                    : service.icon === "luggage"
+                      ? Globe
+                      : service.icon === "users"
+                        ? Users
+                        : service.icon === "trending-up"
+                          ? TrendingUp
+                          : CheckCircle;
+
+              return (
+                <Card
+                  key={index}
+                  className="bg-white rounded-lg shadow-sm hover:shadow-md transition-all duration-300 border-0 group cursor-pointer"
+                  style={{
+                    boxShadow: "0 1px 3px rgba(0,0,0,0.1)",
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.boxShadow =
+                      "0 4px 6px rgba(0,0,0,0.1)";
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.boxShadow =
+                      "0 1px 3px rgba(0,0,0,0.1)";
+                  }}
+                >
+                  <CardContent className="p-6">
+                    {/* Icon */}
+                    <div className="mb-4">
+                      <IconComponent
+                        className="w-12 h-12 text-[#2E8B57]"
+                        strokeWidth={1.5}
+                      />
                     </div>
-                  </div>
-                </div>
-                <CardContent className="p-6">
-                  <h3 className="text-xl font-semibold text-vm-gray-900 mb-3">
-                    {service.title}
-                  </h3>
-                  <p className="text-vm-gray-600 mb-4">{service.description}</p>
-                  <ul className="space-y-2">
-                    {service.features.map((feature, featureIndex) => (
-                      <li
-                        key={featureIndex}
-                        className="flex items-center text-sm text-vm-gray-600"
-                      >
-                        <CheckCircle className="w-4 h-4 text-vm-green mr-2" />
-                        {feature}
-                      </li>
-                    ))}
-                  </ul>
-                  <div className="mt-4 pt-4 border-t border-vm-gray-100">
-                    <Button
-                      variant="outline"
-                      size="sm"
-                      className="w-full border-vm-green text-vm-green hover:bg-vm-green hover:text-white"
+
+                    {/* Title */}
+                    <h3
+                      className="text-xl font-medium text-[#1A2E4E] mb-3"
+                      style={{ fontFamily: "Poppins, sans-serif" }}
                     >
-                      Find Expert
-                    </Button>
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
+                      {service.title}
+                    </h3>
+
+                    {/* Description */}
+                    <p
+                      className="text-base text-[#4A4A4A] mb-4 leading-relaxed"
+                      style={{
+                        fontFamily: "Roboto, sans-serif",
+                        lineHeight: 1.5,
+                      }}
+                    >
+                      {service.description}
+                    </p>
+
+                    {/* CTA Link */}
+                    <Link
+                      to={service.link}
+                      className="inline-flex items-center text-sm font-medium text-[#D4AF37] hover:text-[#B8941F] transition-colors duration-200"
+                      style={{ fontFamily: "Roboto, sans-serif" }}
+                    >
+                      Learn More
+                      <ArrowRight className="ml-1 w-4 h-4" />
+                    </Link>
+                  </CardContent>
+                </Card>
+              );
+            })}
           </div>
         </div>
       </section>
