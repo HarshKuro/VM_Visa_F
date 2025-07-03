@@ -47,6 +47,32 @@ export default {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
+        // Immigration platform specific colors
+        "vm-green": {
+          DEFAULT: "#14A800",
+          50: "#E8F8E4",
+          100: "#D1F1CA",
+          500: "#14A800",
+          600: "#0F8800",
+          700: "#0B6600",
+        },
+        "vm-blue": {
+          DEFAULT: "#2F80ED",
+          50: "#EBF4FF",
+          100: "#D6E9FF",
+          500: "#2F80ED",
+          600: "#1D6FDB",
+          700: "#1A5FC2",
+        },
+        "vm-gray": {
+          50: "#F9FAFB",
+          100: "#F3F4F6",
+          200: "#E5E7EB",
+          400: "#9CA3AF",
+          500: "#6B7280",
+          700: "#374151",
+          900: "#1F2937",
+        },
         sidebar: {
           DEFAULT: "hsl(var(--sidebar-background))",
           foreground: "hsl(var(--sidebar-foreground))",
