@@ -60,7 +60,7 @@ export default function Login() {
         if (agentBasicInfo) {
           // Agent needs to complete profile
           alert("Please complete your profile to proceed.");
-          navigate("/agent-profile-completion");
+          navigate("/agent-profile-step1");
           return;
         }
       }
