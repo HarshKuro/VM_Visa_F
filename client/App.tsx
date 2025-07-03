@@ -12,6 +12,8 @@ import AgentProfileStep2 from "./pages/AgentProfileStep2";
 import AgentProfileStep3 from "./pages/AgentProfileStep3";
 import AgentProfileStep4 from "./pages/AgentProfileStep4";
 import AgentDashboard from "./pages/AgentDashboard";
+import Services from "./pages/Services";
+import StudentVisa from "./pages/StudentVisa";
 import NotFound from "./pages/NotFound";
 import { Toaster } from "@/components/ui/toaster";
 
@@ -35,6 +37,8 @@ function App() {
         <Route path="/agent-profile-step3" element={<AgentProfileStep3 />} />
         <Route path="/agent-profile-step4" element={<AgentProfileStep4 />} />
         <Route path="/agent-dashboard" element={<AgentDashboard />} />
+        <Route path="/services" element={<Services />} />
+        <Route path="/services/student-visa" element={<StudentVisa />} />
         {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
         <Route path="*" element={<NotFound />} />
       </Routes>
