@@ -17,6 +17,35 @@ import {
 } from "lucide-react";
 
 export default function Index() {
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+  const immigrationImages = [
+    {
+      src: "https://cdn.builder.io/api/v1/image/assets%2Fcc6a575b231f4eceba6352aba1db9aab%2Fd78bfa4770e64ab8a212c7eff646f6b1?format=webp&width=800",
+      alt: "Immigration consultation meeting",
+    },
+    {
+      src: "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+      alt: "Professional immigration consultation",
+    },
+    {
+      src: "https://images.unsplash.com/photo-1507679799987-c73779587ccf?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+      alt: "Global immigration services",
+    },
+    {
+      src: "https://images.unsplash.com/photo-1600880292203-757bb62b4baf?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+      alt: "Immigration document review",
+    },
+  ];
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentImageIndex((prev) => (prev + 1) % immigrationImages.length);
+    }, 4000); // Change image every 4 seconds
+
+    return () => clearInterval(interval);
+  }, [immigrationImages.length]);
+
   const stats = [
     {
       icon: CheckCircle,
@@ -84,34 +113,34 @@ export default function Index() {
       <Navigation />
 
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-b from-vm-gray-50 to-white overflow-hidden">
-        <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1521737604893-d14cc237f11d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2834&q=80')] bg-cover bg-center opacity-5"></div>
+      <section className="relative bg-gradient-to-b from-vm-gray-50 to-white overflow-hidden min-h-screen">
+        <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1521737604893-d14cc237f11d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2834&q=80')] bg-cover bg-center opacity-3"></div>
 
-        <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-24">
+        <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-32">
           {/* Top Icons */}
-          <div className="flex justify-center mb-12">
-            <div className="flex items-center space-x-16">
+          <div className="flex justify-center mb-16">
+            <div className="flex items-center space-x-20">
               <div className="flex flex-col items-center group cursor-pointer">
-                <div className="w-16 h-16 bg-vm-green/10 rounded-2xl flex items-center justify-center mb-3 group-hover:bg-vm-green/20 transition-colors">
-                  <FileText className="w-8 h-8 text-vm-green" />
+                <div className="w-16 h-16 bg-vm-green/10 rounded-2xl flex items-center justify-center mb-3 group-hover:bg-vm-green/20 transition-colors border border-vm-green/20">
+                  <FileText className="w-7 h-7 text-vm-green" />
                 </div>
-                <span className="text-sm font-medium text-vm-gray-700">
+                <span className="text-sm font-medium text-vm-gray-600">
                   Documents
                 </span>
               </div>
               <div className="flex flex-col items-center group cursor-pointer">
-                <div className="w-16 h-16 bg-vm-blue/10 rounded-2xl flex items-center justify-center mb-3 group-hover:bg-vm-blue/20 transition-colors">
-                  <Globe className="w-8 h-8 text-vm-blue" />
+                <div className="w-16 h-16 bg-vm-blue/10 rounded-2xl flex items-center justify-center mb-3 group-hover:bg-vm-blue/20 transition-colors border border-vm-blue/20">
+                  <Globe className="w-7 h-7 text-vm-blue" />
                 </div>
-                <span className="text-sm font-medium text-vm-gray-700">
+                <span className="text-sm font-medium text-vm-gray-600">
                   Global
                 </span>
               </div>
               <div className="flex flex-col items-center group cursor-pointer">
-                <div className="w-16 h-16 bg-vm-green/10 rounded-2xl flex items-center justify-center mb-3 group-hover:bg-vm-green/20 transition-colors">
-                  <Users className="w-8 h-8 text-vm-green" />
+                <div className="w-16 h-16 bg-vm-green/10 rounded-2xl flex items-center justify-center mb-3 group-hover:bg-vm-green/20 transition-colors border border-vm-green/20">
+                  <Users className="w-7 h-7 text-vm-green" />
                 </div>
-                <span className="text-sm font-medium text-vm-gray-700">
+                <span className="text-sm font-medium text-vm-gray-600">
                   Experts
                 </span>
               </div>
@@ -119,14 +148,14 @@ export default function Index() {
           </div>
 
           {/* Main Hero Content */}
-          <div className="text-center space-y-8">
-            <div className="space-y-6">
-              <h1 className="text-4xl lg:text-6xl font-bold leading-tight text-vm-gray-900">
+          <div className="text-center space-y-10">
+            <div className="space-y-8">
+              <h1 className="text-5xl lg:text-7xl font-bold leading-tight text-vm-gray-900">
                 Connect with top{" "}
                 <span className="text-vm-green">immigration experts</span>{" "}
                 worldwide
               </h1>
-              <p className="text-xl lg:text-2xl text-vm-gray-600 leading-relaxed max-w-4xl mx-auto">
+              <p className="text-xl lg:text-2xl text-vm-gray-600 leading-relaxed max-w-4xl mx-auto font-light">
                 Find verified immigration consultants, get expert guidance, and
                 navigate your visa journey with confidence. Professional
                 immigration services at your fingertips.
@@ -134,11 +163,11 @@ export default function Index() {
             </div>
 
             {/* Action Buttons */}
-            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-4">
               <Link to="/signup">
                 <Button
                   size="lg"
-                  className="w-full sm:w-auto bg-vm-green hover:bg-vm-green-600 text-white text-lg px-8 py-4 min-w-[160px]"
+                  className="w-full sm:w-auto bg-vm-green hover:bg-vm-green-600 text-white text-lg px-10 py-4 min-w-[160px] rounded-lg font-semibold"
                 >
                   Find experts
                   <ArrowRight className="ml-2 w-5 h-5" />
@@ -148,7 +177,7 @@ export default function Index() {
                 <Button
                   size="lg"
                   variant="outline"
-                  className="w-full sm:w-auto border-vm-green text-vm-green hover:bg-vm-green hover:text-white text-lg px-8 py-4 min-w-[160px]"
+                  className="w-full sm:w-auto border-2 border-vm-green text-vm-green hover:bg-vm-green hover:text-white text-lg px-10 py-4 min-w-[160px] rounded-lg font-semibold"
                 >
                   Join as expert
                 </Button>
@@ -157,14 +186,38 @@ export default function Index() {
           </div>
 
           {/* Hero Image */}
-          <div className="mt-16 relative">
-            <div className="relative max-w-4xl mx-auto">
-              <img
-                src="https://cdn.builder.io/api/v1/image/assets%2Fcc6a575b231f4eceba6352aba1db9aab%2Fd78bfa4770e64ab8a212c7eff646f6b1?format=webp&width=800"
-                alt="Immigration consultation meeting"
-                className="w-full h-auto rounded-2xl shadow-2xl"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent rounded-2xl"></div>
+          <div className="mt-20 relative">
+            <div className="relative max-w-5xl mx-auto">
+              <div className="relative overflow-hidden rounded-3xl shadow-2xl h-[400px] lg:h-[500px]">
+                {immigrationImages.map((image, index) => (
+                  <img
+                    key={index}
+                    src={image.src}
+                    alt={image.alt}
+                    className={`w-full h-full object-cover transition-opacity duration-1000 ${
+                      index === currentImageIndex
+                        ? "opacity-100"
+                        : "opacity-0 absolute inset-0"
+                    }`}
+                  />
+                ))}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent rounded-3xl"></div>
+              </div>
+
+              {/* Image indicators */}
+              <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2 flex space-x-3">
+                {immigrationImages.map((_, index) => (
+                  <button
+                    key={index}
+                    onClick={() => setCurrentImageIndex(index)}
+                    className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                      index === currentImageIndex
+                        ? "bg-white shadow-lg"
+                        : "bg-white/60 hover:bg-white/80"
+                    }`}
+                  />
+                ))}
+              </div>
             </div>
           </div>
         </div>
