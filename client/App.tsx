@@ -5,6 +5,7 @@ import Signup from "./pages/Signup";
 import ClientSignup from "./pages/ClientSignup";
 import AgentSignup from "./pages/AgentSignup";
 import OrganizationSignup from "./pages/OrganizationSignup";
+import ClientDashboard from "./pages/ClientDashboard";
 import NotFound from "./pages/NotFound";
 import { Toaster } from "@/components/ui/toaster";
 
@@ -18,6 +19,7 @@ function App() {
         <Route path="/signup/client" element={<ClientSignup />} />
         <Route path="/signup/agent" element={<AgentSignup />} />
         <Route path="/signup/organization" element={<OrganizationSignup />} />
+        <Route path="/client-dashboard" element={<ClientDashboard />} />
         {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
         <Route path="*" element={<NotFound />} />
       </Routes>
