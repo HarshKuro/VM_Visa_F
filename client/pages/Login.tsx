@@ -1,11 +1,80 @@
-import { Link } from "react-router-dom";
+import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import Navigation from "@/components/Navigation";
 import AIChatAssistant from "@/components/AIChatAssistant";
+import { Users, Briefcase, Building } from "lucide-react";
+
+type UserRole = "client" | "agent" | "organization";
 
 export default function Login() {
+  const navigate = useNavigate();
+  const [selectedRole, setSelectedRole] = useState<UserRole>("client");
+  const [formData, setFormData] = useState({
+    email: "",
+    password: "",
+    rememberMe: false,
+  });
+  const [errors, setErrors] = useState<{ email?: string; password?: string }>(
+    {},
+  );
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const roles = [
+    { key: "client" as UserRole, label: "Client", icon: Users },
+    { key: "agent" as UserRole, label: "Agent", icon: Briefcase },
+    { key: "organization" as UserRole, label: "Organization", icon: Building },
+  ];
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+
+    const newErrors: { email?: string; password?: string } = {};
+
+    if (!formData.email) {
+      newErrors.email = "Email is required";
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+      newErrors.email = "Please enter a valid email address";
+    }
+
+    if (!formData.password) {
+      newErrors.password = "Password is required";
+    }
+
+    setErrors(newErrors);
+
+    if (Object.keys(newErrors).length > 0) {
+      return;
+    }
+
+    setIsSubmitting(true);
+    try {
+      // Simulate API call
+      await new Promise((resolve) => setTimeout(resolve, 1500));
+
+      // Redirect based on role
+      const dashboardRoutes = {
+        client: "/client-dashboard",
+        agent: "/agent-dashboard",
+        organization: "/organization-dashboard",
+      };
+
+      alert(`Login successful! Redirecting to ${selectedRole} dashboard...`);
+      navigate(dashboardRoutes[selectedRole]);
+    } catch (error) {
+      console.error("Login failed:", error);
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  const handleGoogleLogin = () => {
+    // Simulate Google OAuth
+    alert(`Google login for ${selectedRole} coming soon!`);
+  };
+
   return (
     <div className="min-h-screen bg-vm-gray-50">
       <Navigation />
@@ -55,7 +124,32 @@ export default function Login() {
               </p>
             </div>
 
-            <form className="space-y-6">
+            {/* Role Selection */}
+            <div className="space-y-3">
+              <Label>Login as:</Label>
+              <div className="grid grid-cols-3 gap-2">
+                {roles.map((role) => {
+                  const Icon = role.icon;
+                  return (
+                    <button
+                      key={role.key}
+                      type="button"
+                      onClick={() => setSelectedRole(role.key)}
+                      className={`p-3 rounded-lg border-2 transition-all duration-200 ${
+                        selectedRole === role.key
+                          ? "border-vm-green bg-vm-green/5 text-vm-green"
+                          : "border-vm-gray-200 text-vm-gray-600 hover:border-vm-green/50"
+                      }`}
+                    >
+                      <Icon className="w-5 h-5 mx-auto mb-1" />
+                      <div className="text-xs font-medium">{role.label}</div>
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+
+            <form onSubmit={handleSubmit} className="space-y-6">
               <div className="space-y-2">
                 <Label htmlFor="email">Email address</Label>
                 <Input
@@ -63,10 +157,18 @@ export default function Login() {
                   name="email"
                   type="email"
                   autoComplete="email"
-                  required
+                  value={formData.email}
+                  onChange={(e) => {
+                    setFormData((prev) => ({ ...prev, email: e.target.value }));
+                    if (errors.email)
+                      setErrors((prev) => ({ ...prev, email: undefined }));
+                  }}
                   placeholder="Enter your email"
-                  className="h-12"
+                  className={`h-12 ${errors.email ? "border-red-500" : ""}`}
                 />
+                {errors.email && (
+                  <p className="text-red-500 text-sm">{errors.email}</p>
+                )}
               </div>
 
               <div className="space-y-2">
@@ -76,10 +178,21 @@ export default function Login() {
                   name="password"
                   type="password"
                   autoComplete="current-password"
-                  required
+                  value={formData.password}
+                  onChange={(e) => {
+                    setFormData((prev) => ({
+                      ...prev,
+                      password: e.target.value,
+                    }));
+                    if (errors.password)
+                      setErrors((prev) => ({ ...prev, password: undefined }));
+                  }}
                   placeholder="Enter your password"
-                  className="h-12"
+                  className={`h-12 ${errors.password ? "border-red-500" : ""}`}
                 />
+                {errors.password && (
+                  <p className="text-red-500 text-sm">{errors.password}</p>
+                )}
               </div>
 
               <div className="flex items-center justify-between">
@@ -88,6 +201,13 @@ export default function Login() {
                     id="remember-me"
                     name="remember-me"
                     type="checkbox"
+                    checked={formData.rememberMe}
+                    onChange={(e) =>
+                      setFormData((prev) => ({
+                        ...prev,
+                        rememberMe: e.target.checked,
+                      }))
+                    }
                     className="h-4 w-4 text-vm-green focus:ring-vm-green border-vm-gray-300 rounded"
                   />
                   <label
@@ -108,9 +228,12 @@ export default function Login() {
 
               <Button
                 type="submit"
+                disabled={isSubmitting}
                 className="w-full h-12 bg-vm-green hover:bg-vm-green-600 text-white font-medium"
               >
-                Sign In
+                {isSubmitting
+                  ? "Signing In..."
+                  : `Sign In as ${roles.find((r) => r.key === selectedRole)?.label}`}
               </Button>
 
               <div className="relative">
@@ -127,6 +250,7 @@ export default function Login() {
               <Button
                 type="button"
                 variant="outline"
+                onClick={handleGoogleLogin}
                 className="w-full h-12 border-vm-gray-300 text-vm-gray-700 hover:bg-vm-gray-50"
               >
                 <svg className="w-5 h-5 mr-2" viewBox="0 0 24 24">

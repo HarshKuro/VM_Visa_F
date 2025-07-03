@@ -1,10 +1,12 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import Navigation from "@/components/Navigation";
 import AIChatAssistant from "@/components/AIChatAssistant";
 import { Users, Briefcase, Building } from "lucide-react";
 
 export default function Signup() {
+  const navigate = useNavigate();
+
   const userTypes = [
     {
       icon: Users,
@@ -16,6 +18,7 @@ export default function Signup() {
         "Document support",
       ],
       ctaText: "Sign up as Client",
+      route: "/signup/client",
     },
     {
       icon: Briefcase,
@@ -23,6 +26,7 @@ export default function Signup() {
       description: "Immigration attorney or consultant",
       features: ["Client management", "Case tracking", "Professional tools"],
       ctaText: "Sign up as Agent",
+      route: "/signup/agent",
     },
     {
       icon: Building,
@@ -34,6 +38,7 @@ export default function Signup() {
         "Team management",
       ],
       ctaText: "Sign up as Organization",
+      route: "/signup/organization",
     },
   ];
 
@@ -57,7 +62,7 @@ export default function Signup() {
             {userTypes.map((type, index) => (
               <div
                 key={index}
-                className="bg-white rounded-lg shadow-lg border border-vm-gray-200 p-8 hover:shadow-xl transition-shadow duration-300"
+                className="bg-white rounded-lg shadow-lg border border-vm-gray-200 p-8 hover:shadow-xl transition-all duration-300 hover:scale-105"
               >
                 <div className="text-center mb-6">
                   <div className="w-16 h-16 bg-vm-green/10 rounded-2xl flex items-center justify-center mx-auto mb-4">
@@ -84,6 +89,7 @@ export default function Signup() {
                 </ul>
 
                 <Button
+                  onClick={() => navigate(type.route)}
                   className="w-full bg-vm-green hover:bg-vm-green-600 text-white"
                   size="lg"
                 >
