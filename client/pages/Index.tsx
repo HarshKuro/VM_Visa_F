@@ -23,20 +23,24 @@ export default function Index() {
 
   const immigrationImages = [
     {
-      src: "https://images.unsplash.com/photo-1436491865332-7a61a109cc05?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+      src: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
       alt: "Passport in hand - Immigration journey",
+      title: "Your Journey Begins",
     },
     {
-      src: "https://images.unsplash.com/photo-1597149106651-0e5c9f3dd824?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
-      alt: "World map with passport - Global immigration",
+      src: "https://images.unsplash.com/photo-1586953208448-b95a79798f07?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+      alt: "World map with travel planning - Global immigration",
+      title: "Global Opportunities",
+    },
+    {
+      src: "https://images.unsplash.com/photo-1569949381669-ecf31ae8e613?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+      alt: "Passport pages with visa stamps",
+      title: "Visa Success Stories",
     },
     {
       src: "https://images.unsplash.com/photo-1488646953014-85cb44e25828?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
-      alt: "Multiple passports and travel documents",
-    },
-    {
-      src: "https://images.unsplash.com/photo-1565024749107-94b72b21b49c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
-      alt: "Visa stamps and passport pages",
+      alt: "Immigration documents and forms",
+      title: "Expert Guidance",
     },
   ];
 
