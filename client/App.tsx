@@ -6,6 +6,8 @@ import ClientSignup from "./pages/ClientSignup";
 import AgentSignup from "./pages/AgentSignup";
 import OrganizationSignup from "./pages/OrganizationSignup";
 import ClientDashboard from "./pages/ClientDashboard";
+import AgentProfileCompletion from "./pages/AgentProfileCompletion";
+import AgentDashboard from "./pages/AgentDashboard";
 import NotFound from "./pages/NotFound";
 import { Toaster } from "@/components/ui/toaster";
 
@@ -20,6 +22,11 @@ function App() {
         <Route path="/signup/agent" element={<AgentSignup />} />
         <Route path="/signup/organization" element={<OrganizationSignup />} />
         <Route path="/client-dashboard" element={<ClientDashboard />} />
+        <Route
+          path="/agent-profile-completion"
+          element={<AgentProfileCompletion />}
+        />
+        <Route path="/agent-dashboard" element={<AgentDashboard />} />
         {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
         <Route path="*" element={<NotFound />} />
       </Routes>

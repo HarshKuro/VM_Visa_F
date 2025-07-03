@@ -54,6 +54,17 @@ export default function Login() {
       // Simulate API call
       await new Promise((resolve) => setTimeout(resolve, 1500));
 
+      // Check if agent has incomplete profile
+      if (selectedRole === "agent") {
+        const agentBasicInfo = localStorage.getItem("agentBasicInfo");
+        if (agentBasicInfo) {
+          // Agent needs to complete profile
+          alert("Please complete your profile to proceed.");
+          navigate("/agent-profile-completion");
+          return;
+        }
+      }
+
       // Redirect based on role
       const dashboardRoutes = {
         client: "/client-dashboard",
