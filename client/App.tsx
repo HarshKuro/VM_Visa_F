@@ -14,6 +14,7 @@ import AgentProfileStep4 from "./pages/AgentProfileStep4";
 import AgentDashboard from "./pages/AgentDashboard";
 import Services from "./pages/Services";
 import StudentVisa from "./pages/StudentVisa";
+import About from "./pages/About";
 import NotFound from "./pages/NotFound";
 import { Toaster } from "@/components/ui/toaster";
 
@@ -39,6 +40,7 @@ function App() {
         <Route path="/agent-dashboard" element={<AgentDashboard />} />
         <Route path="/services" element={<Services />} />
         <Route path="/services/student-visa" element={<StudentVisa />} />
+        <Route path="/about" element={<About />} />
         {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
         <Route path="*" element={<NotFound />} />
       </Routes>
