@@ -183,6 +183,22 @@ export default function Index() {
                 navigate your visa journey with confidence. Professional
                 immigration services at your fingertips.
               </p>
+
+              {/* Dynamic subtitle based on current image */}
+              <div className="relative h-8">
+                {immigrationImages.map((image, index) => (
+                  <div
+                    key={index}
+                    className={`absolute inset-0 transition-opacity duration-500 ${
+                      index === currentImageIndex ? "opacity-100" : "opacity-0"
+                    }`}
+                  >
+                    <p className="text-lg text-vm-green font-semibold bg-black/20 backdrop-blur-sm rounded-lg px-4 py-2 inline-block">
+                      {image.title}
+                    </p>
+                  </div>
+                ))}
+              </div>
             </div>
 
             {/* Action Buttons */}
