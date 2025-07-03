@@ -115,34 +115,51 @@ export default function Index() {
       <Navigation />
 
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-b from-vm-gray-50 to-white overflow-hidden min-h-screen">
-        <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1521737604893-d14cc237f11d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2834&q=80')] bg-cover bg-center opacity-3"></div>
+      <section className="relative overflow-hidden min-h-screen">
+        {/* Background Image Carousel */}
+        <div className="absolute inset-0">
+          {immigrationImages.map((image, index) => (
+            <div
+              key={index}
+              className={`absolute inset-0 transition-opacity duration-1000 ${
+                index === currentImageIndex ? "opacity-100" : "opacity-0"
+              }`}
+            >
+              <img
+                src={image.src}
+                alt={image.alt}
+                className="w-full h-full object-cover"
+              />
+              <div className="absolute inset-0 bg-black/50"></div>
+            </div>
+          ))}
+        </div>
 
-        <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-32">
+        <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-32 min-h-screen flex flex-col justify-center">
           {/* Top Icons */}
-          <div className="flex justify-center mb-16">
+          <div className="flex justify-center mb-16 animate-in fade-in duration-1000 delay-300">
             <div className="flex items-center space-x-20">
               <div className="flex flex-col items-center group cursor-pointer">
-                <div className="w-16 h-16 bg-vm-green/10 rounded-2xl flex items-center justify-center mb-3 group-hover:bg-vm-green/20 transition-colors border border-vm-green/20">
-                  <FileText className="w-7 h-7 text-vm-green" />
+                <div className="w-16 h-16 bg-white/10 backdrop-blur-sm rounded-2xl flex items-center justify-center mb-3 group-hover:bg-white/20 transition-colors border border-white/20">
+                  <FileText className="w-7 h-7 text-white" />
                 </div>
-                <span className="text-sm font-medium text-vm-gray-600">
+                <span className="text-sm font-medium text-white/90">
                   Documents
                 </span>
               </div>
               <div className="flex flex-col items-center group cursor-pointer">
-                <div className="w-16 h-16 bg-vm-blue/10 rounded-2xl flex items-center justify-center mb-3 group-hover:bg-vm-blue/20 transition-colors border border-vm-blue/20">
-                  <Globe className="w-7 h-7 text-vm-blue" />
+                <div className="w-16 h-16 bg-white/10 backdrop-blur-sm rounded-2xl flex items-center justify-center mb-3 group-hover:bg-white/20 transition-colors border border-white/20">
+                  <Globe className="w-7 h-7 text-white" />
                 </div>
-                <span className="text-sm font-medium text-vm-gray-600">
+                <span className="text-sm font-medium text-white/90">
                   Global
                 </span>
               </div>
               <div className="flex flex-col items-center group cursor-pointer">
-                <div className="w-16 h-16 bg-vm-green/10 rounded-2xl flex items-center justify-center mb-3 group-hover:bg-vm-green/20 transition-colors border border-vm-green/20">
-                  <Users className="w-7 h-7 text-vm-green" />
+                <div className="w-16 h-16 bg-white/10 backdrop-blur-sm rounded-2xl flex items-center justify-center mb-3 group-hover:bg-white/20 transition-colors border border-white/20">
+                  <Users className="w-7 h-7 text-white" />
                 </div>
-                <span className="text-sm font-medium text-vm-gray-600">
+                <span className="text-sm font-medium text-white/90">
                   Experts
                 </span>
               </div>
@@ -152,12 +169,12 @@ export default function Index() {
           {/* Main Hero Content */}
           <div className="text-center space-y-10">
             <div className="space-y-8">
-              <h1 className="text-5xl lg:text-7xl font-bold leading-tight text-vm-gray-900">
+              <h1 className="text-5xl lg:text-7xl font-bold leading-tight text-white animate-in slide-in-from-bottom duration-1000 delay-500">
                 Connect with top{" "}
                 <span className="text-vm-green">immigration experts</span>{" "}
                 worldwide
               </h1>
-              <p className="text-xl lg:text-2xl text-vm-gray-600 leading-relaxed max-w-4xl mx-auto font-light">
+              <p className="text-xl lg:text-2xl text-white/90 leading-relaxed max-w-4xl mx-auto font-light animate-in slide-in-from-bottom duration-1000 delay-700">
                 Find verified immigration consultants, get expert guidance, and
                 navigate your visa journey with confidence. Professional
                 immigration services at your fingertips.
@@ -165,11 +182,11 @@ export default function Index() {
             </div>
 
             {/* Action Buttons */}
-            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-4">
+            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-4 animate-in slide-in-from-bottom duration-1000 delay-1000">
               <Link to="/signup">
                 <Button
                   size="lg"
-                  className="w-full sm:w-auto bg-vm-green hover:bg-vm-green-600 text-white text-lg px-10 py-4 min-w-[160px] rounded-lg font-semibold"
+                  className="w-full sm:w-auto bg-vm-green hover:bg-vm-green-600 text-white text-lg px-10 py-4 min-w-[160px] rounded-lg font-semibold shadow-xl hover:shadow-2xl transition-all duration-300"
                 >
                   Find experts
                   <ArrowRight className="ml-2 w-5 h-5" />
@@ -179,7 +196,7 @@ export default function Index() {
                 <Button
                   size="lg"
                   variant="outline"
-                  className="w-full sm:w-auto border-2 border-vm-green text-vm-green hover:bg-vm-green hover:text-white text-lg px-10 py-4 min-w-[160px] rounded-lg font-semibold"
+                  className="w-full sm:w-auto border-2 border-white text-white hover:bg-white hover:text-vm-gray-900 text-lg px-10 py-4 min-w-[160px] rounded-lg font-semibold backdrop-blur-sm bg-white/10 hover:bg-white transition-all duration-300"
                 >
                   Join as expert
                 </Button>
@@ -187,40 +204,19 @@ export default function Index() {
             </div>
           </div>
 
-          {/* Hero Image */}
-          <div className="mt-20 relative">
-            <div className="relative max-w-5xl mx-auto">
-              <div className="relative overflow-hidden rounded-3xl shadow-2xl h-[400px] lg:h-[500px]">
-                {immigrationImages.map((image, index) => (
-                  <img
-                    key={index}
-                    src={image.src}
-                    alt={image.alt}
-                    className={`w-full h-full object-cover transition-opacity duration-1000 ${
-                      index === currentImageIndex
-                        ? "opacity-100"
-                        : "opacity-0 absolute inset-0"
-                    }`}
-                  />
-                ))}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent rounded-3xl"></div>
-              </div>
-
-              {/* Image indicators */}
-              <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2 flex space-x-3">
-                {immigrationImages.map((_, index) => (
-                  <button
-                    key={index}
-                    onClick={() => setCurrentImageIndex(index)}
-                    className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                      index === currentImageIndex
-                        ? "bg-white shadow-lg"
-                        : "bg-white/60 hover:bg-white/80"
-                    }`}
-                  />
-                ))}
-              </div>
-            </div>
+          {/* Image indicators */}
+          <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex space-x-3 animate-in fade-in duration-1000 delay-1200">
+            {immigrationImages.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => setCurrentImageIndex(index)}
+                className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                  index === currentImageIndex
+                    ? "bg-white shadow-lg scale-125"
+                    : "bg-white/60 hover:bg-white/80"
+                }`}
+              />
+            ))}
           </div>
         </div>
       </section>
