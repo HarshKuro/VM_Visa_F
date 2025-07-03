@@ -26,6 +26,7 @@ import {
   Eye,
   Download,
   Calendar,
+  Mail,
 } from "lucide-react";
 
 interface VisaRequest {
@@ -200,463 +201,509 @@ export default function ClientDashboard() {
       <Navigation />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        {/* Header */}
-        <div className="mb-8">
-          <div className="flex items-center justify-between">
-            <div>
-              <h1 className="text-3xl font-bold text-vm-gray-900">
-                Immigration Dashboard
-              </h1>
-              <p className="text-vm-gray-600 mt-1">
-                Manage your visa applications and connect with experts
-              </p>
-            </div>
-            <Button
-              onClick={() => setShowPostModal(true)}
-              className="bg-vm-green hover:bg-vm-green-600 text-white"
-            >
-              <Plus className="w-5 h-5 mr-2" />
-              Post Request
-            </Button>
-          </div>
-        </div>
-
-        {/* Quick Stats */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
-          <Card>
-            <CardContent className="p-6">
-              <div className="flex items-center">
-                <div className="p-2 bg-blue-100 rounded-lg">
-                  <FileText className="w-6 h-6 text-blue-600" />
-                </div>
-                <div className="ml-4">
-                  <p className="text-2xl font-bold text-vm-gray-900">2</p>
-                  <p className="text-sm text-vm-gray-600">Active Requests</p>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-
-          <Card>
-            <CardContent className="p-6">
-              <div className="flex items-center">
-                <div className="p-2 bg-green-100 rounded-lg">
-                  <Users className="w-6 h-6 text-green-600" />
-                </div>
-                <div className="ml-4">
-                  <p className="text-2xl font-bold text-vm-gray-900">20</p>
-                  <p className="text-sm text-vm-gray-600">Proposals Received</p>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-
-          <Card>
-            <CardContent className="p-6">
-              <div className="flex items-center">
-                <div className="p-2 bg-purple-100 rounded-lg">
-                  <Clock className="w-6 h-6 text-purple-600" />
-                </div>
-                <div className="ml-4">
-                  <p className="text-2xl font-bold text-vm-gray-900">2</p>
-                  <p className="text-sm text-vm-gray-600">In Progress</p>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-
-          <Card>
-            <CardContent className="p-6">
-              <div className="flex items-center">
-                <div className="p-2 bg-yellow-100 rounded-lg">
-                  <TrendingUp className="w-6 h-6 text-yellow-600" />
-                </div>
-                <div className="ml-4">
-                  <p className="text-2xl font-bold text-vm-gray-900">1</p>
-                  <p className="text-sm text-vm-gray-600">Completed</p>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-        </div>
-
-        {/* Navigation Tabs */}
-        <div className="border-b border-vm-gray-200 mb-8">
-          <nav className="-mb-px flex space-x-8">
-            {[
-              { id: "overview", label: "Overview", icon: Globe },
-              { id: "requests", label: "My Requests", icon: FileText },
-              { id: "proposals", label: "Proposals", icon: MessageSquare },
-              { id: "applications", label: "Applications", icon: Clock },
-              { id: "documents", label: "Documents", icon: Upload },
-              { id: "agents", label: "Browse Agents", icon: Users },
-            ].map((tab) => {
-              const Icon = tab.icon;
-              return (
-                <button
-                  key={tab.id}
-                  onClick={() => setActiveTab(tab.id)}
-                  className={`flex items-center space-x-2 py-4 px-1 border-b-2 font-medium text-sm ${
-                    activeTab === tab.id
-                      ? "border-vm-green text-vm-green"
-                      : "border-transparent text-vm-gray-500 hover:text-vm-gray-700 hover:border-vm-gray-300"
-                  }`}
-                >
-                  <Icon className="w-5 h-5" />
-                  <span>{tab.label}</span>
-                </button>
-              );
-            })}
-          </nav>
-        </div>
-
-        {/* Tab Content */}
-        {activeTab === "overview" && (
-          <div className="space-y-8">
-            {/* Recent Activity */}
-            <Card>
-              <CardHeader>
-                <CardTitle>Recent Activity</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="space-y-4">
-                  <div className="flex items-center space-x-4">
-                    <div className="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center">
-                      <CheckCircle className="w-5 h-5 text-green-600" />
-                    </div>
-                    <div className="flex-1">
-                      <p className="text-sm font-medium text-vm-gray-900">
-                        New proposal received
-                      </p>
-                      <p className="text-sm text-vm-gray-500">
-                        Michael Chen submitted a proposal for your H1-B
-                        application
-                      </p>
-                      <p className="text-xs text-vm-gray-400">2 hours ago</p>
-                    </div>
+        {/* Dashboard Layout with Sidebar */}
+        <div className="flex gap-8">
+          {/* Left Sidebar - User Profile */}
+          <div className="w-80 flex-shrink-0">
+            <Card className="sticky top-24">
+              <CardContent className="p-6">
+                {/* Profile Header */}
+                <div className="text-center mb-6">
+                  <div className="relative mx-auto w-24 h-24 mb-4">
+                    <img
+                      src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150"
+                      alt="John Doe"
+                      className="w-24 h-24 rounded-full object-cover border-4 border-vm-green/20"
+                    />
+                    <div className="absolute bottom-0 right-0 w-6 h-6 bg-green-500 rounded-full border-2 border-white"></div>
                   </div>
-                  <div className="flex items-center space-x-4">
-                    <div className="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center">
-                      <FileText className="w-5 h-5 text-blue-600" />
-                    </div>
-                    <div className="flex-1">
-                      <p className="text-sm font-medium text-vm-gray-900">
-                        Documents uploaded
-                      </p>
-                      <p className="text-sm text-vm-gray-500">
-                        Successfully uploaded I-797 form for H1-B application
-                      </p>
-                      <p className="text-xs text-vm-gray-400">1 day ago</p>
-                    </div>
-                  </div>
-                  <div className="flex items-center space-x-4">
-                    <div className="w-10 h-10 bg-purple-100 rounded-full flex items-center justify-center">
-                      <Star className="w-5 h-5 text-purple-600" />
-                    </div>
-                    <div className="flex-1">
-                      <p className="text-sm font-medium text-vm-gray-900">
-                        Application milestone reached
-                      </p>
-                      <p className="text-sm text-vm-gray-500">
-                        Your Canada PR application has entered background check
-                        phase
-                      </p>
-                      <p className="text-xs text-vm-gray-400">3 days ago</p>
-                    </div>
+                  <h2 className="text-xl font-bold text-vm-gray-900">
+                    John Doe
+                  </h2>
+                  <p className="text-sm text-vm-gray-600 mb-2">
+                    Client ID: #VM2024001
+                  </p>
+                  <div className="inline-flex items-center px-2 py-1 bg-green-100 text-green-800 rounded-full text-xs font-medium">
+                    <CheckCircle className="w-3 h-3 mr-1" />
+                    Verified Member
                   </div>
                 </div>
-              </CardContent>
-            </Card>
 
-            {/* Quick Actions */}
-            <Card>
-              <CardHeader>
-                <CardTitle>Quick Actions</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                  <Button
-                    variant="outline"
-                    className="h-auto p-6 flex flex-col items-center space-y-2"
-                    onClick={() => setShowPostModal(true)}
-                  >
-                    <Plus className="w-8 h-8 text-vm-green" />
-                    <span className="font-medium">Post New Request</span>
-                    <span className="text-sm text-vm-gray-500">
-                      Get help with your visa application
+                {/* Quick Stats */}
+                <div className="grid grid-cols-2 gap-4 mb-6">
+                  <div className="text-center p-3 bg-vm-gray-50 rounded-lg">
+                    <div className="text-lg font-bold text-vm-gray-900">2</div>
+                    <div className="text-xs text-vm-gray-600">
+                      Active Requests
+                    </div>
+                  </div>
+                  <div className="text-center p-3 bg-vm-gray-50 rounded-lg">
+                    <div className="text-lg font-bold text-vm-green">20</div>
+                    <div className="text-xs text-vm-gray-600">Proposals</div>
+                  </div>
+                  <div className="text-center p-3 bg-vm-gray-50 rounded-lg">
+                    <div className="text-lg font-bold text-vm-blue">2</div>
+                    <div className="text-xs text-vm-gray-600">In Progress</div>
+                  </div>
+                  <div className="text-center p-3 bg-vm-gray-50 rounded-lg">
+                    <div className="text-lg font-bold text-yellow-600">1</div>
+                    <div className="text-xs text-vm-gray-600">Completed</div>
+                  </div>
+                </div>
+
+                {/* Profile Details */}
+                <div className="space-y-4 mb-6">
+                  <div className="flex items-center text-sm">
+                    <Mail className="w-4 h-4 text-vm-gray-400 mr-3" />
+                    <span className="text-vm-gray-600">john.doe@email.com</span>
+                  </div>
+                  <div className="flex items-center text-sm">
+                    <Users className="w-4 h-4 text-vm-gray-400 mr-3" />
+                    <span className="text-vm-gray-600">+1 (555) 123-4567</span>
+                  </div>
+                  <div className="flex items-center text-sm">
+                    <Globe className="w-4 h-4 text-vm-gray-400 mr-3" />
+                    <span className="text-vm-gray-600">United States</span>
+                  </div>
+                  <div className="flex items-center text-sm">
+                    <Calendar className="w-4 h-4 text-vm-gray-400 mr-3" />
+                    <span className="text-vm-gray-600">
+                      Member since Jan 2024
                     </span>
-                  </Button>
+                  </div>
+                </div>
+
+                {/* Action Buttons */}
+                <div className="space-y-3">
                   <Button
-                    variant="outline"
-                    className="h-auto p-6 flex flex-col items-center space-y-2"
-                    onClick={() => setActiveTab("agents")}
-                  >
-                    <Search className="w-8 h-8 text-vm-blue" />
-                    <span className="font-medium">Browse Agents</span>
-                    <span className="text-sm text-vm-gray-500">
-                      Find immigration experts
-                    </span>
-                  </Button>
-                  <Button
-                    variant="outline"
-                    className="h-auto p-6 flex flex-col items-center space-y-2"
                     onClick={() => setActiveTab("documents")}
+                    variant="outline"
+                    className="w-full justify-start"
                   >
-                    <Upload className="w-8 h-8 text-vm-purple-600" />
-                    <span className="font-medium">Upload Documents</span>
-                    <span className="text-sm text-vm-gray-500">
-                      Manage your files
-                    </span>
+                    <Eye className="w-4 h-4 mr-2" />
+                    View Documents
                   </Button>
+                  <Button
+                    onClick={() => setShowPostModal(true)}
+                    className="w-full bg-vm-green hover:bg-vm-green-600"
+                  >
+                    <Plus className="w-4 h-4 mr-2" />
+                    Post New Request
+                  </Button>
+                </div>
+
+                {/* Recent Activity Preview */}
+                <div className="mt-6 pt-6 border-t border-vm-gray-200">
+                  <h3 className="text-sm font-semibold text-vm-gray-900 mb-3">
+                    Recent Activity
+                  </h3>
+                  <div className="space-y-2">
+                    <div className="flex items-center text-xs">
+                      <div className="w-2 h-2 bg-green-500 rounded-full mr-2"></div>
+                      <span className="text-vm-gray-600">
+                        New proposal received
+                      </span>
+                    </div>
+                    <div className="flex items-center text-xs">
+                      <div className="w-2 h-2 bg-blue-500 rounded-full mr-2"></div>
+                      <span className="text-vm-gray-600">
+                        Documents uploaded
+                      </span>
+                    </div>
+                    <div className="flex items-center text-xs">
+                      <div className="w-2 h-2 bg-yellow-500 rounded-full mr-2"></div>
+                      <span className="text-vm-gray-600">
+                        Application updated
+                      </span>
+                    </div>
+                  </div>
                 </div>
               </CardContent>
             </Card>
           </div>
-        )}
 
-        {activeTab === "requests" && (
-          <div className="space-y-6">
-            <div className="flex items-center justify-between">
-              <h2 className="text-xl font-semibold text-vm-gray-900">
-                My Visa Requests
-              </h2>
-              <Button
-                onClick={() => setShowPostModal(true)}
-                className="bg-vm-green hover:bg-vm-green-600"
-              >
-                <Plus className="w-4 h-4 mr-2" />
-                New Request
-              </Button>
-            </div>
-
-            <div className="grid gap-6">
-              {visaRequests.map((request) => (
-                <Card
-                  key={request.id}
-                  className="hover:shadow-lg transition-shadow"
-                >
-                  <CardContent className="p-6">
-                    <div className="flex items-start justify-between">
-                      <div className="flex-1">
-                        <div className="flex items-center space-x-3 mb-2">
-                          <h3 className="text-lg font-semibold text-vm-gray-900">
-                            {request.title}
-                          </h3>
-                          <Badge className={getStatusColor(request.status)}>
-                            {request.status.replace("_", " ")}
-                          </Badge>
-                        </div>
-                        <p className="text-vm-gray-600 mb-3">
-                          {request.description}
-                        </p>
-                        <div className="flex items-center space-x-6 text-sm text-vm-gray-500">
-                          <span className="flex items-center">
-                            <Globe className="w-4 h-4 mr-1" />
-                            {request.country}
-                          </span>
-                          <span className="flex items-center">
-                            <FileText className="w-4 h-4 mr-1" />
-                            {request.type}
-                          </span>
-                          <span className="flex items-center">
-                            <Users className="w-4 h-4 mr-1" />
-                            {request.proposalsCount} proposals
-                          </span>
-                          <span className="flex items-center">
-                            <Calendar className="w-4 h-4 mr-1" />
-                            {request.createdAt}
-                          </span>
-                        </div>
-                        {request.budget && (
-                          <div className="mt-2">
-                            <span className="text-sm font-medium text-vm-green">
-                              Budget: {request.budget}
-                            </span>
-                          </div>
-                        )}
-                      </div>
-                      <div className="flex items-center space-x-2">
-                        <Button variant="outline" size="sm">
-                          <Eye className="w-4 h-4 mr-1" />
-                          View
-                        </Button>
-                        <Button variant="outline" size="sm">
-                          <MoreHorizontal className="w-4 h-4" />
-                        </Button>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
-          </div>
-        )}
-
-        {activeTab === "proposals" && (
-          <div className="space-y-6">
-            <div className="flex items-center justify-between">
-              <h2 className="text-xl font-semibold text-vm-gray-900">
-                Agent Proposals
-              </h2>
-              <div className="flex items-center space-x-2">
-                <Input
-                  placeholder="Search proposals..."
-                  className="w-64"
-                  value={searchTerm}
-                  onChange={(e) => setSearchTerm(e.target.value)}
-                />
-                <Button variant="outline" size="sm">
-                  <Filter className="w-4 h-4" />
-                </Button>
+          {/* Main Content Area */}
+          <div className="flex-1 min-w-0">
+            {/* Main Content Header */}
+            <div className="mb-8">
+              <div className="bg-white rounded-lg shadow-sm border border-vm-gray-200 p-6">
+                <h1 className="text-2xl font-bold text-vm-gray-900 mb-2">
+                  Immigration Dashboard
+                </h1>
+                <p className="text-vm-gray-600">
+                  Manage your visa applications and connect with experts
+                </p>
               </div>
             </div>
 
-            <div className="grid gap-6">
-              {proposals.map((proposal) => (
-                <Card
-                  key={proposal.id}
-                  className="hover:shadow-lg transition-shadow"
-                >
-                  <CardContent className="p-6">
-                    <div className="flex items-start space-x-4">
-                      <img
-                        src={proposal.agentAvatar}
-                        alt={proposal.agentName}
-                        className="w-16 h-16 rounded-full object-cover"
-                      />
-                      <div className="flex-1">
-                        <div className="flex items-center justify-between mb-2">
-                          <div>
-                            <h3 className="text-lg font-semibold text-vm-gray-900">
-                              {proposal.agentName}
-                            </h3>
-                            <div className="flex items-center space-x-2">
-                              <div className="flex items-center">
-                                <Star className="w-4 h-4 text-yellow-400 fill-current" />
-                                <span className="text-sm text-vm-gray-600 ml-1">
-                                  {proposal.agentRating}
+            {/* Dynamic Content Area */}
+            <div className="bg-white rounded-lg shadow-sm border border-vm-gray-200 p-6 min-h-[600px]">
+              {activeTab === "overview" && (
+                <div className="space-y-8">
+                  {/* Recent Activity */}
+                  <Card>
+                    <CardHeader>
+                      <CardTitle>Recent Activity</CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                      <div className="space-y-4">
+                        <div className="flex items-center space-x-4">
+                          <div className="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center">
+                            <CheckCircle className="w-5 h-5 text-green-600" />
+                          </div>
+                          <div className="flex-1">
+                            <p className="text-sm font-medium text-vm-gray-900">
+                              New proposal received
+                            </p>
+                            <p className="text-sm text-vm-gray-500">
+                              Michael Chen submitted a proposal for your H1-B
+                              application
+                            </p>
+                            <p className="text-xs text-vm-gray-400">
+                              2 hours ago
+                            </p>
+                          </div>
+                        </div>
+                        <div className="flex items-center space-x-4">
+                          <div className="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center">
+                            <FileText className="w-5 h-5 text-blue-600" />
+                          </div>
+                          <div className="flex-1">
+                            <p className="text-sm font-medium text-vm-gray-900">
+                              Documents uploaded
+                            </p>
+                            <p className="text-sm text-vm-gray-500">
+                              Successfully uploaded I-797 form for H1-B
+                              application
+                            </p>
+                            <p className="text-xs text-vm-gray-400">
+                              1 day ago
+                            </p>
+                          </div>
+                        </div>
+                        <div className="flex items-center space-x-4">
+                          <div className="w-10 h-10 bg-purple-100 rounded-full flex items-center justify-center">
+                            <Star className="w-5 h-5 text-purple-600" />
+                          </div>
+                          <div className="flex-1">
+                            <p className="text-sm font-medium text-vm-gray-900">
+                              Application milestone reached
+                            </p>
+                            <p className="text-sm text-vm-gray-500">
+                              Your Canada PR application has entered background
+                              check phase
+                            </p>
+                            <p className="text-xs text-vm-gray-400">
+                              3 days ago
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    </CardContent>
+                  </Card>
+
+                  {/* Quick Actions */}
+                  <Card>
+                    <CardHeader>
+                      <CardTitle>Quick Actions</CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <Button
+                          variant="outline"
+                          className="h-auto p-6 flex flex-col items-center space-y-2"
+                          onClick={() => setShowPostModal(true)}
+                        >
+                          <Plus className="w-8 h-8 text-vm-green" />
+                          <span className="font-medium">Post New Request</span>
+                          <span className="text-sm text-vm-gray-500">
+                            Get help with your visa application
+                          </span>
+                        </Button>
+                        <Button
+                          variant="outline"
+                          className="h-auto p-6 flex flex-col items-center space-y-2"
+                          onClick={() => setActiveTab("agents")}
+                        >
+                          <Search className="w-8 h-8 text-vm-blue" />
+                          <span className="font-medium">Browse Agents</span>
+                          <span className="text-sm text-vm-gray-500">
+                            Find immigration experts
+                          </span>
+                        </Button>
+                        <Button
+                          variant="outline"
+                          className="h-auto p-6 flex flex-col items-center space-y-2"
+                          onClick={() => setActiveTab("documents")}
+                        >
+                          <Upload className="w-8 h-8 text-vm-purple-600" />
+                          <span className="font-medium">Upload Documents</span>
+                          <span className="text-sm text-vm-gray-500">
+                            Manage your files
+                          </span>
+                        </Button>
+                      </div>
+                    </CardContent>
+                  </Card>
+                </div>
+              )}
+
+              {activeTab === "requests" && (
+                <div className="space-y-6">
+                  <div className="flex items-center justify-between">
+                    <h2 className="text-xl font-semibold text-vm-gray-900">
+                      My Visa Requests
+                    </h2>
+                    <Button
+                      onClick={() => setShowPostModal(true)}
+                      className="bg-vm-green hover:bg-vm-green-600"
+                    >
+                      <Plus className="w-4 h-4 mr-2" />
+                      New Request
+                    </Button>
+                  </div>
+
+                  <div className="grid gap-6">
+                    {visaRequests.map((request) => (
+                      <Card
+                        key={request.id}
+                        className="hover:shadow-lg transition-shadow"
+                      >
+                        <CardContent className="p-6">
+                          <div className="flex items-start justify-between">
+                            <div className="flex-1">
+                              <div className="flex items-center space-x-3 mb-2">
+                                <h3 className="text-lg font-semibold text-vm-gray-900">
+                                  {request.title}
+                                </h3>
+                                <Badge
+                                  className={getStatusColor(request.status)}
+                                >
+                                  {request.status.replace("_", " ")}
+                                </Badge>
+                              </div>
+                              <p className="text-vm-gray-600 mb-3">
+                                {request.description}
+                              </p>
+                              <div className="flex items-center space-x-6 text-sm text-vm-gray-500">
+                                <span className="flex items-center">
+                                  <Globe className="w-4 h-4 mr-1" />
+                                  {request.country}
+                                </span>
+                                <span className="flex items-center">
+                                  <FileText className="w-4 h-4 mr-1" />
+                                  {request.type}
+                                </span>
+                                <span className="flex items-center">
+                                  <Users className="w-4 h-4 mr-1" />
+                                  {request.proposalsCount} proposals
+                                </span>
+                                <span className="flex items-center">
+                                  <Calendar className="w-4 h-4 mr-1" />
+                                  {request.createdAt}
                                 </span>
                               </div>
-                              <span className="text-sm text-vm-gray-500">
-                                •
+                              {request.budget && (
+                                <div className="mt-2">
+                                  <span className="text-sm font-medium text-vm-green">
+                                    Budget: {request.budget}
+                                  </span>
+                                </div>
+                              )}
+                            </div>
+                            <div className="flex items-center space-x-2">
+                              <Button variant="outline" size="sm">
+                                <Eye className="w-4 h-4 mr-1" />
+                                View
+                              </Button>
+                              <Button variant="outline" size="sm">
+                                <MoreHorizontal className="w-4 h-4" />
+                              </Button>
+                            </div>
+                          </div>
+                        </CardContent>
+                      </Card>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {activeTab === "proposals" && (
+                <div className="space-y-6">
+                  <div className="flex items-center justify-between">
+                    <h2 className="text-xl font-semibold text-vm-gray-900">
+                      Agent Proposals
+                    </h2>
+                    <div className="flex items-center space-x-2">
+                      <Input
+                        placeholder="Search proposals..."
+                        className="w-64"
+                        value={searchTerm}
+                        onChange={(e) => setSearchTerm(e.target.value)}
+                      />
+                      <Button variant="outline" size="sm">
+                        <Filter className="w-4 h-4" />
+                      </Button>
+                    </div>
+                  </div>
+
+                  <div className="grid gap-6">
+                    {proposals.map((proposal) => (
+                      <Card
+                        key={proposal.id}
+                        className="hover:shadow-lg transition-shadow"
+                      >
+                        <CardContent className="p-6">
+                          <div className="flex items-start space-x-4">
+                            <img
+                              src={proposal.agentAvatar}
+                              alt={proposal.agentName}
+                              className="w-16 h-16 rounded-full object-cover"
+                            />
+                            <div className="flex-1">
+                              <div className="flex items-center justify-between mb-2">
+                                <div>
+                                  <h3 className="text-lg font-semibold text-vm-gray-900">
+                                    {proposal.agentName}
+                                  </h3>
+                                  <div className="flex items-center space-x-2">
+                                    <div className="flex items-center">
+                                      <Star className="w-4 h-4 text-yellow-400 fill-current" />
+                                      <span className="text-sm text-vm-gray-600 ml-1">
+                                        {proposal.agentRating}
+                                      </span>
+                                    </div>
+                                    <span className="text-sm text-vm-gray-500">
+                                      •
+                                    </span>
+                                    <span className="text-sm text-vm-gray-600">
+                                      {proposal.experience} experience
+                                    </span>
+                                  </div>
+                                </div>
+                                <div className="text-right">
+                                  <p className="text-xl font-bold text-vm-green">
+                                    {proposal.price}
+                                  </p>
+                                  <p className="text-sm text-vm-gray-500">
+                                    {proposal.timeline}
+                                  </p>
+                                </div>
+                              </div>
+                              <p className="text-vm-gray-600 mb-3">
+                                {proposal.description}
+                              </p>
+                              <div className="flex items-center justify-between">
+                                <div className="flex flex-wrap gap-2">
+                                  {proposal.expertise.map((skill) => (
+                                    <Badge
+                                      key={skill}
+                                      variant="secondary"
+                                      className="text-xs"
+                                    >
+                                      {skill}
+                                    </Badge>
+                                  ))}
+                                </div>
+                                <div className="flex items-center space-x-2">
+                                  <Button variant="outline" size="sm">
+                                    <MessageSquare className="w-4 h-4 mr-1" />
+                                    Message
+                                  </Button>
+                                  <Button
+                                    className="bg-vm-green hover:bg-vm-green-600"
+                                    size="sm"
+                                  >
+                                    Accept Proposal
+                                  </Button>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </CardContent>
+                      </Card>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {activeTab === "applications" && (
+                <div className="space-y-6">
+                  <h2 className="text-xl font-semibold text-vm-gray-900">
+                    Application Progress
+                  </h2>
+
+                  <div className="grid gap-6">
+                    {applications.map((app) => (
+                      <Card key={app.id}>
+                        <CardContent className="p-6">
+                          <div className="flex items-center justify-between mb-4">
+                            <div>
+                              <h3 className="text-lg font-semibold text-vm-gray-900">
+                                {app.title}
+                              </h3>
+                              <p className="text-sm text-vm-gray-600">
+                                Agent: {app.agent}
+                              </p>
+                            </div>
+                            <Badge
+                              className={getApplicationStatusColor(app.status)}
+                            >
+                              {app.status.replace("_", " ")}
+                            </Badge>
+                          </div>
+
+                          <div className="space-y-3">
+                            <div className="flex items-center justify-between text-sm">
+                              <span className="text-vm-gray-600">Progress</span>
+                              <span className="font-medium">
+                                {app.progress}%
                               </span>
-                              <span className="text-sm text-vm-gray-600">
-                                {proposal.experience} experience
+                            </div>
+                            <Progress value={app.progress} className="h-2" />
+                            <div className="flex items-center justify-between text-sm">
+                              <span className="text-vm-gray-600">
+                                Next Step:{" "}
+                                <span className="font-medium">
+                                  {app.nextStep}
+                                </span>
+                              </span>
+                              <span className="text-vm-gray-600">
+                                Deadline:{" "}
+                                <span className="font-medium">
+                                  {app.deadline}
+                                </span>
                               </span>
                             </div>
                           </div>
-                          <div className="text-right">
-                            <p className="text-xl font-bold text-vm-green">
-                              {proposal.price}
-                            </p>
-                            <p className="text-sm text-vm-gray-500">
-                              {proposal.timeline}
-                            </p>
-                          </div>
-                        </div>
-                        <p className="text-vm-gray-600 mb-3">
-                          {proposal.description}
-                        </p>
-                        <div className="flex items-center justify-between">
-                          <div className="flex flex-wrap gap-2">
-                            {proposal.expertise.map((skill) => (
-                              <Badge
-                                key={skill}
-                                variant="secondary"
-                                className="text-xs"
-                              >
-                                {skill}
-                              </Badge>
-                            ))}
-                          </div>
-                          <div className="flex items-center space-x-2">
+
+                          <div className="flex items-center space-x-2 mt-4">
+                            <Button variant="outline" size="sm">
+                              <Eye className="w-4 h-4 mr-1" />
+                              View Details
+                            </Button>
                             <Button variant="outline" size="sm">
                               <MessageSquare className="w-4 h-4 mr-1" />
-                              Message
+                              Contact Agent
                             </Button>
-                            <Button
-                              className="bg-vm-green hover:bg-vm-green-600"
-                              size="sm"
-                            >
-                              Accept Proposal
+                            <Button variant="outline" size="sm">
+                              <Upload className="w-4 h-4 mr-1" />
+                              Upload Docs
                             </Button>
                           </div>
-                        </div>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-              ))}
+                        </CardContent>
+                      </Card>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {activeTab === "documents" && <DocumentUpload />}
+
+              {activeTab === "agents" && <AgentBrowser />}
             </div>
           </div>
-        )}
-
-        {activeTab === "applications" && (
-          <div className="space-y-6">
-            <h2 className="text-xl font-semibold text-vm-gray-900">
-              Application Progress
-            </h2>
-
-            <div className="grid gap-6">
-              {applications.map((app) => (
-                <Card key={app.id}>
-                  <CardContent className="p-6">
-                    <div className="flex items-center justify-between mb-4">
-                      <div>
-                        <h3 className="text-lg font-semibold text-vm-gray-900">
-                          {app.title}
-                        </h3>
-                        <p className="text-sm text-vm-gray-600">
-                          Agent: {app.agent}
-                        </p>
-                      </div>
-                      <Badge className={getApplicationStatusColor(app.status)}>
-                        {app.status.replace("_", " ")}
-                      </Badge>
-                    </div>
-
-                    <div className="space-y-3">
-                      <div className="flex items-center justify-between text-sm">
-                        <span className="text-vm-gray-600">Progress</span>
-                        <span className="font-medium">{app.progress}%</span>
-                      </div>
-                      <Progress value={app.progress} className="h-2" />
-                      <div className="flex items-center justify-between text-sm">
-                        <span className="text-vm-gray-600">
-                          Next Step:{" "}
-                          <span className="font-medium">{app.nextStep}</span>
-                        </span>
-                        <span className="text-vm-gray-600">
-                          Deadline:{" "}
-                          <span className="font-medium">{app.deadline}</span>
-                        </span>
-                      </div>
-                    </div>
-
-                    <div className="flex items-center space-x-2 mt-4">
-                      <Button variant="outline" size="sm">
-                        <Eye className="w-4 h-4 mr-1" />
-                        View Details
-                      </Button>
-                      <Button variant="outline" size="sm">
-                        <MessageSquare className="w-4 h-4 mr-1" />
-                        Contact Agent
-                      </Button>
-                      <Button variant="outline" size="sm">
-                        <Upload className="w-4 h-4 mr-1" />
-                        Upload Docs
-                      </Button>
-                    </div>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
-          </div>
-        )}
-
-        {activeTab === "documents" && <DocumentUpload />}
-
-        {activeTab === "agents" && <AgentBrowser />}
+        </div>
       </div>
 
       {/* Modals */}
