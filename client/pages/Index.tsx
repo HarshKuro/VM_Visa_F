@@ -224,19 +224,38 @@ export default function Index() {
             </div>
           </div>
 
-          {/* Image indicators */}
-          <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex space-x-3 animate-in fade-in duration-1000 delay-1200">
-            {immigrationImages.map((_, index) => (
-              <button
-                key={index}
-                onClick={() => setCurrentImageIndex(index)}
-                className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                  index === currentImageIndex
-                    ? "bg-white shadow-lg scale-125"
-                    : "bg-white/60 hover:bg-white/80"
-                }`}
-              />
-            ))}
+          {/* Image indicators with labels */}
+          <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-in fade-in duration-1000 delay-1200">
+            <div className="flex items-center space-x-6 bg-black/20 backdrop-blur-sm rounded-2xl px-6 py-3">
+              {immigrationImages.map((image, index) => (
+                <button
+                  key={index}
+                  onClick={() => setCurrentImageIndex(index)}
+                  className={`flex flex-col items-center space-y-2 transition-all duration-300 ${
+                    index === currentImageIndex
+                      ? "scale-110"
+                      : "hover:scale-105"
+                  }`}
+                >
+                  <div
+                    className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                      index === currentImageIndex
+                        ? "bg-vm-green shadow-lg"
+                        : "bg-white/60 hover:bg-white/80"
+                    }`}
+                  />
+                  <span
+                    className={`text-xs font-medium transition-colors duration-300 ${
+                      index === currentImageIndex
+                        ? "text-vm-green"
+                        : "text-white/70"
+                    }`}
+                  >
+                    {image.title}
+                  </span>
+                </button>
+              ))}
+            </div>
           </div>
         </div>
       </section>
