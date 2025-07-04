@@ -16,9 +16,7 @@ import Services from "./pages/Services";
 import StudentVisa from "./pages/StudentVisa";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
-import OrganizationProfileStep1 from "./pages/OrganizationProfileStep1";
-import OrganizationProfileStep2 from "./pages/OrganizationProfileStep2";
-import OrganizationProfileStep3 from "./pages/OrganizationProfileStep3";
+import OrganizationProfileWizard from "./pages/OrganizationProfileWizard";
 import OrganizationDashboard from "./pages/OrganizationDashboard";
 import NotFound from "./pages/NotFound";
 import { Toaster } from "@/components/ui/toaster";
@@ -48,16 +46,8 @@ function App() {
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
         <Route
-          path="/organization-profile-step1"
-          element={<OrganizationProfileStep1 />}
-        />
-        <Route
-          path="/organization-profile-step2"
-          element={<OrganizationProfileStep2 />}
-        />
-        <Route
-          path="/organization-profile-step3"
-          element={<OrganizationProfileStep3 />}
+          path="/organization-profile-wizard"
+          element={<OrganizationProfileWizard />}
         />
         <Route
           path="/organization-dashboard"
