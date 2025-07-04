@@ -154,11 +154,15 @@ export default function OrganizationSignup() {
     setIsSubmitting(true);
     try {
       await new Promise((resolve) => setTimeout(resolve, 2000));
+
+      // Save signup data for profile completion
+      localStorage.setItem("organizationSignupData", JSON.stringify(formData));
       localStorage.removeItem("organizationSignupData");
+
       alert(
-        "Organization account created successfully! Redirecting to admin panel...",
+        "Organization account created successfully! Please complete your profile setup.",
       );
-      navigate("/organization-dashboard");
+      navigate("/organization-profile-step1");
     } catch (error) {
       console.error("Signup failed:", error);
     } finally {
