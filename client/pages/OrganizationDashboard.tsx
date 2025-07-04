@@ -133,77 +133,98 @@ export default function OrganizationDashboard() {
     <div className="space-y-8">
       {/* Stats Cards */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-        <Card>
-          <CardContent className="p-6">
-            <div className="flex items-center justify-between">
+        <Card className="group hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border-0 shadow-md hover:shadow-blue-100/50">
+          <CardContent className="p-6 relative overflow-hidden">
+            <div className="absolute inset-0 bg-gradient-to-br from-blue-50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+            <div className="relative z-10 flex items-center justify-between">
               <div>
-                <p className="text-sm font-medium text-vm-gray-600">
+                <p className="text-sm font-medium text-vm-gray-600 group-hover:text-blue-700 transition-colors duration-300">
                   Total Agents
                 </p>
-                <p className="text-3xl font-bold text-vm-gray-900">
+                <p className="text-3xl font-bold text-vm-gray-900 group-hover:text-blue-800 transition-colors duration-300">
                   {organizationData.totalAgents}
                 </p>
-                <p className="text-sm text-green-600">
+                <p className="text-sm text-green-600 group-hover:text-green-700 transition-colors duration-300">
                   {organizationData.activeAgents} active
                 </p>
               </div>
-              <div className="p-3 bg-blue-100 rounded-lg">
-                <Users className="w-6 h-6 text-blue-600" />
+              <div className="p-3 bg-blue-100 rounded-xl group-hover:bg-blue-200 transition-all duration-300 group-hover:scale-110 group-hover:rotate-6">
+                <Users className="w-5 h-5 text-blue-600 group-hover:text-blue-700 transition-colors duration-300" />
               </div>
             </div>
           </CardContent>
         </Card>
 
-        <Card>
-          <CardContent className="p-6">
-            <div className="flex items-center justify-between">
+        <Card
+          className="group hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border-0 shadow-md hover:shadow-green-100/50"
+          style={{ animationDelay: "100ms" }}
+        >
+          <CardContent className="p-6 relative overflow-hidden">
+            <div className="absolute inset-0 bg-gradient-to-br from-green-50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+            <div className="relative z-10 flex items-center justify-between">
               <div>
-                <p className="text-sm font-medium text-vm-gray-600">
+                <p className="text-sm font-medium text-vm-gray-600 group-hover:text-green-700 transition-colors duration-300">
                   Requests Fulfilled
                 </p>
-                <p className="text-3xl font-bold text-vm-gray-900">
+                <p className="text-3xl font-bold text-vm-gray-900 group-hover:text-green-800 transition-colors duration-300">
                   {organizationData.requestsFulfilled}
                 </p>
-                <p className="text-sm text-green-600">+12 this month</p>
+                <p className="text-sm text-green-600 group-hover:text-green-700 transition-colors duration-300">
+                  +12 this month
+                </p>
               </div>
-              <div className="p-3 bg-green-100 rounded-lg">
-                <CheckCircle className="w-6 h-6 text-green-600" />
+              <div className="p-3 bg-green-100 rounded-xl group-hover:bg-green-200 transition-all duration-300 group-hover:scale-110 group-hover:rotate-6">
+                <CheckCircle className="w-5 h-5 text-green-600 group-hover:text-green-700 transition-colors duration-300" />
               </div>
             </div>
           </CardContent>
         </Card>
 
-        <Card>
-          <CardContent className="p-6">
-            <div className="flex items-center justify-between">
+        <Card
+          className="group hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border-0 shadow-md hover:shadow-yellow-100/50"
+          style={{ animationDelay: "200ms" }}
+        >
+          <CardContent className="p-6 relative overflow-hidden">
+            <div className="absolute inset-0 bg-gradient-to-br from-yellow-50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+            <div className="relative z-10 flex items-center justify-between">
               <div>
-                <p className="text-sm font-medium text-vm-gray-600">
+                <p className="text-sm font-medium text-vm-gray-600 group-hover:text-yellow-700 transition-colors duration-300">
                   Success Rate
                 </p>
-                <p className="text-3xl font-bold text-vm-gray-900">
+                <p className="text-3xl font-bold text-vm-gray-900 group-hover:text-yellow-800 transition-colors duration-300">
                   {organizationData.successRate}
                 </p>
-                <p className="text-sm text-green-600">+2% this month</p>
+                <p className="text-sm text-green-600 group-hover:text-green-700 transition-colors duration-300">
+                  +2% this month
+                </p>
               </div>
-              <div className="p-3 bg-yellow-100 rounded-lg">
-                <Star className="w-6 h-6 text-yellow-600" />
+              <div className="p-3 bg-yellow-100 rounded-xl group-hover:bg-yellow-200 transition-all duration-300 group-hover:scale-110 group-hover:rotate-6">
+                <Star className="w-5 h-5 text-yellow-600 group-hover:text-yellow-700 transition-colors duration-300" />
               </div>
             </div>
           </CardContent>
         </Card>
 
-        <Card>
-          <CardContent className="p-6">
-            <div className="flex items-center justify-between">
+        <Card
+          className="group hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border-0 shadow-md hover:shadow-purple-100/50"
+          style={{ animationDelay: "300ms" }}
+        >
+          <CardContent className="p-6 relative overflow-hidden">
+            <div className="absolute inset-0 bg-gradient-to-br from-purple-50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+            <div className="relative z-10 flex items-center justify-between">
               <div>
-                <p className="text-sm font-medium text-vm-gray-600">
+                <p className="text-sm font-medium text-vm-gray-600 group-hover:text-purple-700 transition-colors duration-300">
                   Monthly Revenue
                 </p>
-                <p className="text-3xl font-bold text-vm-gray-900">$24,580</p>
-                <p className="text-sm text-green-600">+8% this month</p>
+                <p className="text-3xl font-bold text-vm-gray-900 group-hover:text-purple-800 transition-colors duration-300">
+                  $24,580
+                </p>
+                <p className="text-sm text-green-600 group-hover:text-green-700 transition-colors duration-300">
+                  +8% this month
+                </p>
               </div>
-              <div className="p-3 bg-purple-100 rounded-lg">
-                <DollarSign className="w-6 h-6 text-purple-600" />
+              <div className="p-3 bg-purple-100 rounded-xl group-hover:bg-purple-200 transition-all duration-300 group-hover:scale-110 group-hover:rotate-6">
+                <DollarSign className="w-5 h-5 text-purple-600 group-hover:text-purple-700 transition-colors duration-300" />
               </div>
             </div>
           </CardContent>
