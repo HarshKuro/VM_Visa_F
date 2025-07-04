@@ -1,4 +1,6 @@
+import { useState, useEffect } from "react";
 import Navigation from "@/components/Navigation";
+import LoadingAnimation from "@/components/LoadingAnimation";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Link } from "react-router-dom";
@@ -13,6 +15,19 @@ import {
 } from "lucide-react";
 
 export default function Services() {
+  const [isLoading, setIsLoading] = useState(true);
+  const [animateCards, setAnimateCards] = useState(false);
+
+  useEffect(() => {
+    // Simulate page loading
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+      // Start card animations after loading
+      setTimeout(() => setAnimateCards(true), 300);
+    }, 1500);
+
+    return () => clearTimeout(timer);
+  }, []);
   const services = [
     {
       icon: Award,
@@ -65,30 +80,42 @@ export default function Services() {
   ];
 
   return (
-    <div className="min-h-screen bg-vm-gray-50">
-      <Navigation />
+    <>
+      <LoadingAnimation isLoading={isLoading} message="Loading Services..." />
 
-      {/* Hero Section */}
-      <section className="py-20 bg-gradient-to-r from-vm-green to-vm-green-600">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-4xl lg:text-5xl font-bold text-white mb-6">
-            Our Immigration Services
-          </h1>
-          <p className="text-xl text-white/90 mb-8">
-            Expert support for every step of your global journey. Connect with
-            verified immigration professionals.
-          </p>
-          <Link to="/signup">
-            <Button
-              size="lg"
-              className="bg-white text-vm-green hover:bg-gray-100"
-            >
-              Find Your Expert
-              <ArrowRight className="ml-2 w-5 h-5" />
-            </Button>
-          </Link>
-        </div>
-      </section>
+      <div className="min-h-screen bg-vm-gray-50">
+        <Navigation />
+
+        {/* Hero Section */}
+        <section className="py-20 bg-gradient-to-r from-vm-green to-vm-green-600 overflow-hidden">
+          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h1 className="text-4xl lg:text-5xl font-bold text-white mb-6 animate-in slide-in-from-bottom duration-1000">
+              Our Immigration Services
+            </h1>
+            <p className="text-xl text-white/90 mb-8 animate-in slide-in-from-bottom duration-1000 delay-200">
+              Expert support for every step of your global journey. Connect with
+              verified immigration professionals.
+            </p>
+            <div className="animate-in slide-in-from-bottom duration-1000 delay-400">
+              <Link to="/signup">
+                <Button
+                  size="lg"
+                  className="bg-white text-vm-green hover:bg-gray-100 transform hover:scale-105 transition-all duration-300"
+                >
+                  Find Your Expert
+                  <ArrowRight className="ml-2 w-5 h-5 transition-transform group-hover:translate-x-1" />
+                </Button>
+              </Link>
+            </div>
+          </div>
+
+          {/* Background Animation Elements */}
+          <div className="absolute inset-0 overflow-hidden pointer-events-none">
+            <div className="absolute top-20 left-10 w-20 h-20 bg-white/5 rounded-full animate-bounce"></div>
+            <div className="absolute top-40 right-20 w-16 h-16 bg-white/5 rounded-full animate-bounce animation-delay-1000"></div>
+            <div className="absolute bottom-20 left-1/3 w-12 h-12 bg-white/5 rounded-full animate-bounce animation-delay-2000"></div>
+          </div>
+        </section>
 
       {/* Services Grid */}
       <section className="py-20">
@@ -109,29 +136,41 @@ export default function Services() {
               return (
                 <Card
                   key={index}
-                  className="hover:shadow-xl transition-all duration-300 group"
+                  className={`hover:shadow-xl transition-all duration-500 group transform hover:-translate-y-2 ${
+                    animateCards
+                      ? "animate-in slide-in-from-bottom duration-700"
+                      : "opacity-0 translate-y-8"
+                  }`}
+                  style={{
+                    animationDelay: animateCards ? `${index * 150}ms` : "0ms",
+                  }}
                 >
-                  <CardContent className="p-8">
-                    <div
-                      className={`w-16 h-16 ${service.color} rounded-lg flex items-center justify-center mb-6 group-hover:scale-110 transition-transform`}
-                    >
-                      <Icon className="w-8 h-8 text-white" />
-                    </div>
-                    <h3 className="text-xl font-semibold text-vm-gray-900 mb-4">
-                      {service.title}
-                    </h3>
-                    <p className="text-vm-gray-600 mb-6 leading-relaxed">
-                      {service.description}
-                    </p>
-                    <Link to={service.link}>
-                      <Button
-                        className="w-full bg-vm-green hover:bg-vm-green-600"
-                        size="lg"
+                  <CardContent className="p-8 relative overflow-hidden">
+                    {/* Background Animation */}
+                    <div className="absolute inset-0 bg-gradient-to-br from-transparent to-vm-gray-50/50 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+
+                    <div className="relative z-10">
+                      <div
+                        className={`w-16 h-16 ${service.color} rounded-lg flex items-center justify-center mb-6 group-hover:scale-110 transition-all duration-500 group-hover:rotate-6`}
                       >
-                        Learn More
-                        <ArrowRight className="ml-2 w-4 h-4" />
-                      </Button>
-                    </Link>
+                        <Icon className="w-8 h-8 text-white transition-transform duration-300 group-hover:scale-110" />
+                      </div>
+                      <h3 className="text-xl font-semibold text-vm-gray-900 mb-4 group-hover:text-vm-green transition-colors duration-300">
+                        {service.title}
+                      </h3>
+                      <p className="text-vm-gray-600 mb-6 leading-relaxed group-hover:text-vm-gray-700 transition-colors duration-300">
+                        {service.description}
+                      </p>
+                      <Link to={service.link}>
+                        <Button
+                          className="w-full bg-vm-green hover:bg-vm-green-600 transform hover:scale-105 transition-all duration-300 group-hover:shadow-lg"
+                          size="lg"
+                        >
+                          Learn More
+                          <ArrowRight className="ml-2 w-4 h-4 transition-transform group-hover:translate-x-1" />
+                        </Button>
+                      </Link>
+                    </div>
                   </CardContent>
                 </Card>
               );
@@ -144,29 +183,33 @@ export default function Services() {
       <section className="py-20 bg-white">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-3 gap-8 text-center">
-            <div>
-              <div className="text-4xl font-bold text-vm-green mb-2">91%</div>
-              <div className="text-lg font-medium text-vm-gray-900">
-                Success Rate
+            {[
+              { value: "91%", label: "Success Rate", description: "Successful visa applications" },
+              { value: "150+", label: "Countries", description: "Global coverage" },
+              { value: "10K+", label: "Happy Clients", description: "Served worldwide" }
+            ].map((stat, index) => (
+              <div
+                key={index}
+                className={`transform hover:scale-105 transition-all duration-500 ${
+                  animateCards
+                    ? "animate-in slide-in-from-bottom duration-700"
+                    : "opacity-0 translate-y-8"
+                }`}
+                style={{
+                  animationDelay: animateCards ? `${(index + 6) * 150}ms` : "0ms",
+                }}
+              >
+                <div className="text-4xl font-bold text-vm-green mb-2 animate-pulse">
+                  {stat.value}
+                </div>
+                <div className="text-lg font-medium text-vm-gray-900">
+                  {stat.label}
+                </div>
+                <div className="text-vm-gray-600">
+                  {stat.description}
+                </div>
               </div>
-              <div className="text-vm-gray-600">
-                Successful visa applications
-              </div>
-            </div>
-            <div>
-              <div className="text-4xl font-bold text-vm-green mb-2">150+</div>
-              <div className="text-lg font-medium text-vm-gray-900">
-                Countries
-              </div>
-              <div className="text-vm-gray-600">Global coverage</div>
-            </div>
-            <div>
-              <div className="text-4xl font-bold text-vm-green mb-2">10K+</div>
-              <div className="text-lg font-medium text-vm-gray-900">
-                Happy Clients
-              </div>
-              <div className="text-vm-gray-600">Served worldwide</div>
-            </div>
+            ))}
           </div>
         </div>
       </section>
