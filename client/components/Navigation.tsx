@@ -53,18 +53,22 @@ export default function Navigation() {
           <div className="hidden md:flex items-center space-x-8">
             {/* Country Selector */}
             <div className="relative group">
-              <button className="flex items-center space-x-2 text-vm-gray-700 hover:text-vm-gray-900 transition-colors">
-                <Globe className="w-4 h-4" />
-                <span className="text-sm font-medium">{selectedCountry}</span>
-                <ChevronDown className="w-4 h-4" />
+              <button className="flex items-center space-x-2 px-3 py-2 rounded-lg text-vm-gray-700 hover:text-vm-green hover:bg-vm-green/5 transition-all duration-300 transform hover:scale-105 hover:shadow-sm">
+                <Globe className="w-4 h-4 transition-transform duration-300 group-hover:rotate-12" />
+                <span className="text-sm font-medium relative">
+                  {selectedCountry}
+                  <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-vm-green transition-all duration-300 group-hover:w-full"></span>
+                </span>
+                <ChevronDown className="w-4 h-4 transition-transform duration-300 group-hover:rotate-180" />
               </button>
-              <div className="absolute top-full left-0 mt-2 w-48 bg-white rounded-lg shadow-lg border border-vm-gray-200 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
+              <div className="absolute top-full left-0 mt-2 w-48 bg-white rounded-lg shadow-lg border border-vm-gray-200 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform translate-y-2 group-hover:translate-y-0">
                 <div className="py-2">
-                  {countries.map((country) => (
+                  {countries.map((country, index) => (
                     <button
                       key={country}
                       onClick={() => setSelectedCountry(country)}
-                      className="block w-full px-4 py-2 text-left text-sm text-vm-gray-700 hover:bg-vm-gray-50 hover:text-vm-gray-900 transition-colors"
+                      className="block w-full px-4 py-2 text-left text-sm text-vm-gray-700 hover:bg-vm-green/10 hover:text-vm-green transition-all duration-200 hover:pl-6 transform"
+                      style={{ animationDelay: `${index * 50}ms` }}
                     >
                       {country}
                     </button>
@@ -121,21 +125,30 @@ export default function Navigation() {
                 <>
                   <Link
                     to="/services"
-                    className="px-3 py-2 text-sm font-medium text-vm-gray-700 hover:text-vm-gray-900 hover:bg-vm-gray-50 rounded-lg transition-all duration-200"
+                    className="group px-3 py-2 text-sm font-medium text-vm-gray-700 hover:text-vm-green hover:bg-vm-green/5 rounded-lg transition-all duration-300 transform hover:scale-105 hover:shadow-sm"
                   >
-                    Services
+                    <span className="relative">
+                      Services
+                      <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-vm-green transition-all duration-300 group-hover:w-full"></span>
+                    </span>
                   </Link>
                   <Link
                     to="/about"
-                    className="px-3 py-2 text-sm font-medium text-vm-gray-700 hover:text-vm-gray-900 hover:bg-vm-gray-50 rounded-lg transition-all duration-200"
+                    className="group px-3 py-2 text-sm font-medium text-vm-gray-700 hover:text-vm-green hover:bg-vm-green/5 rounded-lg transition-all duration-300 transform hover:scale-105 hover:shadow-sm"
                   >
-                    About
+                    <span className="relative">
+                      About
+                      <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-vm-green transition-all duration-300 group-hover:w-full"></span>
+                    </span>
                   </Link>
                   <Link
                     to="/contact"
-                    className="px-3 py-2 text-sm font-medium text-vm-gray-700 hover:text-vm-gray-900 hover:bg-vm-gray-50 rounded-lg transition-all duration-200"
+                    className="group px-3 py-2 text-sm font-medium text-vm-gray-700 hover:text-vm-green hover:bg-vm-green/5 rounded-lg transition-all duration-300 transform hover:scale-105 hover:shadow-sm"
                   >
-                    Contact
+                    <span className="relative">
+                      Contact
+                      <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-vm-green transition-all duration-300 group-hover:w-full"></span>
+                    </span>
                   </Link>
                 </>
               )}
@@ -183,7 +196,7 @@ export default function Navigation() {
                     <Button
                       variant="ghost"
                       size="sm"
-                      className="text-vm-gray-700 hover:text-vm-gray-900"
+                      className="text-vm-gray-700 hover:text-vm-green hover:bg-vm-green/5 transition-all duration-300 transform hover:scale-105 hover:shadow-sm"
                     >
                       Login
                     </Button>
@@ -191,7 +204,7 @@ export default function Navigation() {
                   <Link to="/signup">
                     <Button
                       size="sm"
-                      className="bg-vm-green hover:bg-vm-green-600 text-white"
+                      className="bg-vm-green hover:bg-vm-green-600 text-white transition-all duration-300 transform hover:scale-105 hover:shadow-lg hover:-translate-y-0.5"
                     >
                       Sign Up
                     </Button>
