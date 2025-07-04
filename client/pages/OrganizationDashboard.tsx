@@ -512,27 +512,81 @@ export default function OrganizationDashboard() {
 
       <div className="flex">
         {/* Sidebar */}
-        <div className="w-64 bg-white border-r border-vm-gray-200 min-h-screen">
+        <div className="w-64 bg-gradient-to-b from-vm-gray-900 to-vm-gray-800 border-r border-vm-gray-700 min-h-screen shadow-xl">
           <div className="p-6">
-            <nav className="space-y-2">
-              {sidebarItems.map((item) => {
+            <nav className="space-y-1">
+              {sidebarItems.map((item, index) => {
                 const Icon = item.icon;
                 return (
                   <button
                     key={item.id}
                     onClick={() => setActiveTab(item.id)}
-                    className={`w-full flex items-center space-x-3 px-3 py-2 rounded-lg text-left transition-colors ${
+                    className={`w-full flex items-center space-x-3 px-4 py-3 rounded-xl text-left transition-all duration-300 transform hover:scale-105 group ${
                       activeTab === item.id
-                        ? "bg-vm-green text-white"
-                        : "text-vm-gray-700 hover:bg-vm-gray-100"
+                        ? "bg-gradient-to-r from-vm-green to-vm-green-600 text-white shadow-lg shadow-vm-green/25 scale-105"
+                        : "text-vm-gray-300 hover:bg-vm-gray-700/50 hover:text-white"
                     }`}
+                    style={{
+                      animationDelay: `${index * 100}ms`,
+                    }}
                   >
-                    <Icon className="w-5 h-5" />
-                    <span className="font-medium">{item.label}</span>
+                    <Icon
+                      className={`w-4 h-4 transition-all duration-300 ${
+                        activeTab === item.id
+                          ? "text-white scale-110"
+                          : "text-vm-gray-400 group-hover:text-vm-green group-hover:scale-110"
+                      }`}
+                    />
+                    <span
+                      className={`font-medium transition-all duration-300 ${
+                        activeTab === item.id
+                          ? "text-white"
+                          : "group-hover:text-white"
+                      }`}
+                    >
+                      {item.label}
+                    </span>
+
+                    {/* Active indicator */}
+                    {activeTab === item.id && (
+                      <div className="ml-auto">
+                        <div className="w-2 h-2 bg-white rounded-full animate-pulse"></div>
+                      </div>
+                    )}
+
+                    {/* Hover indicator */}
+                    <div
+                      className={`absolute left-0 w-1 h-8 bg-vm-green rounded-r-full transition-all duration-300 ${
+                        activeTab === item.id
+                          ? "opacity-100 scale-y-100"
+                          : "opacity-0 scale-y-0 group-hover:opacity-100 group-hover:scale-y-100"
+                      }`}
+                    ></div>
                   </button>
                 );
               })}
             </nav>
+
+            {/* Sidebar Footer */}
+            <div className="mt-8 pt-6 border-t border-vm-gray-700">
+              <div className="bg-vm-gray-800/50 rounded-xl p-4 backdrop-blur-sm">
+                <div className="text-center">
+                  <div className="w-8 h-8 bg-vm-green rounded-full flex items-center justify-center mx-auto mb-2">
+                    <Building className="w-4 h-4 text-white" />
+                  </div>
+                  <p className="text-xs text-vm-gray-400 mb-1">Organization</p>
+                  <p className="text-sm font-medium text-white truncate">
+                    {organizationData.name}
+                  </p>
+                  {organizationData.verified && (
+                    <div className="flex items-center justify-center mt-2">
+                      <CheckCircle className="w-3 h-3 text-vm-green mr-1" />
+                      <span className="text-xs text-vm-green">Verified</span>
+                    </div>
+                  )}
+                </div>
+              </div>
+            </div>
           </div>
         </div>
 
