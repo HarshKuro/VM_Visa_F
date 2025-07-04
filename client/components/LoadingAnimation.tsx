@@ -37,8 +37,14 @@ export default function LoadingAnimation({
 
           {/* Ripple Effect */}
           <div className="absolute inset-0 rounded-full border-2 border-vm-green/20 animate-ping"></div>
-          <div className="absolute inset-2 rounded-full border-2 border-vm-green/30 animate-ping animation-delay-200"></div>
-          <div className="absolute inset-4 rounded-full border-2 border-vm-green/40 animate-ping animation-delay-400"></div>
+          <div
+            className="absolute inset-2 rounded-full border-2 border-vm-green/30 animate-ping"
+            style={{ animationDelay: "0.2s" }}
+          ></div>
+          <div
+            className="absolute inset-4 rounded-full border-2 border-vm-green/40 animate-ping"
+            style={{ animationDelay: "0.4s" }}
+          ></div>
         </div>
 
         {/* Loading Text */}
@@ -48,68 +54,73 @@ export default function LoadingAnimation({
           </h3>
           <div className="flex justify-center space-x-1">
             <div className="w-2 h-2 bg-vm-green rounded-full animate-bounce"></div>
-            <div className="w-2 h-2 bg-vm-green rounded-full animate-bounce animation-delay-200"></div>
-            <div className="w-2 h-2 bg-vm-green rounded-full animate-bounce animation-delay-400"></div>
+            <div
+              className="w-2 h-2 bg-vm-green rounded-full animate-bounce"
+              style={{ animationDelay: "0.2s" }}
+            ></div>
+            <div
+              className="w-2 h-2 bg-vm-green rounded-full animate-bounce"
+              style={{ animationDelay: "0.4s" }}
+            ></div>
           </div>
         </div>
 
         {/* Progress Bar */}
         <div className="w-64 h-1 bg-vm-gray-200 rounded-full mx-auto overflow-hidden">
-          <div className="h-full bg-gradient-to-r from-vm-green to-vm-green-600 rounded-full animate-loading-bar"></div>
+          <div
+            className="h-full bg-gradient-to-r from-vm-green to-vm-green-600 rounded-full"
+            style={{
+              animation: "loadingBar 2s ease-in-out infinite",
+            }}
+          ></div>
         </div>
       </div>
 
       {/* Background Animation */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-1/4 left-1/4 w-32 h-32 bg-vm-green/5 rounded-full animate-float"></div>
-        <div className="absolute top-3/4 right-1/4 w-24 h-24 bg-vm-blue/5 rounded-full animate-float animation-delay-1000"></div>
-        <div className="absolute bottom-1/4 left-1/3 w-16 h-16 bg-vm-green/5 rounded-full animate-float animation-delay-2000"></div>
+        <div
+          className="absolute top-1/4 left-1/4 w-32 h-32 bg-vm-green/5 rounded-full"
+          style={{
+            animation: "float 3s ease-in-out infinite",
+          }}
+        ></div>
+        <div
+          className="absolute top-3/4 right-1/4 w-24 h-24 bg-vm-blue/5 rounded-full"
+          style={{
+            animation: "float 3s ease-in-out infinite",
+            animationDelay: "1s",
+          }}
+        ></div>
+        <div
+          className="absolute bottom-1/4 left-1/3 w-16 h-16 bg-vm-green/5 rounded-full"
+          style={{
+            animation: "float 3s ease-in-out infinite",
+            animationDelay: "2s",
+          }}
+        ></div>
       </div>
 
-      <style jsx>{`
-        @keyframes loading-bar {
-          0% {
-            transform: translateX(-100%);
+      <style>
+        {`
+          @keyframes loadingBar {
+            0% {
+              transform: translateX(-100%);
+            }
+            100% {
+              transform: translateX(100%);
+            }
           }
-          100% {
-            transform: translateX(100%);
+
+          @keyframes float {
+            0%, 100% {
+              transform: translateY(0px) scale(1);
+            }
+            50% {
+              transform: translateY(-20px) scale(1.1);
+            }
           }
-        }
-
-        @keyframes float {
-          0%,
-          100% {
-            transform: translateY(0px) scale(1);
-          }
-          50% {
-            transform: translateY(-20px) scale(1.1);
-          }
-        }
-
-        .animate-loading-bar {
-          animation: loading-bar 2s ease-in-out infinite;
-        }
-
-        .animate-float {
-          animation: float 3s ease-in-out infinite;
-        }
-
-        .animation-delay-200 {
-          animation-delay: 0.2s;
-        }
-
-        .animation-delay-400 {
-          animation-delay: 0.4s;
-        }
-
-        .animation-delay-1000 {
-          animation-delay: 1s;
-        }
-
-        .animation-delay-2000 {
-          animation-delay: 2s;
-        }
-      `}</style>
+        `}
+      </style>
     </div>
   );
 }
