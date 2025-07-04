@@ -162,7 +162,7 @@ export default function OrganizationSignup() {
       alert(
         "Organization account created successfully! Please complete your profile setup.",
       );
-      navigate("/organization-profile-step1");
+      navigate("/organization-profile-wizard");
     } catch (error) {
       console.error("Signup failed:", error);
     } finally {
