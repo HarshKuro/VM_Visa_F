@@ -444,7 +444,14 @@ export default function AIChatAssistant() {
               <h3 className="text-white font-bold text-lg">
                 Immigration Assistant AI
               </h3>
-              <span className="text-xl animate-wave">👋</span>
+              <span
+                className="text-xl inline-block"
+                style={{
+                  animation: "wave 2s ease-in-out infinite",
+                }}
+              >
+                👋
+              </span>
             </div>
             <div className="flex items-center space-x-2">
               <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
@@ -463,23 +470,15 @@ export default function AIChatAssistant() {
         </button>
       </div>
 
-      <style jsx>{`
-        @keyframes wave {
-          0%,
-          100% {
-            transform: rotate(0deg);
+      <style>
+        {`
+          @keyframes wave {
+            0%, 100% { transform: rotate(0deg); }
+            25% { transform: rotate(20deg); }
+            75% { transform: rotate(-10deg); }
           }
-          25% {
-            transform: rotate(20deg);
-          }
-          75% {
-            transform: rotate(-10deg);
-          }
-        }
-        .animate-wave {
-          animation: wave 2s ease-in-out infinite;
-        }
-      `}</style>
+        `}
+      </style>
 
       {/* Messages */}
       <div className="flex-1 overflow-y-auto p-4 space-y-4 min-h-0 max-h-96 bg-gradient-to-b from-gray-50 via-blue-50/30 to-white">
