@@ -129,7 +129,8 @@ export default function AIChatAssistant() {
     const typingDelay = Math.min(messageText.length * 50 + 1500, 4000);
 
     setTimeout(() => {
-      const { response, suggestions, actionButtons } = getAIResponse(messageText);
+      const { response, suggestions, actionButtons } =
+        getAIResponse(messageText);
       const aiResponse: Message = {
         id: (Date.now() + 1).toString(),
         text: response,
@@ -148,40 +149,103 @@ export default function AIChatAssistant() {
     const lowercaseMessage = message.toLowerCase();
 
     // Extract name
-    if (lowercaseMessage.includes("my name is") || lowercaseMessage.includes("i'm") || lowercaseMessage.includes("i am")) {
+    if (
+      lowercaseMessage.includes("my name is") ||
+      lowercaseMessage.includes("i'm") ||
+      lowercaseMessage.includes("i am")
+    ) {
       const nameMatch = message.match(/(?:my name is|i'm|i am)\s+([a-zA-Z]+)/i);
       if (nameMatch) {
-        setUserContext(prev => ({ ...prev, name: nameMatch[1] }));
+        setUserContext((prev) => ({ ...prev, name: nameMatch[1] }));
       }
     }
 
     // Extract country
-    const countries = ["canada", "usa", "united states", "uk", "united kingdom", "australia", "germany", "france", "singapore", "india"];
-    const mentionedCountry = countries.find(country => lowercaseMessage.includes(country));
+    const countries = [
+      "canada",
+      "usa",
+      "united states",
+      "uk",
+      "united kingdom",
+      "australia",
+      "germany",
+      "france",
+      "singapore",
+      "india",
+    ];
+    const mentionedCountry = countries.find((country) =>
+      lowercaseMessage.includes(country),
+    );
     if (mentionedCountry) {
-      setUserContext(prev => ({ ...prev, country: mentionedCountry }));
+      setUserContext((prev) => ({ ...prev, country: mentionedCountry }));
     }
 
     // Extract visa type
-    if (lowercaseMessage.includes("work visa") || lowercaseMessage.includes("h1-b") || lowercaseMessage.includes("employment")) {
-      setUserContext(prev => ({ ...prev, visaType: "work", purpose: "employment" }));
-    } else if (lowercaseMessage.includes("student") || lowercaseMessage.includes("f1") || lowercaseMessage.includes("study")) {
-      setUserContext(prev => ({ ...prev, visaType: "student", purpose: "education" }));
-    } else if (lowercaseMessage.includes("tourist") || lowercaseMessage.includes("visit") || lowercaseMessage.includes("b1/b2")) {
-      setUserContext(prev => ({ ...prev, visaType: "tourist", purpose: "tourism" }));
-    } else if (lowercaseMessage.includes("family") || lowercaseMessage.includes("spouse") || lowercaseMessage.includes("marriage")) {
-      setUserContext(prev => ({ ...prev, visaType: "family", purpose: "family reunification" }));
+    if (
+      lowercaseMessage.includes("work visa") ||
+      lowercaseMessage.includes("h1-b") ||
+      lowercaseMessage.includes("employment")
+    ) {
+      setUserContext((prev) => ({
+        ...prev,
+        visaType: "work",
+        purpose: "employment",
+      }));
+    } else if (
+      lowercaseMessage.includes("student") ||
+      lowercaseMessage.includes("f1") ||
+      lowercaseMessage.includes("study")
+    ) {
+      setUserContext((prev) => ({
+        ...prev,
+        visaType: "student",
+        purpose: "education",
+      }));
+    } else if (
+      lowercaseMessage.includes("tourist") ||
+      lowercaseMessage.includes("visit") ||
+      lowercaseMessage.includes("b1/b2")
+    ) {
+      setUserContext((prev) => ({
+        ...prev,
+        visaType: "tourist",
+        purpose: "tourism",
+      }));
+    } else if (
+      lowercaseMessage.includes("family") ||
+      lowercaseMessage.includes("spouse") ||
+      lowercaseMessage.includes("marriage")
+    ) {
+      setUserContext((prev) => ({
+        ...prev,
+        visaType: "family",
+        purpose: "family reunification",
+      }));
     }
   };
 
-  const getAIResponse = (userMessage: string): { response: string; suggestions?: string[]; actionButtons?: ActionButton[] } => {
+  const getAIResponse = (
+    userMessage: string,
+  ): {
+    response: string;
+    suggestions?: string[];
+    actionButtons?: ActionButton[];
+  } => {
     const lowercaseMessage = userMessage.toLowerCase();
     const userName = userContext.name ? `, ${userContext.name}` : "";
-    const contextInfo = userContext.country || userContext.visaType ?
-      `\n\n*Based on your interest in ${userContext.visaType || 'immigration'} ${userContext.country ? `for ${userContext.country}` : ''}*` : "";
+    const contextInfo =
+      userContext.country || userContext.visaType
+        ? `\n\n*Based on your interest in ${userContext.visaType || "immigration"} ${userContext.country ? `for ${userContext.country}` : ""}*`
+        : "";
 
-    if (lowercaseMessage.includes("my name is") || lowercaseMessage.includes("i'm") || lowercaseMessage.includes("i am")) {
-      const nameMatch = userMessage.match(/(?:my name is|i'm|i am)\s+([a-zA-Z]+)/i);
+    if (
+      lowercaseMessage.includes("my name is") ||
+      lowercaseMessage.includes("i'm") ||
+      lowercaseMessage.includes("i am")
+    ) {
+      const nameMatch = userMessage.match(
+        /(?:my name is|i'm|i am)\s+([a-zA-Z]+)/i,
+      );
       const extractedName = nameMatch ? nameMatch[1] : "";
       return {
         response: `Nice to meet you, ${extractedName}! 🎉 I'm excited to help you with your immigration journey.\n\nI specialize in:\n• Visa requirements & documentation\n• Connecting you with verified experts\n• Processing timelines & costs\n• Application guidance\n\nWhat type of visa or immigration question can I help you with today?`,
@@ -190,8 +254,8 @@ export default function AIChatAssistant() {
           "Help with student visa",
           "Family immigration questions",
           "Find immigration agents",
-          "Document requirements"
-        ]
+          "Document requirements",
+        ],
       };
     }
 
@@ -202,86 +266,103 @@ export default function AIChatAssistant() {
           "Create my document checklist",
           "What financial documents do I need?",
           "Photo requirements details",
-          "Help with application forms"
+          "Help with application forms",
         ],
         actionButtons: [
           {
             text: "Get Document Checklist",
             action: () => navigate("/signup"),
             icon: FileText,
-            variant: "primary"
+            variant: "primary",
           },
           {
             text: "Find Document Expert",
             action: () => navigate("/services"),
             icon: Users,
-            variant: "secondary"
-          }
-        ]
+            variant: "secondary",
+          },
+        ],
       };
-    } else if (lowercaseMessage.includes("processing") || lowercaseMessage.includes("time")) {
+    } else if (
+      lowercaseMessage.includes("processing") ||
+      lowercaseMessage.includes("time")
+    ) {
       return {
         response: `⏱️ **Processing Times${userName}:**\n\n• Tourist visas: 2-4 weeks\n• Work visas (H1-B): 4-8 weeks\n• Student visas: 4-12 weeks\n• Family visas: 8-15 months\n• Investment visas: 6-18 months${contextInfo}\n\n*Times vary by country and current workload. Premium processing available for some categories.*`,
         suggestions: [
           "Premium processing options",
           "How to track my application",
           "Factors affecting processing time",
-          "Expedite my application"
-        ]
+          "Expedite my application",
+        ],
       };
-    } else if (lowercaseMessage.includes("agent") || lowercaseMessage.includes("expert")) {
+    } else if (
+      lowercaseMessage.includes("agent") ||
+      lowercaseMessage.includes("expert")
+    ) {
       return {
         response: `🔍 **Finding the Right Agent${userName}:**\n\nOur platform has 500+ verified immigration experts${contextInfo}. I recommend filtering by:\n• Your visa type expertise\n• Success rate (look for 90%+)\n• Response time\n• Client reviews\n\nLet me help you find the perfect match!`,
         suggestions: [
           "Show me top-rated agents",
           "Agents for my visa type",
           "Compare agent prices",
-          "Read agent reviews"
+          "Read agent reviews",
         ],
         actionButtons: [
           {
             text: "Browse Agents",
             action: () => navigate("/services"),
             icon: Users,
-            variant: "primary"
+            variant: "primary",
           },
           {
             text: "Post My Request",
             action: () => navigate("/signup"),
             icon: FileText,
-            variant: "secondary"
-          }
-        ]
+            variant: "secondary",
+          },
+        ],
       };
-    } else if (lowercaseMessage.includes("cost") || lowercaseMessage.includes("fee") || lowercaseMessage.includes("price")) {
+    } else if (
+      lowercaseMessage.includes("cost") ||
+      lowercaseMessage.includes("fee") ||
+      lowercaseMessage.includes("price")
+    ) {
       return {
         response: `💰 **Typical Costs${userName}:**\n\n• Government fees: $200-$2,000+\n• Agent services: $500-$5,000\n• Document prep: $200-$1,000\n• Premium processing: $1,000-$2,500${contextInfo}\n\nCosts vary significantly by visa type and complexity.`,
         suggestions: [
           "Get personalized cost estimate",
           "Compare agent pricing",
           "Government fee calculator",
-          "Payment plans available?"
+          "Payment plans available?",
         ],
         actionButtons: [
           {
             text: "Get Cost Estimate",
             action: () => navigate("/signup"),
             icon: FileText,
-            variant: "primary"
-          }
-        ]
+            variant: "primary",
+          },
+        ],
       };
-    } else if (lowercaseMessage.includes("success rate") || lowercaseMessage.includes("chances")) {
+    } else if (
+      lowercaseMessage.includes("success rate") ||
+      lowercaseMessage.includes("chances")
+    ) {
       return {
         response: `📈 **Success Rates${userName}:**\n\n• H1-B: 85-95% (with proper prep)\n• Tourist: 90-95%\n• Student: 88-92%\n• Family: 95-98%${contextInfo}\n\nSuccess depends on proper documentation, expert guidance, and meeting requirements. Our agents maintain 91% average success rate!`,
         suggestions: [
           "How to improve my chances",
           "Common rejection reasons",
           "Success stories",
-          "Find expert help"
-        ]
+          "Find expert help",
+        ],
       };
-    } else if (lowercaseMessage.includes("help") || lowercaseMessage.includes("support") || lowercaseMessage.includes("talk to human")) {
+    } else if (
+      lowercaseMessage.includes("help") ||
+      lowercaseMessage.includes("support") ||
+      lowercaseMessage.includes("talk to human")
+    ) {
       return {
         response: `🤝 **Human Support${userName}:**\n\nI'd be happy to connect you with our human support team!\n\nYour options:\n• Live chat with support agents\n• Schedule a consultation call\n• Connect with immigration experts\n• Emergency support hotline`,
         actionButtons: [
@@ -289,15 +370,15 @@ export default function AIChatAssistant() {
             text: "Talk to Human Support",
             action: () => navigate("/contact"),
             icon: Phone,
-            variant: "primary"
+            variant: "primary",
           },
           {
             text: "Schedule Consultation",
             action: () => navigate("/signup"),
             icon: Calendar,
-            variant: "secondary"
-          }
-        ]
+            variant: "secondary",
+          },
+        ],
       };
     } else {
       return {
@@ -307,8 +388,8 @@ export default function AIChatAssistant() {
           "How long does processing take?",
           "Find immigration agents",
           "Calculate visa costs",
-          "Talk to human support"
-        ]
+          "Talk to human support",
+        ],
       };
     }
   };
@@ -331,7 +412,9 @@ export default function AIChatAssistant() {
               <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
               <span className="font-medium">Immigration Assistant AI 👋</span>
             </div>
-            <div className="text-xs text-gray-300 mt-1">Ask me anything about visas!</div>
+            <div className="text-xs text-gray-300 mt-1">
+              Ask me anything about visas!
+            </div>
             <div className="absolute left-full top-1/2 transform -translate-y-1/2 border-4 border-transparent border-l-vm-gray-900"></div>
           </div>
 
@@ -358,12 +441,16 @@ export default function AIChatAssistant() {
           </div>
           <div>
             <div className="flex items-center space-x-2">
-              <h3 className="text-white font-bold text-lg">Immigration Assistant AI</h3>
+              <h3 className="text-white font-bold text-lg">
+                Immigration Assistant AI
+              </h3>
               <span className="text-xl animate-wave">👋</span>
             </div>
             <div className="flex items-center space-x-2">
               <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
-              <p className="text-white/90 text-xs font-medium">Online • Powered by Advanced AI</p>
+              <p className="text-white/90 text-xs font-medium">
+                Online • Powered by Advanced AI
+              </p>
               <Sparkles className="w-3 h-3 text-yellow-300 animate-pulse" />
             </div>
           </div>
@@ -378,9 +465,16 @@ export default function AIChatAssistant() {
 
       <style jsx>{`
         @keyframes wave {
-          0%, 100% { transform: rotate(0deg); }
-          25% { transform: rotate(20deg); }
-          75% { transform: rotate(-10deg); }
+          0%,
+          100% {
+            transform: rotate(0deg);
+          }
+          25% {
+            transform: rotate(20deg);
+          }
+          75% {
+            transform: rotate(-10deg);
+          }
         }
         .animate-wave {
           animation: wave 2s ease-in-out infinite;
@@ -409,7 +503,9 @@ export default function AIChatAssistant() {
                 {message.isUser && (
                   <div className="w-8 h-8 bg-gradient-to-br from-blue-500 to-blue-600 rounded-full flex items-center justify-center shadow-md border-2 border-white flex-shrink-0">
                     <span className="text-sm text-white font-medium">
-                      {userContext.name ? userContext.name[0].toUpperCase() : "U"}
+                      {userContext.name
+                        ? userContext.name[0].toUpperCase()
+                        : "U"}
                     </span>
                   </div>
                 )}
@@ -435,8 +531,13 @@ export default function AIChatAssistant() {
 
             {/* Contextual Suggestions */}
             {!message.isUser && message.suggestions && showSuggestions && (
-              <div className="mt-3 ml-11 space-y-2 animate-in fade-in duration-500" style={{ animationDelay: "300ms" }}>
-                <p className="text-xs font-medium text-vm-gray-600 mb-2">💡 Suggested questions:</p>
+              <div
+                className="mt-3 ml-11 space-y-2 animate-in fade-in duration-500"
+                style={{ animationDelay: "300ms" }}
+              >
+                <p className="text-xs font-medium text-vm-gray-600 mb-2">
+                  💡 Suggested questions:
+                </p>
                 <div className="flex flex-wrap gap-2">
                   {message.suggestions.map((suggestion, idx) => (
                     <button
@@ -453,8 +554,13 @@ export default function AIChatAssistant() {
 
             {/* Action Buttons */}
             {!message.isUser && message.actionButtons && showSuggestions && (
-              <div className="mt-3 ml-11 space-y-2 animate-in fade-in duration-500" style={{ animationDelay: "400ms" }}>
-                <p className="text-xs font-medium text-vm-gray-600 mb-2">🚀 Quick actions:</p>
+              <div
+                className="mt-3 ml-11 space-y-2 animate-in fade-in duration-500"
+                style={{ animationDelay: "400ms" }}
+              >
+                <p className="text-xs font-medium text-vm-gray-600 mb-2">
+                  🚀 Quick actions:
+                </p>
                 <div className="flex flex-wrap gap-2">
                   {message.actionButtons.map((button, idx) => {
                     const Icon = button.icon;
@@ -463,7 +569,9 @@ export default function AIChatAssistant() {
                         key={idx}
                         onClick={button.action}
                         size="sm"
-                        variant={button.variant === "primary" ? "default" : "outline"}
+                        variant={
+                          button.variant === "primary" ? "default" : "outline"
+                        }
                         className={`text-xs transition-all duration-200 hover:scale-105 ${
                           button.variant === "primary"
                             ? "bg-vm-green hover:bg-vm-green-600 text-white"
@@ -480,7 +588,7 @@ export default function AIChatAssistant() {
               </div>
             )}
           </div>
-        ));
+        ))}
 
         {/* Enhanced Typing Indicator */}
         {isTyping && (
@@ -505,7 +613,9 @@ export default function AIChatAssistant() {
                       style={{ animationDelay: "0.2s" }}
                     ></div>
                   </div>
-                  <span className="text-xs text-vm-gray-500 animate-pulse">AI is thinking...</span>
+                  <span className="text-xs text-vm-gray-500 animate-pulse">
+                    AI is thinking...
+                  </span>
                 </div>
               </div>
             </div>
