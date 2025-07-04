@@ -466,19 +466,22 @@ export default function OrganizationDashboard() {
   return (
     <div className="min-h-screen bg-vm-gray-50">
       {/* Top Navigation */}
-      <nav className="bg-white border-b border-vm-gray-200 sticky top-0 z-40">
+      <nav className="bg-white/95 backdrop-blur-sm border-b border-vm-gray-200 sticky top-0 z-40 shadow-sm">
         <div className="max-w-full px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             {/* Organization Logo & Name */}
             <div className="flex items-center space-x-4">
-              <div className="flex items-center space-x-3">
-                <img
-                  src={organizationData.logo}
-                  alt={organizationData.name}
-                  className="w-8 h-8 rounded-lg"
-                />
+              <div className="flex items-center space-x-3 group">
+                <div className="relative">
+                  <img
+                    src={organizationData.logo}
+                    alt={organizationData.name}
+                    className="w-10 h-10 rounded-xl shadow-md transition-transform duration-300 group-hover:scale-110"
+                  />
+                  <div className="absolute inset-0 rounded-xl bg-vm-green/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                </div>
                 <div>
-                  <h1 className="text-lg font-bold text-vm-gray-900">
+                  <h1 className="text-lg font-bold text-vm-gray-900 group-hover:text-vm-green transition-colors duration-300">
                     {organizationData.name}
                   </h1>
                   <div className="flex items-center space-x-2">
@@ -486,7 +489,12 @@ export default function OrganizationDashboard() {
                       {organizationData.country}
                     </span>
                     {organizationData.verified && (
-                      <CheckCircle className="w-3 h-3 text-vm-green" />
+                      <div className="flex items-center space-x-1 bg-vm-green/10 px-2 py-0.5 rounded-full">
+                        <CheckCircle className="w-3 h-3 text-vm-green animate-pulse" />
+                        <span className="text-xs text-vm-green font-medium">
+                          Verified
+                        </span>
+                      </div>
                     )}
                   </div>
                 </div>
@@ -494,15 +502,26 @@ export default function OrganizationDashboard() {
             </div>
 
             {/* Right Side */}
-            <div className="flex items-center space-x-4">
-              <Button variant="outline" size="sm">
-                <Bell className="w-4 h-4" />
+            <div className="flex items-center space-x-3">
+              <Button
+                variant="outline"
+                size="sm"
+                className="relative hover:bg-vm-green/5 hover:border-vm-green/30 transition-all duration-300 hover:scale-105"
+              >
+                <Bell className="w-4 h-4 text-vm-gray-600 hover:text-vm-green transition-colors duration-300" />
+                <div className="absolute -top-1 -right-1 w-2 h-2 bg-red-500 rounded-full animate-pulse"></div>
               </Button>
-              <div className="relative">
-                <Button variant="outline" size="sm">
-                  <Building className="w-4 h-4 mr-2" />
-                  Organization
-                  <ChevronDown className="w-4 h-4 ml-2" />
+              <div className="relative group">
+                <Button
+                  variant="outline"
+                  size="sm"
+                  className="hover:bg-vm-green/5 hover:border-vm-green/30 transition-all duration-300 hover:scale-105"
+                >
+                  <Building className="w-4 h-4 mr-2 text-vm-gray-600 group-hover:text-vm-green transition-colors duration-300" />
+                  <span className="text-vm-gray-700 group-hover:text-vm-green transition-colors duration-300">
+                    Organization
+                  </span>
+                  <ChevronDown className="w-4 h-4 ml-2 text-vm-gray-600 group-hover:text-vm-green transition-all duration-300 group-hover:rotate-180" />
                 </Button>
               </div>
             </div>
