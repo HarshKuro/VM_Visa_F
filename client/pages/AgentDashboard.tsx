@@ -285,13 +285,13 @@ export default function AgentDashboard() {
 
           {/* Main Content Grid */}
           <div className="grid lg:grid-cols-3 gap-8">
-            {/* Recent Client Requests */}
+            {/* Pending Requests */}
             <div className="lg:col-span-2">
               <Card>
                 <CardHeader>
                   <CardTitle className="flex items-center space-x-2">
-                    <FileText className="w-5 h-5" />
-                    <span>Recent Client Requests</span>
+                    <Clock className="w-5 h-5" />
+                    <span>Pending Requests</span>
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
@@ -299,26 +299,29 @@ export default function AgentDashboard() {
                     {[
                       {
                         id: 1,
-                        title: "H1-B Visa Application for Software Engineer",
+                        title: "H1-B Visa Application Review",
                         client: "John Smith",
                         budget: "$2,500",
                         time: "2 hours ago",
+                        status: "awaiting_review",
                         urgent: true,
                       },
                       {
                         id: 2,
-                        title: "Canada Express Entry Application",
+                        title: "Canada Express Entry Documents",
                         client: "Maria Garcia",
                         budget: "$3,200",
                         time: "5 hours ago",
+                        status: "pending_response",
                         urgent: false,
                       },
                       {
                         id: 3,
-                        title: "Family Sponsorship Consultation",
+                        title: "Family Sponsorship Status Update",
                         client: "Ahmed Hassan",
                         budget: "$800",
                         time: "1 day ago",
+                        status: "action_required",
                         urgent: false,
                       },
                     ].map((request) => (
@@ -337,6 +340,9 @@ export default function AgentDashboard() {
                                   Urgent
                                 </span>
                               )}
+                              <span className="px-2 py-1 bg-orange-100 text-orange-800 text-xs rounded-full">
+                                {request.status.replace("_", " ")}
+                              </span>
                             </div>
                             <p className="text-sm text-vm-gray-600 mb-2">
                               Client: {request.client}
@@ -352,16 +358,24 @@ export default function AgentDashboard() {
                               </span>
                             </div>
                           </div>
-                          <Button size="sm" variant="outline">
-                            View Details
-                          </Button>
+                          <div className="flex items-center space-x-2">
+                            <Button
+                              size="sm"
+                              className="bg-vm-green hover:bg-vm-green-600"
+                            >
+                              Take Action
+                            </Button>
+                            <Button size="sm" variant="outline">
+                              View Details
+                            </Button>
+                          </div>
                         </div>
                       </div>
                     ))}
                   </div>
                   <div className="mt-4">
                     <Button variant="outline" className="w-full">
-                      View All Requests
+                      View All Pending Requests
                     </Button>
                   </div>
                 </CardContent>
