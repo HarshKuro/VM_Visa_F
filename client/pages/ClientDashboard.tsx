@@ -7,7 +7,7 @@ import { Progress } from "@/components/ui/progress";
 import Navigation from "@/components/Navigation";
 import AIChatAssistant from "@/components/AIChatAssistant";
 import PostRequestModal from "@/components/PostRequestModal";
-import AgentBrowser from "@/components/AgentBrowser";
+import AgentsSection from "@/components/AgentsSection";
 import DocumentUpload from "@/components/DocumentUpload";
 import {
   Plus,
@@ -408,7 +408,7 @@ export default function ClientDashboard() {
                       <CardTitle>Quick Actions</CardTitle>
                     </CardHeader>
                     <CardContent>
-                      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <Button
                           variant="outline"
                           className="h-auto p-6 flex flex-col items-center space-y-2"
@@ -418,17 +418,6 @@ export default function ClientDashboard() {
                           <span className="font-medium">Post New Request</span>
                           <span className="text-sm text-vm-gray-500">
                             Get help with your visa application
-                          </span>
-                        </Button>
-                        <Button
-                          variant="outline"
-                          className="h-auto p-6 flex flex-col items-center space-y-2"
-                          onClick={() => setActiveTab("agents")}
-                        >
-                          <Search className="w-8 h-8 text-vm-blue" />
-                          <span className="font-medium">Browse Agents</span>
-                          <span className="text-sm text-vm-gray-500">
-                            Find immigration experts
                           </span>
                         </Button>
                         <Button
@@ -700,7 +689,7 @@ export default function ClientDashboard() {
 
               {activeTab === "documents" && <DocumentUpload />}
 
-              {activeTab === "agents" && <AgentBrowser />}
+              {activeTab === "agents" && <AgentsSection />}
             </div>
           </div>
         </div>
