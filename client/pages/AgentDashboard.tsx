@@ -3,7 +3,6 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import Navigation from "@/components/Navigation";
-import AIChatAssistant from "@/components/AIChatAssistant";
 import {
   Users,
   MessageSquare,
@@ -469,8 +468,6 @@ export default function AgentDashboard() {
           </div>
         </div>
       </div>
-
-      <AIChatAssistant />
     </div>
   );
 }
