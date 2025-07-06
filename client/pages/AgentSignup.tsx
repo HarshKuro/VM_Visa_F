@@ -68,10 +68,8 @@ export default function AgentSignup() {
         }),
       );
 
-      alert(
-        "Welcome to VM Visa! Please log in and complete your profile to begin.",
-      );
-      navigate("/login");
+      // Redirect directly to profile completion
+      navigate("/agent-profile-step1");
     } catch (error) {
       console.error("Signup failed:", error);
     } finally {
