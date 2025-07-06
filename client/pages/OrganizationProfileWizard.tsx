@@ -739,8 +739,6 @@ export default function OrganizationProfileWizard() {
           </p>
         </div>
 
-        {renderStepIndicator()}
-
         <div className="bg-white rounded-lg shadow-lg border border-vm-gray-200 p-8">
           {renderCurrentStep()}
 
