@@ -14,16 +14,10 @@ import {
 } from "@/components/ui/select";
 import Navigation from "@/components/Navigation";
 import {
-  Building,
-  Mail,
-  Phone,
-  Globe,
-  Shield,
   FileText,
   Palette,
   Upload,
   Camera,
-  CheckCircle,
   ArrowRight,
   ArrowLeft,
   X,
