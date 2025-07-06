@@ -104,7 +104,7 @@ export default function AgentSignup() {
               Join as Immigration Expert
             </h1>
             <p className="text-vm-gray-600">
-              Start your journey as a verified immigration agent on VM Visa
+              Create your account and complete your professional profile
             </p>
           </div>
 
@@ -196,7 +196,7 @@ export default function AgentSignup() {
                 ) : (
                   <>
                     <CheckCircle className="w-5 h-5 mr-2" />
-                    Create Agent Account
+                    Continue to Profile Setup
                   </>
                 )}
               </Button>
