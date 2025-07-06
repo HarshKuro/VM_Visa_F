@@ -117,31 +117,8 @@ export default function Signup() {
                 Multi-Step Registration Process
               </h3>
               <p className="text-sm text-vm-gray-600 mb-4">
-                Our guided signup process will collect the necessary information
-                based on your selected role:
+                Create your account to get started with VM Visa.
               </p>
-              <div className="grid md:grid-cols-3 gap-4 text-sm">
-                <div className="space-y-2">
-                  <div className="font-medium text-vm-gray-900">Clients</div>
-                  <div className="text-vm-gray-600">
-                    Personal info • Contact details • Verification
-                  </div>
-                </div>
-                <div className="space-y-2">
-                  <div className="font-medium text-vm-gray-900">Agents</div>
-                  <div className="text-vm-gray-600">
-                    Professional details • Experience • License verification
-                  </div>
-                </div>
-                <div className="space-y-2">
-                  <div className="font-medium text-vm-gray-900">
-                    Organizations
-                  </div>
-                  <div className="text-vm-gray-600">
-                    Company info • Business validation • Admin setup
-                  </div>
-                </div>
-              </div>
             </div>
           </div>
         </div>
