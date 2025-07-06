@@ -146,64 +146,16 @@ export default function ClientSignup() {
     }
   };
 
-  const stepIcons = [User, Mail, Phone];
-  const stepTitles = ["Personal Info", "Account Details", "Contact Info"];
-
   return (
     <div className="min-h-screen bg-vm-gray-50">
       <Navigation />
 
       <div className="py-8">
         <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
-          {/* Progress Header */}
           <div className="text-center mb-8">
             <h1 className="text-3xl font-bold text-vm-gray-900 mb-2">
               Create Your Client Account
             </h1>
-            <p className="text-vm-gray-600">
-              Step {currentStep} of {totalSteps}
-            </p>
-          </div>
-
-          {/* Progress Bar */}
-          <div className="mb-8">
-            <div className="flex items-center justify-between mb-4">
-              {Array.from({ length: totalSteps }, (_, index) => {
-                const step = index + 1;
-                const Icon = stepIcons[index];
-                const isCompleted = step < currentStep;
-                const isCurrent = step === currentStep;
-
-                return (
-                  <div key={step} className="flex flex-col items-center">
-                    <div
-                      className={`w-12 h-12 rounded-full flex items-center justify-center transition-all duration-300 ${
-                        isCompleted
-                          ? "bg-vm-green text-white"
-                          : isCurrent
-                            ? "bg-vm-green text-white"
-                            : "bg-vm-gray-200 text-vm-gray-500"
-                      }`}
-                    >
-                      {isCompleted ? (
-                        <CheckCircle className="w-6 h-6" />
-                      ) : (
-                        <Icon className="w-6 h-6" />
-                      )}
-                    </div>
-                    <span className="text-xs mt-2 text-vm-gray-600 text-center">
-                      {stepTitles[index]}
-                    </span>
-                  </div>
-                );
-              })}
-            </div>
-            <div className="w-full bg-vm-gray-200 rounded-full h-2">
-              <div
-                className="bg-vm-green h-2 rounded-full transition-all duration-500 ease-out"
-                style={{ width: `${(currentStep / totalSteps) * 100}%` }}
-              />
-            </div>
           </div>
 
           {/* Form Card */}
