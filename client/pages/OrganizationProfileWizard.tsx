@@ -81,13 +81,6 @@ export default function OrganizationProfileWizard() {
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
 
   const totalSteps = 4;
-  const stepTitles = [
-    "Organization Details",
-    "Contact & Address",
-    "Legal & Verification",
-    "Branding & Services",
-  ];
-  const stepIcons = [Building, Mail, Shield, Palette];
 
   const countries = [
     "United States",
