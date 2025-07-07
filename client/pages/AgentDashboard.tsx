@@ -32,7 +32,6 @@ import {
   User,
   Briefcase,
   GraduationCap,
-  Certificate,
   X,
   Plus,
   Save,
@@ -97,7 +96,7 @@ export default function AgentDashboard() {
     {
       id: "specializations",
       label: "Immigration Specializations",
-      icon: Certificate,
+      icon: Award,
     },
     { id: "experience", label: "Experience", icon: Briefcase },
     { id: "documents", label: "Documents", icon: FileText },
@@ -286,7 +285,7 @@ export default function AgentDashboard() {
       {/* Empty State */}
       {specializations.length === 0 && (
         <Card className="p-12 text-center">
-          <Certificate className="w-12 h-12 text-vm-gray-400 mx-auto mb-4" />
+          <Award className="w-12 h-12 text-vm-gray-400 mx-auto mb-4" />
           <h3 className="text-lg font-medium text-vm-gray-900 mb-2">
             No specializations added yet
           </h3>
