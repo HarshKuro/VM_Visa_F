@@ -27,10 +27,8 @@ export default function Navigation() {
   const navigate = useNavigate();
   const { user, isAuthenticated, logout } = useUser();
 
-  // Check if user is on dashboard pages (logged in)
-  const isLoggedIn =
-    location.pathname.includes("-dashboard") ||
-    location.pathname.includes("/dashboard");
+  // Use authentication state from UserContext
+  const isLoggedIn = isAuthenticated;
 
   // Check if user is on agent dashboard or agent profile pages
   const isAgentDashboard = location.pathname.includes("agent-dashboard");
