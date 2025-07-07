@@ -33,43 +33,137 @@ import {
 
 function App() {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Index />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/signup" element={<Signup />} />
-        <Route path="/signup/client" element={<ClientSignup />} />
-        <Route path="/signup/agent" element={<AgentSignup />} />
-        <Route path="/signup/organization" element={<OrganizationSignup />} />
-        <Route path="/client-dashboard" element={<ClientDashboard />} />
-        <Route
-          path="/agent-profile-completion"
-          element={<AgentProfileCompletion />}
-        />
-        <Route path="/agent-profile-step1" element={<AgentProfileStep1 />} />
-        <Route path="/agent-profile-step2" element={<AgentProfileStep2 />} />
-        <Route path="/agent-profile-step3" element={<AgentProfileStep3 />} />
-        <Route path="/agent-profile-step4" element={<AgentProfileStep4 />} />
-        <Route path="/agent-dashboard" element={<AgentDashboard />} />
-        <Route path="/agent-profile-view" element={<AgentProfileView />} />
-        <Route path="/agent-profile-edit" element={<AgentProfileEdit />} />
-        <Route path="/services" element={<Services />} />
-        <Route path="/services/student-visa" element={<StudentVisa />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/contact" element={<Contact />} />
-        <Route
-          path="/organization-profile-wizard"
-          element={<OrganizationProfileWizard />}
-        />
-        <Route
-          path="/organization-dashboard"
-          element={<OrganizationDashboard />}
-        />
-        {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-        <Route path="*" element={<NotFound />} />
-      </Routes>
-      <Toaster />
-    </BrowserRouter>
+    <UserProvider>
+      <BrowserRouter>
+        <Routes>
+          {/* Public Routes */}
+          <Route path="/" element={<Index />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<Signup />} />
+          <Route path="/signup/client" element={<ClientSignup />} />
+          <Route path="/signup/agent" element={<AgentSignup />} />
+          <Route path="/signup/organization" element={<OrganizationSignup />} />
+          <Route path="/services" element={<Services />} />
+          <Route path="/services/student-visa" element={<StudentVisa />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/contact" element={<Contact />} />
+
+          {/* Client-Only Routes */}
+          <Route
+            path="/client-dashboard"
+            element={
+              <ClientGuard>
+                <ClientDashboard />
+              </ClientGuard>
+            }
+          />
+          <Route
+            path="/user-profile-view"
+            element={
+              <ClientGuard>
+                <UserProfileView />
+              </ClientGuard>
+            }
+          />
+          <Route
+            path="/user-profile-edit"
+            element={
+              <ClientGuard>
+                <UserProfileEdit />
+              </ClientGuard>
+            }
+          />
+
+          {/* Agent-Only Routes */}
+          <Route
+            path="/agent-profile-completion"
+            element={
+              <AgentGuard>
+                <AgentProfileCompletion />
+              </AgentGuard>
+            }
+          />
+          <Route
+            path="/agent-profile-step1"
+            element={
+              <AgentGuard>
+                <AgentProfileStep1 />
+              </AgentGuard>
+            }
+          />
+          <Route
+            path="/agent-profile-step2"
+            element={
+              <AgentGuard>
+                <AgentProfileStep2 />
+              </AgentGuard>
+            }
+          />
+          <Route
+            path="/agent-profile-step3"
+            element={
+              <AgentGuard>
+                <AgentProfileStep3 />
+              </AgentGuard>
+            }
+          />
+          <Route
+            path="/agent-profile-step4"
+            element={
+              <AgentGuard>
+                <AgentProfileStep4 />
+              </AgentGuard>
+            }
+          />
+          <Route
+            path="/agent-dashboard"
+            element={
+              <AgentGuard>
+                <AgentDashboard />
+              </AgentGuard>
+            }
+          />
+          <Route
+            path="/agent-profile-view"
+            element={
+              <AgentGuard>
+                <AgentProfileView />
+              </AgentGuard>
+            }
+          />
+          <Route
+            path="/agent-profile-edit"
+            element={
+              <AgentGuard>
+                <AgentProfileEdit />
+              </AgentGuard>
+            }
+          />
+
+          {/* Organization-Only Routes */}
+          <Route
+            path="/organization-profile-wizard"
+            element={
+              <OrganizationGuard>
+                <OrganizationProfileWizard />
+              </OrganizationGuard>
+            }
+          />
+          <Route
+            path="/organization-dashboard"
+            element={
+              <OrganizationGuard>
+                <OrganizationDashboard />
+              </OrganizationGuard>
+            }
+          />
+
+          {/* Catch-all route */}
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+        <Toaster />
+      </BrowserRouter>
+    </UserProvider>
   );
 }
 
