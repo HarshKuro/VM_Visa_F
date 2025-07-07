@@ -1,8 +1,32 @@
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { MessageSquare, Star } from "lucide-react";
+import { Input } from "@/components/ui/input";
+import { MessageSquare, Star, X, Send, Paperclip, Smile } from "lucide-react";
+
+interface ChatMessage {
+  id: string;
+  senderId: string;
+  senderName: string;
+  message: string;
+  timestamp: string;
+  isCurrentUser: boolean;
+}
+
+interface ChatState {
+  isOpen: boolean;
+  selectedAgent: any;
+  messages: ChatMessage[];
+  newMessage: string;
+}
 
 export default function AgentsSection() {
+  const [chatState, setChatState] = useState<ChatState>({
+    isOpen: false,
+    selectedAgent: null,
+    messages: [],
+    newMessage: "",
+  });
   const agents = [
     {
       id: "1",
