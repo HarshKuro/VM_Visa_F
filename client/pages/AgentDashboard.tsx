@@ -602,28 +602,12 @@ export default function AgentDashboard() {
 
           {/* Content Header */}
           <div className="mb-8">
-            {activeTab === "overview" ? (
-              <div className="bg-gradient-to-r from-vm-green to-vm-green-600 rounded-lg p-6 text-white">
-                <h1 className="text-3xl font-bold mb-2">
-                  Welcome Back, Agent!
-                </h1>
-                <p className="text-white/90">
-                  Your agent dashboard is ready. Manage your clients, proposals,
-                  and grow your immigration practice.
-                </p>
-              </div>
-            ) : (
-              <div className="border-b border-vm-gray-200 pb-4">
-                <h1 className="text-2xl font-bold text-vm-gray-900">
-                  {tabs.find((tab) => tab.id === activeTab)?.label}
-                </h1>
-                <p className="text-vm-gray-600 mt-1">
-                  {activeTab === "specializations"
-                    ? "Manage your immigration law specializations and expertise levels"
-                    : `Manage your ${activeTab} information`}
-                </p>
-              </div>
-            )}
+            <div className="bg-gradient-to-r from-vm-green to-vm-green-600 rounded-lg p-6 text-white">
+              <h1 className="text-3xl font-bold mb-2">Welcome Back, Agent!</h1>
+              <p className="text-white/90">
+                Manage your clients and queries efficiently
+              </p>
+            </div>
           </div>
 
           {/* Tab Content */}
