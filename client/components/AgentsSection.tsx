@@ -128,12 +128,6 @@ interface ChatConversation {
 }
 
 export default function AgentsSection() {
-  const [activeSubTab, setActiveSubTab] = useState("overview");
-  const [searchTerm, setSearchTerm] = useState("");
-  const [selectedExpertise, setSelectedExpertise] = useState("");
-  const [selectedChat, setSelectedChat] = useState<string | null>(null);
-  const [newMessage, setNewMessage] = useState("");
-
   // Mock data
   const agentRequests: Request[] = [
     {
