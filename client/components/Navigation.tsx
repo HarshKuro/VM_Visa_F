@@ -29,6 +29,9 @@ export default function Navigation() {
     location.pathname.includes("-dashboard") ||
     location.pathname.includes("/dashboard");
 
+  // Check if user is on agent dashboard
+  const isAgentDashboard = location.pathname.includes("agent-dashboard");
+
   const countries = [
     "United States",
     "Canada",
