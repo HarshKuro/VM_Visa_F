@@ -501,13 +501,13 @@ export default function ClientDashboard() {
                     </Button>
                   </div>
                 ) : (
-                  <div className="space-y-3">
+                  <div className="flex flex-col items-center space-y-2">
                     <div className="group relative">
                       <Button
                         onClick={() => setActiveTab("documents")}
                         variant="outline"
                         size="sm"
-                        className="w-8 h-8 p-0 mx-auto block"
+                        className="w-10 h-10 p-0 flex items-center justify-center"
                       >
                         <Eye className="w-4 h-4" />
                       </Button>
@@ -522,7 +522,7 @@ export default function ClientDashboard() {
                       <Button
                         onClick={() => setShowPostModal(true)}
                         size="sm"
-                        className="w-8 h-8 p-0 mx-auto block bg-vm-green hover:bg-vm-green-600"
+                        className="w-10 h-10 p-0 flex items-center justify-center bg-vm-green hover:bg-vm-green-600"
                       >
                         <Plus className="w-4 h-4" />
                       </Button>
