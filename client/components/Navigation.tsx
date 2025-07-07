@@ -12,6 +12,11 @@ import {
   Upload,
   Users,
   BarChart3,
+  User,
+  Settings,
+  LogOut,
+  Eye,
+  Edit,
 } from "lucide-react";
 
 export default function Navigation() {
