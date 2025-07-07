@@ -1,17 +1,7 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
-import { Progress } from "@/components/ui/progress";
 import Navigation from "@/components/Navigation";
 import {
   Users,
@@ -38,13 +28,6 @@ import {
   AlertCircle,
   BarChart3,
 } from "lucide-react";
-
-interface Specialization {
-  id: string;
-  area: string;
-  yearsExperience: number;
-  expertiseLevel: string;
-}
 
 export default function AgentDashboard() {
   const [activeTab, setActiveTab] = useState("clients");
