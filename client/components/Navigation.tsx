@@ -262,7 +262,7 @@ export default function Navigation() {
         </div>
 
         {/* Mobile Navigation */}
-        {isMenuOpen && !isAgentDashboard && (
+        {isMenuOpen && !isAgentPage && (
           <div className="md:hidden border-t border-vm-gray-200 py-4">
             <div className="flex flex-col space-y-4">
               {/* Country Selector Mobile */}
