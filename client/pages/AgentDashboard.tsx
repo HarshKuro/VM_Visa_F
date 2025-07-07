@@ -973,6 +973,13 @@ export default function AgentDashboard() {
           )}
         </div>
       </div>
+
+      {/* Floating Chat Button */}
+      <FloatingChatButton
+        userType="agent"
+        currentUserId="agent_001"
+        currentUserName="Sarah Johnson"
+      />
     </div>
   );
 }
