@@ -910,18 +910,6 @@ export default function AgentDashboard() {
               </p>
             </Card>
           )}
-          <div className="grid lg:grid-cols-3 gap-8">
-            {/* Pending Requests */}
-            <div className="lg:col-span-2">
-              <Card>
-                <CardHeader>
-                  <CardTitle className="flex items-center space-x-2">
-                    <Clock className="w-5 h-5" />
-                    <span>Pending Requests</span>
-                  </CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <div className="space-y-4">
                     {[
                       {
                         id: 1,
