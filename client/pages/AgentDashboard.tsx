@@ -911,4 +911,7 @@ export default function AgentDashboard() {
             </Card>
           )}
         </div>
+      </div>
+    </div>
+  );
 }
