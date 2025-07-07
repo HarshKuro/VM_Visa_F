@@ -25,7 +25,6 @@ import {
   Globe,
   Camera,
   MessageSquare,
-  PrivacyPolicy,
   Plus,
   X,
   Save,
