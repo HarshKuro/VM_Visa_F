@@ -9,7 +9,6 @@ import {
   Send,
   Bot,
   Loader2,
-  Sparkles,
   FileText,
   Users,
   Clock,
@@ -17,7 +16,13 @@ import {
   UserPlus,
   Phone,
   MapPin,
-  Wand2,
+  Minimize2,
+  Maximize2,
+  MoreVertical,
+  Paperclip,
+  Smile,
+  Check,
+  CheckCheck,
 } from "lucide-react";
 
 interface Message {
