@@ -426,15 +426,53 @@ export default function AgentDashboard() {
 
         {/* Main Content Area */}
         <div className="flex-1 p-8">
-          {/* Welcome Header */}
-          <div className="mb-8">
-            <div className="bg-gradient-to-r from-vm-green to-vm-green-600 rounded-lg p-6 text-white">
-              <h1 className="text-3xl font-bold mb-2">Welcome Back, Agent!</h1>
-              <p className="text-white/90">
-                Your agent dashboard is ready. Manage your clients, proposals,
-                and grow your immigration practice.
-              </p>
+          {/* Unsaved Changes Banner */}
+          {hasUnsavedChanges && (
+            <div className="mb-6 p-4 bg-orange-50 border border-orange-200 rounded-lg flex items-center justify-between">
+              <div className="flex items-center space-x-3">
+                <AlertCircle className="w-5 h-5 text-orange-600" />
+                <div>
+                  <p className="font-medium text-orange-800">Unsaved Changes</p>
+                  <p className="text-sm text-orange-600">
+                    You have unsaved changes in your Immigration Specializations
+                  </p>
+                </div>
+              </div>
+              <Button
+                onClick={saveSpecializations}
+                size="sm"
+                className="bg-orange-600 hover:bg-orange-700"
+              >
+                <Save className="w-4 h-4 mr-2" />
+                Save Now
+              </Button>
             </div>
+          )}
+
+          {/* Content Header */}
+          <div className="mb-8">
+            {activeTab === "overview" ? (
+              <div className="bg-gradient-to-r from-vm-green to-vm-green-600 rounded-lg p-6 text-white">
+                <h1 className="text-3xl font-bold mb-2">
+                  Welcome Back, Agent!
+                </h1>
+                <p className="text-white/90">
+                  Your agent dashboard is ready. Manage your clients, proposals,
+                  and grow your immigration practice.
+                </p>
+              </div>
+            ) : (
+              <div className="border-b border-vm-gray-200 pb-4">
+                <h1 className="text-2xl font-bold text-vm-gray-900">
+                  {tabs.find((tab) => tab.id === activeTab)?.label}
+                </h1>
+                <p className="text-vm-gray-600 mt-1">
+                  {activeTab === "specializations"
+                    ? "Manage your immigration law specializations and expertise levels"
+                    : `Manage your ${activeTab} information`}
+                </p>
+              </div>
+            )}
           </div>
 
           {/* Quick Stats */}
