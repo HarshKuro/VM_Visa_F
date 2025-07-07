@@ -286,9 +286,34 @@ export default function AgentProfileEdit() {
     { value: "Expert", label: "Expert" },
   ];
 
+  const proficiencyLevels = ["Native", "Advanced", "Intermediate", "Basic"];
+
+  const genderOptions = ["Male", "Female", "Other", "Prefer not to say"];
+
+  const countries = [
+    "United States",
+    "Canada",
+    "United Kingdom",
+    "Australia",
+    "Germany",
+    "France",
+  ];
+
   // Profile strength calculation
   const calculateProfileStrength = () => {
     return 100; // Mock data shows 100%
+  };
+
+  // Basic Info management
+  const updateBasicInfo = (field: keyof BasicInfo, value: string) => {
+    setBasicInfo((prev) => ({ ...prev, [field]: value }));
+    setHasUnsavedChanges(true);
+  };
+
+  // Contact Info management
+  const updateContactInfo = (field: keyof ContactInfo, value: string) => {
+    setContactInfo((prev) => ({ ...prev, [field]: value }));
+    setHasUnsavedChanges(true);
   };
 
   // Specialization management
@@ -318,6 +343,83 @@ export default function AgentProfileEdit() {
         spec.id === id ? { ...spec, [field]: value } : spec,
       ),
     );
+    setHasUnsavedChanges(true);
+  };
+
+  // Experience management
+  const addExperience = () => {
+    const newExperience: Experience = {
+      id: Date.now().toString(),
+      position: "",
+      company: "",
+      startDate: "",
+      endDate: "",
+      current: false,
+      description: "",
+    };
+    setExperiences([...experiences, newExperience]);
+    setHasUnsavedChanges(true);
+  };
+
+  const removeExperience = (id: string) => {
+    setExperiences(experiences.filter((exp) => exp.id !== id));
+    setHasUnsavedChanges(true);
+  };
+
+  // Certification management
+  const addCertification = () => {
+    const newCertification: Certification = {
+      id: Date.now().toString(),
+      name: "",
+      organization: "",
+      issueDate: "",
+      expiryDate: "",
+      credentialId: "",
+      verificationUrl: "",
+    };
+    setCertifications([...certifications, newCertification]);
+    setHasUnsavedChanges(true);
+  };
+
+  const removeCertification = (id: string) => {
+    setCertifications(certifications.filter((cert) => cert.id !== id));
+    setHasUnsavedChanges(true);
+  };
+
+  // Language management
+  const addLanguage = () => {
+    const newLanguage: Language = {
+      id: Date.now().toString(),
+      language: "",
+      proficiency: "",
+    };
+    setLanguages([...languages, newLanguage]);
+    setHasUnsavedChanges(true);
+  };
+
+  const removeLanguage = (id: string) => {
+    setLanguages(languages.filter((lang) => lang.id !== id));
+    setHasUnsavedChanges(true);
+  };
+
+  // Achievement management
+  const addAchievement = () => {
+    const newAchievement: Achievement = {
+      id: Date.now().toString(),
+      title: "",
+    };
+    setProfileBio((prev) => ({
+      ...prev,
+      achievements: [...prev.achievements, newAchievement],
+    }));
+    setHasUnsavedChanges(true);
+  };
+
+  const removeAchievement = (id: string) => {
+    setProfileBio((prev) => ({
+      ...prev,
+      achievements: prev.achievements.filter((ach) => ach.id !== id),
+    }));
     setHasUnsavedChanges(true);
   };
 
