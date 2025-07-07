@@ -90,6 +90,78 @@ export default function AgentDashboard() {
 
   const profileStrength = calculateProfileStrength();
 
+  // Navigation tabs
+  const tabs = [
+    { id: "overview", label: "Overview", icon: BarChart3 },
+    { id: "profile", label: "Profile", icon: User },
+    {
+      id: "specializations",
+      label: "Immigration Specializations",
+      icon: Certificate,
+    },
+    { id: "experience", label: "Experience", icon: Briefcase },
+    { id: "documents", label: "Documents", icon: FileText },
+  ];
+
+  // Specialization areas
+  const specializationAreas = [
+    "H1-B Visa",
+    "Green Card",
+    "Family Immigration",
+    "Student Visa (F1)",
+    "Work Visa (L1)",
+    "Investor Visa (EB-5)",
+    "Asylum & Refugee",
+    "Citizenship & Naturalization",
+    "Business Immigration",
+    "Temporary Worker Visa",
+    "Marriage-based Immigration",
+    "Employment-based Immigration",
+  ];
+
+  const expertiseLevels = [
+    { value: "Beginner", label: "Beginner (1-2 years)" },
+    { value: "Intermediate", label: "Intermediate (3-5 years)" },
+    { value: "Expert", label: "Expert (6+ years)" },
+  ];
+
+  // Specializations management
+  const addSpecialization = () => {
+    const newSpecialization: Specialization = {
+      id: Date.now().toString(),
+      area: "",
+      yearsExperience: 1,
+      expertiseLevel: "",
+    };
+    setSpecializations([...specializations, newSpecialization]);
+    setHasUnsavedChanges(true);
+  };
+
+  const removeSpecialization = (id: string) => {
+    setSpecializations(specializations.filter((spec) => spec.id !== id));
+    setHasUnsavedChanges(true);
+  };
+
+  const updateSpecialization = (
+    id: string,
+    field: keyof Specialization,
+    value: string | number,
+  ) => {
+    setSpecializations(
+      specializations.map((spec) =>
+        spec.id === id ? { ...spec, [field]: value } : spec,
+      ),
+    );
+    setHasUnsavedChanges(true);
+  };
+
+  const saveSpecializations = async () => {
+    // Simulate API call
+    await new Promise((resolve) => setTimeout(resolve, 1000));
+    setHasUnsavedChanges(false);
+    // Show success message
+  };
+
   // Mock agent data
   const agentProfile = {
     name: "Sarah Johnson",
