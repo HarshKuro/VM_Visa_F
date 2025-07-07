@@ -183,7 +183,7 @@ export default function Navigation() {
                   <button className="flex items-center space-x-2 p-2 rounded-lg hover:bg-vm-gray-50 transition-all duration-200">
                     <div className="w-8 h-8 bg-vm-green rounded-full flex items-center justify-center">
                       <span className="text-white text-sm font-medium">
-                        {isAgentDashboard ? "SJ" : "JD"}
+                        {isAgentPage ? "SJ" : "JD"}
                       </span>
                     </div>
                     <ChevronDown className="w-4 h-4 text-vm-gray-600" />
