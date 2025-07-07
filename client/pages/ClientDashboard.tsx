@@ -975,6 +975,13 @@ export default function ClientDashboard() {
 
       {/* AI Chat Assistant */}
       <AIChatAssistant />
+
+      {/* Floating Chat Button */}
+      <FloatingChatButton
+        userType="client"
+        currentUserId="client_001"
+        currentUserName="John Doe"
+      />
     </div>
   );
 }
