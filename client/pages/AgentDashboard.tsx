@@ -910,8 +910,6 @@ export default function AgentDashboard() {
               </p>
             </Card>
           )}
-
-          {/* Main Content Grid */}
           <div className="grid lg:grid-cols-3 gap-8">
             {/* Pending Requests */}
             <div className="lg:col-span-2">
