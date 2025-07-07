@@ -18,6 +18,7 @@ import {
   Palette,
   Upload,
   Camera,
+  CheckCircle,
   ArrowRight,
   ArrowLeft,
   X,
