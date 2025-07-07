@@ -349,9 +349,25 @@ export default function AgentDashboard() {
       <Navigation />
 
       <div className="flex">
+        {/* Mobile Overlay */}
+        {isMobile && !sidebarCollapsed && (
+          <div
+            className="fixed inset-0 bg-black/50 z-40 lg:hidden"
+            onClick={() => setSidebarCollapsed(true)}
+          />
+        )}
+
         {/* Left Sidebar - Agent Profile */}
-        <div className="w-80 bg-white border-r border-vm-gray-200 min-h-screen">
-          <div className="p-6">
+        <div
+          className={`${
+            sidebarCollapsed ? "w-16" : "w-80"
+          } bg-white border-r border-vm-gray-200 min-h-screen transition-all duration-300 ease-in-out z-50 ${
+            isMobile ? "fixed" : "relative"
+          }`}
+        >
+          <div
+            className={`${sidebarCollapsed ? "p-3" : "p-6"} transition-all duration-300`}
+          >
             {/* Profile Header */}
             <div className="text-center mb-6">
               <div className="relative inline-block">
