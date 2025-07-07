@@ -515,7 +515,7 @@ export default function AgentDashboard() {
             {/* Navigation Tabs */}
             <div className="space-y-2 mb-6">
               <h3 className="text-sm font-semibold text-vm-gray-900 mb-3">
-                Profile Sections
+                Dashboard Sections
               </h3>
               {tabs.map((tab) => {
                 const Icon = tab.icon;
@@ -533,11 +533,6 @@ export default function AgentDashboard() {
                       className={`w-4 h-4 ${activeTab === tab.id ? "text-white" : "text-vm-gray-500"}`}
                     />
                     <span className="text-sm font-medium">{tab.label}</span>
-                    {tab.id === "specializations" && hasUnsavedChanges && (
-                      <div className="ml-auto">
-                        <div className="w-2 h-2 bg-orange-500 rounded-full animate-pulse"></div>
-                      </div>
-                    )}
                   </button>
                 );
               })}
