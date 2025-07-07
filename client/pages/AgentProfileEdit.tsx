@@ -1318,7 +1318,7 @@ export default function AgentProfileEdit() {
                   </p>
                   <div className="flex items-center space-x-1 mt-1">
                     <span className="text-xs text-vm-gray-500">✓ Live</span>
-                    <span className="text-xs text-vm-gray-500">��� Skill</span>
+                    <span className="text-xs text-vm-gray-500">✓ Skill</span>
                     <span className="text-xs text-vm-gray-500">📍 1 Lang</span>
                     <span className="text-xs text-vm-gray-500">🥇 1 Cert</span>
                   </div>
@@ -1378,12 +1378,9 @@ export default function AgentProfileEdit() {
 
           {/* Main Content Area */}
           <div className="flex-1">
-            {activeSection === "specializations" &&
-              renderSpecializationsSection()}
-            {activeSection !== "specializations" &&
-              renderOtherSection(activeSection)}
+            {renderCurrentSection()}
 
-            {/* Save Button */}
+            {/* Global Save Button */}
             {hasUnsavedChanges && (
               <div className="mt-8 pt-6 border-t border-vm-gray-200">
                 <div className="flex justify-end">
