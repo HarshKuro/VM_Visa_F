@@ -59,8 +59,8 @@ export default function Navigation() {
             </Link>
           </div>
 
-          {/* Desktop Navigation - Hide for Agent Dashboard */}
-          {!isAgentDashboard && (
+          {/* Desktop Navigation - Hide for Agent Dashboard and Agent Profile Pages */}
+          {!isAgentPage && (
             <div className="hidden md:flex items-center space-x-8">
               {/* Country Selector */}
               <div className="relative group">
