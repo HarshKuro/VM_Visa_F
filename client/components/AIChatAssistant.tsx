@@ -559,33 +559,17 @@ export default function AIChatAssistant() {
           </div>
         ))}
 
-        {/* Enhanced Typing Indicator */}
+        {/* Simple Typing Indicator */}
         {isTyping && (
-          <div className="flex justify-start animate-in fade-in duration-300">
-            <div className="flex items-start space-x-3 max-w-[85%]">
-              <div className="relative">
-                <div className="w-8 h-8 bg-gradient-to-br from-vm-green to-vm-green-600 rounded-full flex items-center justify-center shadow-md border-2 border-white">
-                  <span className="text-sm animate-pulse">🤖</span>
+          <div className="flex justify-start mb-1">
+            <div className="max-w-[75%] bg-white border border-gray-200 rounded-lg rounded-bl-none shadow-sm px-3 py-2">
+              <div className="flex items-center space-x-1">
+                <div className="flex space-x-1">
+                  <div className="w-2 h-2 bg-gray-400 rounded-full"></div>
+                  <div className="w-2 h-2 bg-gray-400 rounded-full"></div>
+                  <div className="w-2 h-2 bg-gray-400 rounded-full"></div>
                 </div>
-                <div className="absolute -bottom-1 -right-1 w-3 h-3 bg-yellow-400 rounded-full border border-white animate-pulse"></div>
-              </div>
-              <div className="bg-gradient-to-r from-gray-50 to-white border border-vm-gray-200 rounded-2xl rounded-bl-md px-4 py-3 shadow-sm">
-                <div className="flex items-center space-x-2">
-                  <div className="flex space-x-1">
-                    <div className="w-2 h-2 bg-vm-green rounded-full animate-bounce"></div>
-                    <div
-                      className="w-2 h-2 bg-vm-green rounded-full animate-bounce"
-                      style={{ animationDelay: "0.1s" }}
-                    ></div>
-                    <div
-                      className="w-2 h-2 bg-vm-green rounded-full animate-bounce"
-                      style={{ animationDelay: "0.2s" }}
-                    ></div>
-                  </div>
-                  <span className="text-xs text-vm-gray-500 animate-pulse">
-                    AI is thinking...
-                  </span>
-                </div>
+                <span className="text-xs text-gray-500">typing...</span>
               </div>
             </div>
           </div>
@@ -594,79 +578,36 @@ export default function AIChatAssistant() {
         <div ref={messagesEndRef} />
       </div>
 
-      {/* Quick Actions */}
-      {messages.length === 1 && (
-        <div className="px-4 pb-4 border-b border-vm-gray-100">
-          <p className="text-xs font-medium text-vm-gray-600 mb-3">
-            Quick Actions:
-          </p>
-          <div className="grid grid-cols-3 gap-2">
-            {quickActions.map((action, index) => {
-              const Icon = action.icon;
-              return (
-                <button
-                  key={index}
-                  onClick={() => handleSendMessage(action.action)}
-                  className="flex flex-col items-center p-3 text-xs text-vm-gray-600 hover:text-vm-green bg-vm-gray-50 hover:bg-vm-green/5 rounded-lg transition-all duration-200 border hover:border-vm-green/20"
-                >
-                  <Icon className="w-4 h-4 mb-1" />
-                  <span className="font-medium">{action.label}</span>
-                </button>
-              );
-            })}
-          </div>
-          <div className="mt-3 space-y-2">
-            {predefinedQuestions.slice(0, 3).map((question, index) => (
-              <button
-                key={index}
-                onClick={() => handleSendMessage(question)}
-                className="block w-full text-left text-xs text-vm-blue hover:text-vm-blue-600 bg-blue-50 hover:bg-blue-100 px-3 py-2 rounded-lg transition-colors border border-blue-100 hover:border-blue-200"
-              >
-                {question}
-              </button>
-            ))}
-          </div>
-        </div>
-      )}
-
-      {/* Enhanced Input */}
-      <div className="p-4 border-t border-vm-gray-200 bg-gradient-to-r from-white to-gray-50">
-        <div className="flex space-x-3">
-          <div className="relative flex-1">
+      {/* WhatsApp-style Input */}
+      <div className="p-3 border-t border-vm-gray-200 bg-white">
+        <div className="flex items-center space-x-2">
+          <button className="p-2 text-gray-500 hover:text-vm-green">
+            <Paperclip className="w-5 h-5" />
+          </button>
+          <div className="flex-1 relative">
             <Input
               ref={inputRef}
               value={inputMessage}
               onChange={(e) => setInputMessage(e.target.value)}
-              placeholder="Ask me anything about immigration... 💬"
-              className="text-sm border-vm-gray-300 focus:border-vm-green focus:ring-vm-green/20 rounded-2xl px-4 py-3 pr-12 shadow-sm hover:shadow-md transition-all duration-200"
+              placeholder="Type a message..."
+              className="text-sm border-gray-300 focus:border-vm-green focus:ring-vm-green/20 rounded-full px-4 py-2 pr-10"
               onKeyPress={(e) =>
                 e.key === "Enter" && !e.shiftKey && handleSendMessage()
               }
               disabled={isTyping}
             />
-            <div className="absolute right-3 top-1/2 transform -translate-y-1/2">
-              <Sparkles className="w-4 h-4 text-vm-gray-400" />
-            </div>
+            <button className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-vm-green">
+              <Smile className="w-4 h-4" />
+            </button>
           </div>
           <Button
             onClick={() => handleSendMessage()}
             size="sm"
             disabled={!inputMessage.trim() || isTyping}
-            className="bg-gradient-to-r from-vm-green to-vm-green-600 hover:from-vm-green-600 hover:to-vm-green-700 text-white px-4 py-3 rounded-2xl shadow-md hover:shadow-lg transition-all duration-200 transform hover:scale-105 disabled:opacity-50 disabled:transform-none"
+            className="bg-vm-green hover:bg-vm-green-600 text-white p-2 rounded-full disabled:opacity-50"
           >
-            {isTyping ? (
-              <Loader2 className="w-4 h-4 animate-spin" />
-            ) : (
-              <Send className="w-4 h-4" />
-            )}
+            <Send className="w-4 h-4" />
           </Button>
-        </div>
-        <div className="flex items-center justify-center mt-3 space-x-2">
-          <div className="w-2 h-2 bg-vm-green rounded-full animate-pulse"></div>
-          <p className="text-xs text-vm-gray-500 font-medium">
-            🚀 AI-powered immigration assistant • Secure & Private
-          </p>
-          <Sparkles className="w-3 h-3 text-vm-green animate-pulse" />
         </div>
       </div>
     </div>
