@@ -195,32 +195,51 @@ export default function Navigation() {
                   {/* Dropdown Menu */}
                   <div className="absolute right-0 top-full mt-2 w-52 bg-white rounded-lg shadow-lg border border-vm-gray-200 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
                     <div className="py-2">
-                      <Link
-                        to="/agent-profile-view"
+                      <button
+                        onClick={() => {
+                          const profileViewPath =
+                            user?.role === "agent"
+                              ? "/agent-profile-view"
+                              : user?.role === "organization"
+                                ? "/organization-dashboard"
+                                : "/user-profile-view";
+                          navigate(profileViewPath);
+                        }}
                         className="flex items-center space-x-2 w-full px-4 py-2 text-left text-sm text-vm-gray-700 hover:bg-vm-gray-50 transition-colors"
                       >
                         <Eye className="w-4 h-4" />
                         <span>View Profile</span>
-                      </Link>
-                      <Link
-                        to="/agent-profile-edit"
+                      </button>
+                      <button
+                        onClick={() => {
+                          const profileEditPath =
+                            user?.role === "agent"
+                              ? "/agent-profile-edit"
+                              : user?.role === "organization"
+                                ? "/organization-dashboard"
+                                : "/user-profile-edit";
+                          navigate(profileEditPath);
+                        }}
                         className="flex items-center space-x-2 w-full px-4 py-2 text-left text-sm text-vm-gray-700 hover:bg-vm-gray-50 transition-colors"
                       >
                         <Edit className="w-4 h-4" />
                         <span>Edit Profile</span>
-                      </Link>
+                      </button>
                       <button className="flex items-center space-x-2 w-full px-4 py-2 text-left text-sm text-vm-gray-700 hover:bg-vm-gray-50 transition-colors">
                         <Settings className="w-4 h-4" />
                         <span>Account Settings</span>
                       </button>
                       <hr className="my-1 border-vm-gray-200" />
-                      <Link
-                        to="/"
+                      <button
+                        onClick={() => {
+                          logout();
+                          navigate("/");
+                        }}
                         className="flex items-center space-x-2 w-full px-4 py-2 text-left text-sm text-red-600 hover:bg-red-50 transition-colors"
                       >
                         <LogOut className="w-4 h-4" />
                         <span>Logout</span>
-                      </Link>
+                      </button>
                     </div>
                   </div>
                 </div>
