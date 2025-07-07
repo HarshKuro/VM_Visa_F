@@ -58,109 +58,112 @@ export default function Navigation() {
           </div>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-8">
-            {/* Country Selector */}
-            <div className="relative group">
-              <button className="flex items-center space-x-2 px-3 py-2 rounded-lg text-vm-gray-700 hover:text-vm-green hover:bg-vm-green/5 transition-all duration-300 transform hover:scale-105 hover:shadow-sm">
-                <Globe className="w-4 h-4 transition-transform duration-300 group-hover:rotate-12" />
-                <span className="text-sm font-medium relative">
-                  {selectedCountry}
-                  <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-vm-green transition-all duration-300 group-hover:w-full"></span>
-                </span>
-                <ChevronDown className="w-4 h-4 transition-transform duration-300 group-hover:rotate-180" />
-              </button>
-              <div className="absolute top-full left-0 mt-2 w-48 bg-white rounded-lg shadow-lg border border-vm-gray-200 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform translate-y-2 group-hover:translate-y-0">
-                <div className="py-2">
-                  {countries.map((country, index) => (
-                    <button
-                      key={country}
-                      onClick={() => setSelectedCountry(country)}
-                      className="block w-full px-4 py-2 text-left text-sm text-vm-gray-700 hover:bg-vm-green/10 hover:text-vm-green transition-all duration-200 hover:pl-6 transform"
-                      style={{ animationDelay: `${index * 50}ms` }}
-                    >
-                      {country}
-                    </button>
-                  ))}
+          {!isAgentDashboard && (
+            <div className="hidden md:flex items-center space-x-8">
+              {/* Country Selector */}
+              <div className="relative group">
+                <button className="flex items-center space-x-2 px-3 py-2 rounded-lg text-vm-gray-700 hover:text-vm-green hover:bg-vm-green/5 transition-all duration-300 transform hover:scale-105 hover:shadow-sm">
+                  <Globe className="w-4 h-4 transition-transform duration-300 group-hover:rotate-12" />
+                  <span className="text-sm font-medium relative">
+                    {selectedCountry}
+                    <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-vm-green transition-all duration-300 group-hover:w-full"></span>
+                  </span>
+                  <ChevronDown className="w-4 h-4 transition-transform duration-300 group-hover:rotate-180" />
+                </button>
+                <div className="absolute top-full left-0 mt-2 w-48 bg-white rounded-lg shadow-lg border border-vm-gray-200 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform translate-y-2 group-hover:translate-y-0">
+                  <div className="py-2">
+                    {countries.map((country, index) => (
+                      <button
+                        key={country}
+                        onClick={() => setSelectedCountry(country)}
+                        className="block w-full px-4 py-2 text-left text-sm text-vm-gray-700 hover:bg-vm-green/10 hover:text-vm-green transition-all duration-200 hover:pl-6 transform"
+                        style={{ animationDelay: `${index * 50}ms` }}
+                      >
+                        {country}
+                      </button>
+                    ))}
+                  </div>
                 </div>
               </div>
-            </div>
 
-            {/* Navigation Links */}
-            <div className="flex items-center space-x-1">
-              {isLoggedIn ? (
-                // Dashboard Navigation for logged-in users
-                <>
-                  {[
-                    { path: "#overview", label: "Overview", icon: BarChart3 },
-                    { path: "#requests", label: "My Requests", icon: FileText },
-                    {
-                      path: "#proposals",
-                      label: "Proposals",
-                      icon: MessageSquare,
-                    },
-                    {
-                      path: "#applications",
-                      label: "Applications",
-                      icon: Clock,
-                    },
-                    { path: "#documents", label: "Documents", icon: Upload },
-                    { path: "#agents", label: "Browse Agents", icon: Users },
-                  ].map((item) => {
-                    const Icon = item.icon;
-                    return (
-                      <button
-                        key={item.path}
-                        onClick={() => {
-                          // Trigger tab change in dashboard
-                          const event = new CustomEvent("dashboardTabChange", {
-                            detail: { tab: item.path.replace("#", "") },
-                          });
-                          window.dispatchEvent(event);
-                        }}
-                        className="group flex items-center space-x-2 px-3 py-2 rounded-lg text-sm font-medium text-vm-gray-700 hover:text-vm-green hover:bg-vm-green/5 transition-all duration-200 transform hover:scale-105"
-                      >
-                        <Icon className="w-4 h-4 transition-transform duration-200 group-hover:scale-110" />
-                        <span className="relative">
-                          {item.label}
-                          <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-vm-green transition-all duration-200 group-hover:w-full"></span>
-                        </span>
-                      </button>
-                    );
-                  })}
-                </>
-              ) : (
-                // Public Navigation for non-logged-in users
-                <>
-                  <Link
-                    to="/services"
-                    className="group px-3 py-2 text-sm font-medium text-vm-gray-700 hover:text-vm-green hover:bg-vm-green/5 rounded-lg transition-all duration-300 transform hover:scale-105 hover:shadow-sm"
-                  >
-                    <span className="relative">
-                      Services
-                      <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-vm-green transition-all duration-300 group-hover:w-full"></span>
-                    </span>
-                  </Link>
-                  <Link
-                    to="/about"
-                    className="group px-3 py-2 text-sm font-medium text-vm-gray-700 hover:text-vm-green hover:bg-vm-green/5 rounded-lg transition-all duration-300 transform hover:scale-105 hover:shadow-sm"
-                  >
-                    <span className="relative">
-                      About
-                      <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-vm-green transition-all duration-300 group-hover:w-full"></span>
-                    </span>
-                  </Link>
-                  <Link
-                    to="/contact"
-                    className="group px-3 py-2 text-sm font-medium text-vm-gray-700 hover:text-vm-green hover:bg-vm-green/5 rounded-lg transition-all duration-300 transform hover:scale-105 hover:shadow-sm"
-                  >
-                    <span className="relative">
-                      Contact
-                      <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-vm-green transition-all duration-300 group-hover:w-full"></span>
-                    </span>
-                  </Link>
-                </>
-              )}
+              {/* Navigation Links */}
+              <div className="flex items-center space-x-1">
+                {isLoggedIn ? (
+                  // Dashboard Navigation for logged-in users
+                  <>
+                    {[
+                      { path: "#overview", label: "Overview", icon: BarChart3 },
+                      { path: "#requests", label: "My Requests", icon: FileText },
+                      {
+                        path: "#proposals",
+                        label: "Proposals",
+                        icon: MessageSquare,
+                      },
+                      {
+                        path: "#applications",
+                        label: "Applications",
+                        icon: Clock,
+                      },
+                      { path: "#documents", label: "Documents", icon: Upload },
+                      { path: "#agents", label: "Browse Agents", icon: Users },
+                    ].map((item) => {
+                      const Icon = item.icon;
+                      return (
+                        <button
+                          key={item.path}
+                          onClick={() => {
+                            // Trigger tab change in dashboard
+                            const event = new CustomEvent("dashboardTabChange", {
+                              detail: { tab: item.path.replace("#", "") },
+                            });
+                            window.dispatchEvent(event);
+                          }}
+                          className="group flex items-center space-x-2 px-3 py-2 rounded-lg text-sm font-medium text-vm-gray-700 hover:text-vm-green hover:bg-vm-green/5 transition-all duration-200 transform hover:scale-105"
+                        >
+                          <Icon className="w-4 h-4 transition-transform duration-200 group-hover:scale-110" />
+                          <span className="relative">
+                            {item.label}
+                            <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-vm-green transition-all duration-200 group-hover:w-full"></span>
+                          </span>
+                        </button>
+                      );
+                    })}
+                  </>
+                ) : (
+                  // Public Navigation for non-logged-in users
+                  <>
+                    <Link
+                      to="/services"
+                      className="group px-3 py-2 text-sm font-medium text-vm-gray-700 hover:text-vm-green hover:bg-vm-green/5 rounded-lg transition-all duration-300 transform hover:scale-105 hover:shadow-sm"
+                    >
+                      <span className="relative">
+                        Services
+                        <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-vm-green transition-all duration-300 group-hover:w-full"></span>
+                      </span>
+                    </Link>
+                    <Link
+                      to="/about"
+                      className="group px-3 py-2 text-sm font-medium text-vm-gray-700 hover:text-vm-green hover:bg-vm-green/5 rounded-lg transition-all duration-300 transform hover:scale-105 hover:shadow-sm"
+                    >
+                      <span className="relative">
+                        About
+                        <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-vm-green transition-all duration-300 group-hover:w-full"></span>
+                      </span>
+                    </Link>
+                    <Link
+                      to="/contact"
+                      className="group px-3 py-2 text-sm font-medium text-vm-gray-700 hover:text-vm-green hover:bg-vm-green/5 rounded-lg transition-all duration-300 transform hover:scale-105 hover:shadow-sm"
+                    >
+                      <span className="relative">
+                        Contact
+                        <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-vm-green transition-all duration-300 group-hover:w-full"></span>
+                      </span>
+                    </Link>
+                  </>
+                )}
+              </div>
             </div>
+          )}
 
             {/* Auth Buttons */}
             <div className="flex items-center space-x-3">
