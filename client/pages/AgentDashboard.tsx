@@ -368,47 +368,94 @@ export default function AgentDashboard() {
           <div
             className={`${sidebarCollapsed ? "p-3" : "p-6"} transition-all duration-300`}
           >
-            {/* Profile Header */}
-            <div className="text-center mb-6">
-              <div className="relative inline-block">
-                <img
-                  src={agentProfile.avatar}
-                  alt={agentProfile.name}
-                  className="w-20 h-20 rounded-full mx-auto mb-3"
-                />
-                {agentProfile.verified && (
-                  <div className="absolute -bottom-1 -right-1 bg-vm-green rounded-full p-1">
-                    <CheckCircle className="w-4 h-4 text-white" />
+            {/* Sidebar Header with Toggle */}
+            <div className="flex items-center justify-between mb-6">
+              {!sidebarCollapsed && (
+                <div className="flex items-center space-x-3">
+                  <div className="w-8 h-8 bg-gradient-to-r from-vm-green to-vm-green-600 rounded-lg flex items-center justify-center">
+                    <User className="w-4 h-4 text-white" />
                   </div>
-                )}
-              </div>
-              <h2 className="text-xl font-bold text-vm-gray-900 mb-1">
-                {agentProfile.name}
-              </h2>
-              <p className="text-sm text-vm-gray-600 mb-2">
-                {agentProfile.title}
-              </p>
-              <div className="flex items-center justify-center space-x-1 mb-3">
-                <div className="flex">
-                  {[...Array(5)].map((_, i) => (
-                    <Star
-                      key={i}
-                      className={`w-4 h-4 ${
-                        i < Math.floor(agentProfile.rating)
-                          ? "text-yellow-500 fill-current"
-                          : "text-vm-gray-300"
-                      }`}
-                    />
-                  ))}
+                  <div>
+                    <h3 className="font-semibold text-vm-gray-900 text-sm">
+                      Agent
+                    </h3>
+                    <p className="text-xs text-vm-gray-500">Dashboard</p>
+                  </div>
                 </div>
-                <span className="text-sm font-medium text-vm-gray-700">
-                  {agentProfile.rating}
-                </span>
-              </div>
-              <Badge variant="outline" className="text-xs">
-                {agentProfile.experience} Experience
-              </Badge>
+              )}
+
+              <button
+                onClick={toggleSidebar}
+                className={`p-2 rounded-lg bg-vm-gray-100 hover:bg-vm-gray-200 text-vm-gray-600 hover:text-vm-gray-900 transition-all duration-200 ${
+                  sidebarCollapsed ? "mx-auto" : ""
+                }`}
+              >
+                {sidebarCollapsed ? (
+                  <ChevronRight className="w-4 h-4" />
+                ) : (
+                  <ChevronLeft className="w-4 h-4" />
+                )}
+              </button>
             </div>
+
+            {/* Profile Header */}
+            {!sidebarCollapsed ? (
+              <div className="text-center mb-6">
+                <div className="relative inline-block">
+                  <img
+                    src={agentProfile.avatar}
+                    alt={agentProfile.name}
+                    className="w-20 h-20 rounded-full mx-auto mb-3"
+                  />
+                  {agentProfile.verified && (
+                    <div className="absolute -bottom-1 -right-1 bg-vm-green rounded-full p-1">
+                      <CheckCircle className="w-4 h-4 text-white" />
+                    </div>
+                  )}
+                </div>
+                <h2 className="text-xl font-bold text-vm-gray-900 mb-1">
+                  {agentProfile.name}
+                </h2>
+                <p className="text-sm text-vm-gray-600 mb-2">
+                  {agentProfile.title}
+                </p>
+                <div className="flex items-center justify-center space-x-1 mb-3">
+                  <div className="flex">
+                    {[...Array(5)].map((_, i) => (
+                      <Star
+                        key={i}
+                        className={`w-4 h-4 ${
+                          i < Math.floor(agentProfile.rating)
+                            ? "text-yellow-500 fill-current"
+                            : "text-vm-gray-300"
+                        }`}
+                      />
+                    ))}
+                  </div>
+                  <span className="text-sm font-medium text-vm-gray-700">
+                    {agentProfile.rating}
+                  </span>
+                </div>
+                <Badge variant="outline" className="text-xs">
+                  {agentProfile.experience} Experience
+                </Badge>
+              </div>
+            ) : (
+              <div className="text-center mb-6">
+                <div className="relative inline-block">
+                  <img
+                    src={agentProfile.avatar}
+                    alt={agentProfile.name}
+                    className="w-10 h-10 rounded-full mx-auto mb-2"
+                  />
+                  {agentProfile.verified && (
+                    <div className="absolute -bottom-1 -right-1 bg-vm-green rounded-full p-0.5">
+                      <CheckCircle className="w-3 h-3 text-white" />
+                    </div>
+                  )}
+                </div>
+              </div>
+            )}
 
             {/* Contact Information */}
             <div className="mb-6">
