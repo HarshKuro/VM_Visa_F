@@ -1269,22 +1269,30 @@ export default function AgentProfileEdit() {
                 className="flex items-center space-x-2 text-vm-gray-600 hover:text-vm-green transition-colors"
               >
                 <ArrowLeft className="w-4 h-4" />
-                <span className="text-sm">Back to Dashboard</span>
+                <span className="text-sm font-medium">Back to Dashboard</span>
               </Link>
               <div className="h-4 w-px bg-vm-gray-300"></div>
-              <span className="text-sm text-vm-gray-600">
+              <span className="text-sm text-vm-gray-500">
                 Dashboard / Profile Editor
               </span>
             </div>
 
-            <div className="flex items-center space-x-4">
+            <div className="flex items-center space-x-3">
               <Link to="/agent-profile-view">
-                <Button variant="outline" size="sm">
+                <Button
+                  variant="outline"
+                  size="sm"
+                  className="text-sm font-medium"
+                >
                   <Eye className="w-4 h-4 mr-2" />
                   Preview
                 </Button>
               </Link>
-              <Button variant="outline" size="sm">
+              <Button
+                variant="outline"
+                size="sm"
+                className="text-sm font-medium"
+              >
                 <Settings className="w-4 h-4 mr-2" />
                 Settings
               </Button>
