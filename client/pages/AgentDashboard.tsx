@@ -616,39 +616,89 @@ export default function AgentDashboard() {
             </div>
 
             {/* Action Buttons */}
-            <div className="space-y-3">
-              <Button variant="outline" className="w-full">
-                <Settings className="w-4 h-4 mr-2" />
-                Account Settings
-              </Button>
-              <Button variant="outline" className="w-full">
-                <Award className="w-4 h-4 mr-2" />
-                View Certificates
-              </Button>
-            </div>
-
-            {/* Recent Activity Preview */}
-            <div className="mt-8">
-              <h3 className="text-sm font-semibold text-vm-gray-900 mb-3">
-                Recent Activity
-              </h3>
-              <div className="space-y-2">
-                <div className="text-xs text-vm-gray-600">
-                  • New proposal submitted
+            {!sidebarCollapsed ? (
+              <div className="space-y-3">
+                <Button variant="outline" className="w-full">
+                  <Settings className="w-4 h-4 mr-2" />
+                  Account Settings
+                </Button>
+                <Button variant="outline" className="w-full">
+                  <Award className="w-4 h-4 mr-2" />
+                  View Certificates
+                </Button>
+              </div>
+            ) : (
+              <div className="space-y-3">
+                <div className="group relative">
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    className="w-8 h-8 p-0 mx-auto block"
+                  >
+                    <Settings className="w-4 h-4" />
+                  </Button>
+                  <div className="absolute left-full ml-2 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none z-50">
+                    <div className="bg-vm-gray-900 text-white text-sm px-3 py-2 rounded-lg shadow-lg whitespace-nowrap">
+                      Account Settings
+                      <div className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-1 w-2 h-2 bg-vm-gray-900 rotate-45"></div>
+                    </div>
+                  </div>
                 </div>
-                <div className="text-xs text-vm-gray-600">
-                  • Client consultation completed
-                </div>
-                <div className="text-xs text-vm-gray-600">
-                  • Document review finished
+                <div className="group relative">
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    className="w-8 h-8 p-0 mx-auto block"
+                  >
+                    <Award className="w-4 h-4" />
+                  </Button>
+                  <div className="absolute left-full ml-2 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none z-50">
+                    <div className="bg-vm-gray-900 text-white text-sm px-3 py-2 rounded-lg shadow-lg whitespace-nowrap">
+                      View Certificates
+                      <div className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-1 w-2 h-2 bg-vm-gray-900 rotate-45"></div>
+                    </div>
+                  </div>
                 </div>
               </div>
-            </div>
+            )}
+
+            {/* Recent Activity Preview */}
+            {!sidebarCollapsed && (
+              <div className="mt-8">
+                <h3 className="text-sm font-semibold text-vm-gray-900 mb-3">
+                  Recent Activity
+                </h3>
+                <div className="space-y-2">
+                  <div className="text-xs text-vm-gray-600">
+                    • New proposal submitted
+                  </div>
+                  <div className="text-xs text-vm-gray-600">
+                    • Client consultation completed
+                  </div>
+                  <div className="text-xs text-vm-gray-600">
+                    • Document review finished
+                  </div>
+                </div>
+              </div>
+            )}
           </div>
         </div>
 
         {/* Main Content Area */}
-        <div className="flex-1 p-8">
+        <div
+          className={`flex-1 p-8 transition-all duration-300 ${isMobile && !sidebarCollapsed ? "blur-sm" : ""}`}
+        >
+          {/* Mobile menu button */}
+          {isMobile && sidebarCollapsed && (
+            <div className="mb-6">
+              <button
+                onClick={() => setSidebarCollapsed(false)}
+                className="p-3 bg-white rounded-lg shadow-md border border-vm-gray-200 hover:shadow-lg transition-all duration-200"
+              >
+                <Menu className="w-5 h-5 text-vm-gray-600" />
+              </button>
+            </div>
+          )}
           {/* Content Header */}
           <div className="mb-8">
             <div className="bg-gradient-to-r from-vm-green to-vm-green-600 rounded-lg p-6 text-white">
