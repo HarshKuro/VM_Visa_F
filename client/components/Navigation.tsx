@@ -353,7 +353,7 @@ export default function Navigation() {
                     <button className="flex items-center space-x-3 text-sm font-medium text-vm-gray-700 hover:text-vm-gray-900 py-2 transition-colors">
                       <div className="w-6 h-6 bg-vm-green rounded-full flex items-center justify-center">
                         <span className="text-white text-xs">
-                          {isAgentDashboard ? "SJ" : "JD"}
+                          {isAgentPage ? "SJ" : "JD"}
                         </span>
                       </div>
                       <span>Profile Settings</span>
