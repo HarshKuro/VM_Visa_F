@@ -108,8 +108,26 @@ interface AccountSettings {
 }
 
 export default function AgentProfileEdit() {
-  const [activeSection, setActiveSection] = useState("specializations");
+  const [activeSection, setActiveSection] = useState("basic");
   const [hasUnsavedChanges, setHasUnsavedChanges] = useState(false);
+
+  // Basic Information state
+  const [basicInfo, setBasicInfo] = useState<BasicInfo>({
+    fullName: "Sarah Johnson",
+    gender: "Female",
+    dateOfBirth: "15/03/1985",
+    nationality: "United States",
+  });
+
+  // Contact Information state
+  const [contactInfo, setContactInfo] = useState<ContactInfo>({
+    email: "sarah.johnson@vmvisa.com",
+    phone: "555-0123",
+    countryCode: "+1",
+    city: "New York",
+    state: "NY",
+    country: "USA",
+  });
 
   // Immigration Specializations state
   const [specializations, setSpecializations] = useState<Specialization[]>([
@@ -132,6 +150,61 @@ export default function AgentProfileEdit() {
       expertiseLevel: "Intermediate",
     },
   ]);
+
+  // Professional Experience state
+  const [experiences, setExperiences] = useState<Experience[]>([
+    {
+      id: "1",
+      position: "Senior Immigration Attorney",
+      company: "Global Immigration Partners",
+      startDate: "2020-01",
+      endDate: "Present",
+      current: true,
+      description: "Leading complex immigration cases with 95% success rate",
+      license: "NY-ATT-2019-001",
+    },
+  ]);
+
+  // Education & Certifications state
+  const [certifications, setCertifications] = useState<Certification[]>([
+    {
+      id: "1",
+      name: "Board Certified Immigration Attorney",
+      organization: "American Immigration Lawyers Association",
+      issueDate: "2018-06",
+      expiryDate: "",
+      credentialId: "AILA-2018-001",
+      verificationUrl: "URL to verify certification",
+    },
+  ]);
+
+  // Languages state
+  const [languages, setLanguages] = useState<Language[]>([
+    { id: "1", language: "English", proficiency: "Native" },
+    { id: "2", language: "Spanish", proficiency: "Advanced" },
+    { id: "3", language: "Mandarin", proficiency: "Intermediate" },
+  ]);
+
+  // Bio & About state
+  const [profileBio, setProfileBio] = useState<ProfileBio>({
+    tagline: "Your trusted partner in immigration success",
+    bio: "Experienced immigration attorney specializing in business immigration with over 8 years of practice. Committed to helping clients navigate complex immigration processes with personalized attention and expertise.",
+    achievements: [
+      { id: "1", title: "Successfully handled 500+ immigration cases" },
+      { id: "2", title: "Featured in Immigration Law Weekly" },
+      { id: "3", title: "Top-rated immigration attorney in NYC" },
+    ],
+  });
+
+  // Account Settings state
+  const [accountSettings, setAccountSettings] = useState<AccountSettings>({
+    emailNotifications: true,
+    smsNotifications: false,
+    profileVisibility: "Public - Visible to everyone",
+    availabilityStatus: "Available - Accepting new clients",
+    hourlyRate: 250,
+    currency: "USD - US Dollar",
+  });
 
   // Profile sections
   const profileSections = [
