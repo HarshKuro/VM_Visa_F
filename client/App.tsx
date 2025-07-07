@@ -12,6 +12,8 @@ import AgentProfileStep2 from "./pages/AgentProfileStep2";
 import AgentProfileStep3 from "./pages/AgentProfileStep3";
 import AgentProfileStep4 from "./pages/AgentProfileStep4";
 import AgentDashboard from "./pages/AgentDashboard";
+import AgentProfileView from "./pages/AgentProfileView";
+import AgentProfileEdit from "./pages/AgentProfileEdit";
 import Services from "./pages/Services";
 import StudentVisa from "./pages/StudentVisa";
 import About from "./pages/About";
@@ -41,6 +43,8 @@ function App() {
         <Route path="/agent-profile-step3" element={<AgentProfileStep3 />} />
         <Route path="/agent-profile-step4" element={<AgentProfileStep4 />} />
         <Route path="/agent-dashboard" element={<AgentDashboard />} />
+        <Route path="/agent-profile-view" element={<AgentProfileView />} />
+        <Route path="/agent-profile-edit" element={<AgentProfileEdit />} />
         <Route path="/services" element={<Services />} />
         <Route path="/services/student-visa" element={<StudentVisa />} />
         <Route path="/about" element={<About />} />
