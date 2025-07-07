@@ -165,8 +165,8 @@ export default function Navigation() {
             </div>
           )}
 
-            {/* Auth Buttons */}
-            <div className="flex items-center space-x-3">
+          {/* Auth Buttons */}
+          <div className="hidden md:flex items-center space-x-3">
               {isLoggedIn ? (
                 // User Profile & Logout for logged-in users
                 <div className="flex items-center space-x-3">
