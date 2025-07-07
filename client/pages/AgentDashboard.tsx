@@ -633,34 +633,75 @@ export default function AgentDashboard() {
             )}
           </div>
 
-          {/* Quick Stats */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-            {agentStats.map((stat, index) => {
-              const Icon = stat.icon;
-              return (
-                <Card key={index}>
-                  <CardContent className="p-6">
-                    <div className="flex items-center justify-between">
-                      <div>
-                        <p className="text-sm font-medium text-vm-gray-600 mb-1">
-                          {stat.label}
-                        </p>
-                        <p className="text-2xl font-bold text-vm-gray-900">
-                          {stat.value}
-                        </p>
-                        <p className="text-sm text-green-600">
-                          {stat.change} from last month
-                        </p>
-                      </div>
-                      <div className={`p-3 ${stat.bgColor} rounded-lg`}>
-                        <Icon className={`w-6 h-6 ${stat.color}`} />
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-              );
-            })}
-          </div>
+          {/* Tab Content */}
+          {activeTab === "overview" && (
+            <>
+              {/* Quick Stats */}
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+                {agentStats.map((stat, index) => {
+                  const Icon = stat.icon;
+                  return (
+                    <Card key={index}>
+                      <CardContent className="p-6">
+                        <div className="flex items-center justify-between">
+                          <div>
+                            <p className="text-sm font-medium text-vm-gray-600 mb-1">
+                              {stat.label}
+                            </p>
+                            <p className="text-2xl font-bold text-vm-gray-900">
+                              {stat.value}
+                            </p>
+                            <p className="text-sm text-green-600">
+                              {stat.change} from last month
+                            </p>
+                          </div>
+                          <div className={`p-3 ${stat.bgColor} rounded-lg`}>
+                            <Icon className={`w-6 h-6 ${stat.color}`} />
+                          </div>
+                        </div>
+                      </CardContent>
+                    </Card>
+                  );
+                })}
+              </div>
+            </>
+          )}
+
+          {activeTab === "specializations" &&
+            renderImmigrationSpecializations()}
+
+          {activeTab === "profile" && (
+            <Card className="p-8">
+              <h3 className="text-lg font-semibold mb-4">
+                Basic Profile Information
+              </h3>
+              <p className="text-vm-gray-600">
+                Profile editing functionality coming soon...
+              </p>
+            </Card>
+          )}
+
+          {activeTab === "experience" && (
+            <Card className="p-8">
+              <h3 className="text-lg font-semibold mb-4">
+                Professional Experience
+              </h3>
+              <p className="text-vm-gray-600">
+                Experience management functionality coming soon...
+              </p>
+            </Card>
+          )}
+
+          {activeTab === "documents" && (
+            <Card className="p-8">
+              <h3 className="text-lg font-semibold mb-4">
+                Documents & Certificates
+              </h3>
+              <p className="text-vm-gray-600">
+                Document management functionality coming soon...
+              </p>
+            </Card>
+          )}
 
           {/* Main Content Grid */}
           <div className="grid lg:grid-cols-3 gap-8">
