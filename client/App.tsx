@@ -14,6 +14,8 @@ import AgentProfileStep4 from "./pages/AgentProfileStep4";
 import AgentDashboard from "./pages/AgentDashboard";
 import AgentProfileView from "./pages/AgentProfileView";
 import AgentProfileEdit from "./pages/AgentProfileEdit";
+import UserProfileView from "./pages/UserProfileView";
+import UserProfileEdit from "./pages/UserProfileEdit";
 import Services from "./pages/Services";
 import StudentVisa from "./pages/StudentVisa";
 import About from "./pages/About";
@@ -22,6 +24,12 @@ import OrganizationProfileWizard from "./pages/OrganizationProfileWizard";
 import OrganizationDashboard from "./pages/OrganizationDashboard";
 import NotFound from "./pages/NotFound";
 import { Toaster } from "@/components/ui/toaster";
+import { UserProvider } from "./contexts/UserContext";
+import {
+  ClientGuard,
+  AgentGuard,
+  OrganizationGuard,
+} from "./components/RoleGuard";
 
 function App() {
   return (
