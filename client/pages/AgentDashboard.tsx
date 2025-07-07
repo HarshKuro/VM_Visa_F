@@ -1,7 +1,17 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { Progress } from "@/components/ui/progress";
 import Navigation from "@/components/Navigation";
 import {
   Users,
@@ -19,10 +29,66 @@ import {
   Settings,
   Edit,
   Award,
+  User,
+  Briefcase,
+  GraduationCap,
+  Certificate,
+  X,
+  Plus,
+  Save,
+  AlertCircle,
+  BarChart3,
 } from "lucide-react";
+
+interface Specialization {
+  id: string;
+  area: string;
+  yearsExperience: number;
+  expertiseLevel: string;
+}
 
 export default function AgentDashboard() {
   const [activeTab, setActiveTab] = useState("overview");
+  const [hasUnsavedChanges, setHasUnsavedChanges] = useState(false);
+  const [specializations, setSpecializations] = useState<Specialization[]>([
+    {
+      id: "1",
+      area: "H1-B Visa",
+      yearsExperience: 8,
+      expertiseLevel: "Expert",
+    },
+    {
+      id: "2",
+      area: "Green Card",
+      yearsExperience: 6,
+      expertiseLevel: "Expert",
+    },
+    {
+      id: "3",
+      area: "Family Immigration",
+      yearsExperience: 5,
+      expertiseLevel: "Intermediate",
+    },
+  ]);
+
+  // Profile completion calculation
+  const calculateProfileStrength = () => {
+    const sections = {
+      basicDetails: 100, // Assuming complete
+      contactDetails: 100, // Assuming complete
+      specializations: specializations.length > 0 ? 100 : 0,
+      experience: 100, // Assuming complete
+      documents: 80, // Can be dynamic
+    };
+
+    const total = Object.values(sections).reduce(
+      (sum, value) => sum + value,
+      0,
+    );
+    return Math.round(total / Object.keys(sections).length);
+  };
+
+  const profileStrength = calculateProfileStrength();
 
   // Mock agent data
   const agentProfile = {
