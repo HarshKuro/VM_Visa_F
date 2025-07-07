@@ -518,7 +518,7 @@ export default function OrganizationDashboard() {
   };
 
   return (
-    <div className="min-h-screen bg-vm-gray-50">
+    <div className="min-h-screen bg-gradient-to-br from-vm-gray-50 to-vm-gray-100/50">
       {/* Top Navigation */}
       <nav className="bg-white/95 backdrop-blur-sm border-b border-vm-gray-200 sticky top-0 z-40 shadow-sm">
         <div className="max-w-full px-4 sm:px-6 lg:px-8">
