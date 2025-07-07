@@ -54,6 +54,23 @@ export default function Login() {
       // Simulate API call
       await new Promise((resolve) => setTimeout(resolve, 1500));
 
+      // Create user object based on role
+      const userData = {
+        id: `${selectedRole}_001`,
+        name:
+          selectedRole === "agent"
+            ? "Sarah Johnson"
+            : selectedRole === "organization"
+              ? "Global Immigration Solutions"
+              : "John Doe",
+        email: formData.email,
+        role: selectedRole,
+        isVerified: true,
+      };
+
+      // Set user in context
+      login(userData);
+
       // Check if agent has incomplete profile
       if (selectedRole === "agent") {
         const agentBasicInfo = localStorage.getItem("agentBasicInfo");
