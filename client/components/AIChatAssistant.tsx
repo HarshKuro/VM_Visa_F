@@ -465,50 +465,41 @@ export default function AIChatAssistant() {
         </div>
       </div>
 
-      {/* Messages */}
-      <div className="flex-1 overflow-y-auto p-4 space-y-4 min-h-0 max-h-96 bg-gradient-to-b from-gray-50 via-blue-50/30 to-white">
+      {/* Messages - WhatsApp style */}
+      <div
+        className="flex-1 overflow-y-auto p-3 space-y-2 min-h-0 max-h-96 bg-gray-50"
+        style={{
+          backgroundImage:
+            'url(\'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="chat-bg" patternUnits="userSpaceOnUse" width="100" height="100"><circle cx="50" cy="50" r="1" fill="%23e5e7eb" opacity="0.3"/></pattern></defs><rect width="100" height="100" fill="url(%23chat-bg)"/></svg>\')',
+        }}
+      >
         {messages.map((message, index) => (
           <div key={message.id}>
             <div
-              className={`flex ${message.isUser ? "justify-end" : "justify-start"} animate-in fade-in slide-in-from-bottom duration-500`}
-              style={{ animationDelay: `${index * 100}ms` }}
+              className={`flex ${message.isUser ? "justify-end" : "justify-start"} mb-1`}
             >
               <div
-                className={`flex items-start space-x-3 max-w-[85%] ${message.isUser ? "flex-row-reverse space-x-reverse" : ""}`}
+                className={`max-w-[75%] px-3 py-2 text-sm leading-relaxed ${
+                  message.isUser
+                    ? "bg-vm-green text-white rounded-lg rounded-br-none"
+                    : "bg-white border border-gray-200 text-gray-900 rounded-lg rounded-bl-none shadow-sm"
+                }`}
               >
-                {!message.isUser && (
-                  <div className="relative flex-shrink-0">
-                    <div className="w-8 h-8 bg-gradient-to-br from-vm-green to-vm-green-600 rounded-full flex items-center justify-center shadow-md border-2 border-white">
-                      <span className="text-sm">🤖</span>
-                    </div>
-                    <div className="absolute -bottom-1 -right-1 w-3 h-3 bg-green-400 rounded-full border border-white animate-pulse"></div>
-                  </div>
-                )}
-                {message.isUser && (
-                  <div className="w-8 h-8 bg-gradient-to-br from-blue-500 to-blue-600 rounded-full flex items-center justify-center shadow-md border-2 border-white flex-shrink-0">
-                    <span className="text-sm text-white font-medium">
-                      {userContext.name
-                        ? userContext.name[0].toUpperCase()
-                        : "U"}
-                    </span>
-                  </div>
-                )}
+                <div className="whitespace-pre-line">{message.text}</div>
                 <div
-                  className={`px-4 py-3 rounded-2xl text-sm leading-relaxed shadow-sm transition-all duration-200 hover:shadow-md ${
-                    message.isUser
-                      ? "bg-gradient-to-r from-teal-500 to-teal-600 text-white rounded-br-md"
-                      : "bg-gradient-to-r from-gray-50 to-white border border-vm-gray-200 text-vm-gray-900 rounded-bl-md"
+                  className={`flex items-center justify-end space-x-1 mt-1 ${
+                    message.isUser ? "text-white/70" : "text-gray-500"
                   }`}
                 >
-                  <div className="whitespace-pre-line">{message.text}</div>
-                  <div
-                    className={`text-xs mt-2 opacity-70 ${message.isUser ? "text-white/70" : "text-vm-gray-500"}`}
-                  >
+                  <span className="text-xs">
                     {message.timestamp.toLocaleTimeString([], {
                       hour: "2-digit",
                       minute: "2-digit",
                     })}
-                  </div>
+                  </span>
+                  {message.isUser && (
+                    <CheckCheck className="w-3 h-3 text-blue-200" />
+                  )}
                 </div>
               </div>
             </div>
