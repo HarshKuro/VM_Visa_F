@@ -170,20 +170,33 @@ export default function Navigation() {
                     </button>
 
                     {/* Dropdown Menu */}
-                    <div className="absolute right-0 top-full mt-2 w-48 bg-white rounded-lg shadow-lg border border-vm-gray-200 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+                    <div className="absolute right-0 top-full mt-2 w-52 bg-white rounded-lg shadow-lg border border-vm-gray-200 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
                       <div className="py-2">
-                        <button className="block w-full px-4 py-2 text-left text-sm text-vm-gray-700 hover:bg-vm-gray-50 transition-colors">
-                          Profile Settings
-                        </button>
-                        <button className="block w-full px-4 py-2 text-left text-sm text-vm-gray-700 hover:bg-vm-gray-50 transition-colors">
-                          Notifications
+                        <Link
+                          to="/agent-profile-view"
+                          className="flex items-center space-x-2 w-full px-4 py-2 text-left text-sm text-vm-gray-700 hover:bg-vm-gray-50 transition-colors"
+                        >
+                          <Eye className="w-4 h-4" />
+                          <span>View Profile</span>
+                        </Link>
+                        <Link
+                          to="/agent-profile-edit"
+                          className="flex items-center space-x-2 w-full px-4 py-2 text-left text-sm text-vm-gray-700 hover:bg-vm-gray-50 transition-colors"
+                        >
+                          <Edit className="w-4 h-4" />
+                          <span>Edit Profile</span>
+                        </Link>
+                        <button className="flex items-center space-x-2 w-full px-4 py-2 text-left text-sm text-vm-gray-700 hover:bg-vm-gray-50 transition-colors">
+                          <Settings className="w-4 h-4" />
+                          <span>Account Settings</span>
                         </button>
                         <hr className="my-1 border-vm-gray-200" />
                         <Link
                           to="/"
-                          className="block w-full px-4 py-2 text-left text-sm text-red-600 hover:bg-red-50 transition-colors"
+                          className="flex items-center space-x-2 w-full px-4 py-2 text-left text-sm text-red-600 hover:bg-red-50 transition-colors"
                         >
-                          Logout
+                          <LogOut className="w-4 h-4" />
+                          <span>Logout</span>
                         </Link>
                       </div>
                     </div>
