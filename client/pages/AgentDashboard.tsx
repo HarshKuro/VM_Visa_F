@@ -458,103 +458,159 @@ export default function AgentDashboard() {
             )}
 
             {/* Contact Information */}
-            <div className="mb-6">
-              <h3 className="text-sm font-semibold text-vm-gray-900 mb-3">
-                Contact Information
-              </h3>
-              <div className="space-y-3">
-                <div className="flex items-center space-x-3">
-                  <Mail className="w-4 h-4 text-vm-gray-500" />
-                  <span className="text-sm text-vm-gray-700">
-                    {agentProfile.email}
-                  </span>
-                </div>
-                <div className="flex items-center space-x-3">
-                  <Phone className="w-4 h-4 text-vm-gray-500" />
-                  <span className="text-sm text-vm-gray-700">
-                    {agentProfile.phone}
-                  </span>
-                </div>
-                <div className="flex items-center space-x-3">
-                  <MapPin className="w-4 h-4 text-vm-gray-500" />
-                  <span className="text-sm text-vm-gray-700">
-                    {agentProfile.location}
-                  </span>
+            {!sidebarCollapsed && (
+              <div className="mb-6">
+                <h3 className="text-sm font-semibold text-vm-gray-900 mb-3">
+                  Contact Information
+                </h3>
+                <div className="space-y-3">
+                  <div className="flex items-center space-x-3">
+                    <Mail className="w-4 h-4 text-vm-gray-500" />
+                    <span className="text-sm text-vm-gray-700">
+                      {agentProfile.email}
+                    </span>
+                  </div>
+                  <div className="flex items-center space-x-3">
+                    <Phone className="w-4 h-4 text-vm-gray-500" />
+                    <span className="text-sm text-vm-gray-700">
+                      {agentProfile.phone}
+                    </span>
+                  </div>
+                  <div className="flex items-center space-x-3">
+                    <MapPin className="w-4 h-4 text-vm-gray-500" />
+                    <span className="text-sm text-vm-gray-700">
+                      {agentProfile.location}
+                    </span>
+                  </div>
                 </div>
               </div>
-            </div>
+            )}
 
             {/* Specializations */}
-            <div className="mb-6">
-              <h3 className="text-sm font-semibold text-vm-gray-900 mb-3">
-                Specializations
-              </h3>
-              <div className="flex flex-wrap gap-2">
-                {agentProfile.specializations.map((spec, index) => (
-                  <Badge key={index} variant="secondary" className="text-xs">
-                    {spec}
-                  </Badge>
-                ))}
+            {!sidebarCollapsed && (
+              <div className="mb-6">
+                <h3 className="text-sm font-semibold text-vm-gray-900 mb-3">
+                  Specializations
+                </h3>
+                <div className="flex flex-wrap gap-2">
+                  {agentProfile.specializations.map((spec, index) => (
+                    <Badge key={index} variant="secondary" className="text-xs">
+                      {spec}
+                    </Badge>
+                  ))}
+                </div>
               </div>
-            </div>
+            )}
 
             {/* Quick Stats */}
-            <div className="mb-6">
-              <h3 className="text-sm font-semibold text-vm-gray-900 mb-3">
-                Performance Overview
-              </h3>
-              <div className="grid grid-cols-2 gap-4">
-                <div className="bg-vm-gray-50 rounded-lg p-3">
-                  <div className="text-lg font-bold text-vm-gray-900">
-                    {agentProfile.completedCases}
+            {!sidebarCollapsed ? (
+              <div className="mb-6">
+                <h3 className="text-sm font-semibold text-vm-gray-900 mb-3">
+                  Performance Overview
+                </h3>
+                <div className="grid grid-cols-2 gap-4">
+                  <div className="bg-vm-gray-50 rounded-lg p-3">
+                    <div className="text-lg font-bold text-vm-gray-900">
+                      {agentProfile.completedCases}
+                    </div>
+                    <div className="text-xs text-vm-gray-600">
+                      Cases Completed
+                    </div>
                   </div>
-                  <div className="text-xs text-vm-gray-600">
-                    Cases Completed
+                  <div className="bg-vm-gray-50 rounded-lg p-3">
+                    <div className="text-lg font-bold text-vm-green">
+                      {agentProfile.successRate}
+                    </div>
+                    <div className="text-xs text-vm-gray-600">Success Rate</div>
                   </div>
-                </div>
-                <div className="bg-vm-gray-50 rounded-lg p-3">
-                  <div className="text-lg font-bold text-vm-green">
-                    {agentProfile.successRate}
+                  <div className="bg-vm-gray-50 rounded-lg p-3">
+                    <div className="text-lg font-bold text-vm-blue">
+                      {agentProfile.activeClients}
+                    </div>
+                    <div className="text-xs text-vm-gray-600">
+                      Active Clients
+                    </div>
                   </div>
-                  <div className="text-xs text-vm-gray-600">Success Rate</div>
-                </div>
-                <div className="bg-vm-gray-50 rounded-lg p-3">
-                  <div className="text-lg font-bold text-vm-blue">
-                    {agentProfile.activeClients}
+                  <div className="bg-vm-gray-50 rounded-lg p-3">
+                    <div className="text-lg font-bold text-vm-gray-900">
+                      {agentProfile.memberSince}
+                    </div>
+                    <div className="text-xs text-vm-gray-600">Member Since</div>
                   </div>
-                  <div className="text-xs text-vm-gray-600">Active Clients</div>
-                </div>
-                <div className="bg-vm-gray-50 rounded-lg p-3">
-                  <div className="text-lg font-bold text-vm-gray-900">
-                    {agentProfile.memberSince}
-                  </div>
-                  <div className="text-xs text-vm-gray-600">Member Since</div>
                 </div>
               </div>
-            </div>
+            ) : (
+              <div className="flex flex-col space-y-2 mb-6">
+                <div className="group relative">
+                  <div className="w-8 h-8 bg-vm-gray-50 rounded-lg flex items-center justify-center mx-auto">
+                    <span className="text-xs font-bold text-vm-gray-900">
+                      {agentProfile.completedCases}
+                    </span>
+                  </div>
+                  <div className="absolute left-full ml-2 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none z-50">
+                    <div className="bg-vm-gray-900 text-white text-sm px-3 py-2 rounded-lg shadow-lg whitespace-nowrap">
+                      {agentProfile.completedCases} Cases Completed
+                      <div className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-1 w-2 h-2 bg-vm-gray-900 rotate-45"></div>
+                    </div>
+                  </div>
+                </div>
+                <div className="group relative">
+                  <div className="w-8 h-8 bg-vm-green/10 rounded-lg flex items-center justify-center mx-auto">
+                    <span className="text-xs font-bold text-vm-green">
+                      {agentProfile.activeClients}
+                    </span>
+                  </div>
+                  <div className="absolute left-full ml-2 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none z-50">
+                    <div className="bg-vm-gray-900 text-white text-sm px-3 py-2 rounded-lg shadow-lg whitespace-nowrap">
+                      {agentProfile.activeClients} Active Clients
+                      <div className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-1 w-2 h-2 bg-vm-gray-900 rotate-45"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            )}
 
             {/* Navigation Tabs */}
             <div className="space-y-2 mb-6">
-              <h3 className="text-sm font-semibold text-vm-gray-900 mb-3">
-                Dashboard Sections
-              </h3>
+              {!sidebarCollapsed && (
+                <h3 className="text-sm font-semibold text-vm-gray-900 mb-3">
+                  Dashboard Sections
+                </h3>
+              )}
               {tabs.map((tab) => {
                 const Icon = tab.icon;
                 return (
-                  <button
-                    key={tab.id}
-                    onClick={() => setActiveTab(tab.id)}
-                    className={`w-full flex items-center space-x-3 px-3 py-2 rounded-lg text-left transition-all duration-200 ${
-                      activeTab === tab.id
-                        ? "bg-vm-green text-white shadow-md"
-                        : "text-vm-gray-600 hover:bg-vm-gray-100 hover:text-vm-gray-900"
-                    }`}
-                  >
-                    <Icon
-                      className={`w-4 h-4 ${activeTab === tab.id ? "text-white" : "text-vm-gray-500"}`}
-                    />
-                    <span className="text-sm font-medium">{tab.label}</span>
-                  </button>
+                  <div key={tab.id} className="relative group">
+                    <button
+                      onClick={() => setActiveTab(tab.id)}
+                      className={`w-full flex items-center ${
+                        sidebarCollapsed
+                          ? "justify-center px-2"
+                          : "space-x-3 px-3"
+                      } py-2 rounded-lg text-left transition-all duration-200 ${
+                        activeTab === tab.id
+                          ? "bg-vm-green text-white shadow-md"
+                          : "text-vm-gray-600 hover:bg-vm-gray-100 hover:text-vm-gray-900"
+                      }`}
+                    >
+                      <Icon
+                        className={`w-4 h-4 ${activeTab === tab.id ? "text-white" : "text-vm-gray-500"}`}
+                      />
+                      {!sidebarCollapsed && (
+                        <span className="text-sm font-medium">{tab.label}</span>
+                      )}
+                    </button>
+
+                    {/* Tooltip for collapsed state */}
+                    {sidebarCollapsed && (
+                      <div className="absolute left-full ml-2 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none z-50">
+                        <div className="bg-vm-gray-900 text-white text-sm px-3 py-2 rounded-lg shadow-lg whitespace-nowrap">
+                          {tab.label}
+                          <div className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-1 w-2 h-2 bg-vm-gray-900 rotate-45"></div>
+                        </div>
+                      </div>
+                    )}
+                  </div>
                 );
               })}
             </div>
