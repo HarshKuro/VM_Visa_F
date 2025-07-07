@@ -5,9 +5,8 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import Navigation from "@/components/Navigation";
 import AIChatAssistant from "@/components/AIChatAssistant";
+import { useUser, UserRole } from "@/contexts/UserContext";
 import { Users, Briefcase, Building } from "lucide-react";
-
-type UserRole = "client" | "agent" | "organization";
 
 export default function Login() {
   const navigate = useNavigate();
