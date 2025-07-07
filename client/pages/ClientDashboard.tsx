@@ -9,6 +9,7 @@ import AIChatAssistant from "@/components/AIChatAssistant";
 import PostRequestModal from "@/components/PostRequestModal";
 import AgentsSection from "@/components/AgentsSection";
 import DocumentUpload from "@/components/DocumentUpload";
+import Messages from "@/components/Messages";
 import {
   Plus,
   Search,
