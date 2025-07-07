@@ -5,6 +5,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Progress } from "@/components/ui/progress";
+import { Switch } from "@/components/ui/switch";
 import {
   Select,
   SelectContent,
@@ -29,6 +30,11 @@ import {
   X,
   Save,
   AlertCircle,
+  Calendar,
+  MapPin,
+  Trash2,
+  Upload,
+  CheckCircle,
 } from "lucide-react";
 
 interface Specialization {
@@ -36,6 +42,69 @@ interface Specialization {
   area: string;
   yearsExperience: number;
   expertiseLevel: string;
+}
+
+interface Experience {
+  id: string;
+  position: string;
+  company: string;
+  startDate: string;
+  endDate: string;
+  current: boolean;
+  description: string;
+  license?: string;
+}
+
+interface Certification {
+  id: string;
+  name: string;
+  organization: string;
+  issueDate: string;
+  expiryDate: string;
+  credentialId: string;
+  verificationUrl: string;
+}
+
+interface Language {
+  id: string;
+  language: string;
+  proficiency: string;
+}
+
+interface BasicInfo {
+  fullName: string;
+  gender: string;
+  dateOfBirth: string;
+  nationality: string;
+}
+
+interface ContactInfo {
+  email: string;
+  phone: string;
+  countryCode: string;
+  city: string;
+  state: string;
+  country: string;
+}
+
+interface Achievement {
+  id: string;
+  title: string;
+}
+
+interface ProfileBio {
+  tagline: string;
+  bio: string;
+  achievements: Achievement[];
+}
+
+interface AccountSettings {
+  emailNotifications: boolean;
+  smsNotifications: boolean;
+  profileVisibility: string;
+  availabilityStatus: string;
+  hourlyRate: number;
+  currency: string;
 }
 
 export default function AgentProfileEdit() {
