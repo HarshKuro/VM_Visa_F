@@ -57,7 +57,7 @@ export default function Navigation() {
             </Link>
           </div>
 
-          {/* Desktop Navigation */}
+          {/* Desktop Navigation - Hide for Agent Dashboard */}
           {!isAgentDashboard && (
             <div className="hidden md:flex items-center space-x-8">
               {/* Country Selector */}
@@ -93,7 +93,11 @@ export default function Navigation() {
                   <>
                     {[
                       { path: "#overview", label: "Overview", icon: BarChart3 },
-                      { path: "#requests", label: "My Requests", icon: FileText },
+                      {
+                        path: "#requests",
+                        label: "My Requests",
+                        icon: FileText,
+                      },
                       {
                         path: "#proposals",
                         label: "Proposals",
@@ -113,9 +117,12 @@ export default function Navigation() {
                           key={item.path}
                           onClick={() => {
                             // Trigger tab change in dashboard
-                            const event = new CustomEvent("dashboardTabChange", {
-                              detail: { tab: item.path.replace("#", "") },
-                            });
+                            const event = new CustomEvent(
+                              "dashboardTabChange",
+                              {
+                                detail: { tab: item.path.replace("#", "") },
+                              },
+                            );
                             window.dispatchEvent(event);
                           }}
                           className="group flex items-center space-x-2 px-3 py-2 rounded-lg text-sm font-medium text-vm-gray-700 hover:text-vm-green hover:bg-vm-green/5 transition-all duration-200 transform hover:scale-105"
@@ -165,77 +172,76 @@ export default function Navigation() {
             </div>
           )}
 
-          {/* Auth Buttons */}
+          {/* Auth Buttons - Always show for logged in users */}
           <div className="hidden md:flex items-center space-x-3">
-              {isLoggedIn ? (
-                // User Profile & Logout for logged-in users
-                <div className="flex items-center space-x-3">
-                  <div className="relative group">
-                    <button className="flex items-center space-x-2 p-2 rounded-lg hover:bg-vm-gray-50 transition-all duration-200">
-                      <div className="w-8 h-8 bg-vm-green rounded-full flex items-center justify-center">
-                        <span className="text-white text-sm font-medium">
-                          JD
-                        </span>
-                      </div>
-                      <ChevronDown className="w-4 h-4 text-vm-gray-600" />
-                    </button>
+            {isLoggedIn ? (
+              // User Profile & Logout for logged-in users
+              <div className="flex items-center space-x-3">
+                <div className="relative group">
+                  <button className="flex items-center space-x-2 p-2 rounded-lg hover:bg-vm-gray-50 transition-all duration-200">
+                    <div className="w-8 h-8 bg-vm-green rounded-full flex items-center justify-center">
+                      <span className="text-white text-sm font-medium">
+                        {isAgentDashboard ? "SJ" : "JD"}
+                      </span>
+                    </div>
+                    <ChevronDown className="w-4 h-4 text-vm-gray-600" />
+                  </button>
 
-                    {/* Dropdown Menu */}
-                    <div className="absolute right-0 top-full mt-2 w-52 bg-white rounded-lg shadow-lg border border-vm-gray-200 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
-                      <div className="py-2">
-                        <Link
-                          to="/agent-profile-view"
-                          className="flex items-center space-x-2 w-full px-4 py-2 text-left text-sm text-vm-gray-700 hover:bg-vm-gray-50 transition-colors"
-                        >
-                          <Eye className="w-4 h-4" />
-                          <span>View Profile</span>
-                        </Link>
-                        <Link
-                          to="/agent-profile-edit"
-                          className="flex items-center space-x-2 w-full px-4 py-2 text-left text-sm text-vm-gray-700 hover:bg-vm-gray-50 transition-colors"
-                        >
-                          <Edit className="w-4 h-4" />
-                          <span>Edit Profile</span>
-                        </Link>
-                        <button className="flex items-center space-x-2 w-full px-4 py-2 text-left text-sm text-vm-gray-700 hover:bg-vm-gray-50 transition-colors">
-                          <Settings className="w-4 h-4" />
-                          <span>Account Settings</span>
-                        </button>
-                        <hr className="my-1 border-vm-gray-200" />
-                        <Link
-                          to="/"
-                          className="flex items-center space-x-2 w-full px-4 py-2 text-left text-sm text-red-600 hover:bg-red-50 transition-colors"
-                        >
-                          <LogOut className="w-4 h-4" />
-                          <span>Logout</span>
-                        </Link>
-                      </div>
+                  {/* Dropdown Menu */}
+                  <div className="absolute right-0 top-full mt-2 w-52 bg-white rounded-lg shadow-lg border border-vm-gray-200 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+                    <div className="py-2">
+                      <Link
+                        to="/agent-profile-view"
+                        className="flex items-center space-x-2 w-full px-4 py-2 text-left text-sm text-vm-gray-700 hover:bg-vm-gray-50 transition-colors"
+                      >
+                        <Eye className="w-4 h-4" />
+                        <span>View Profile</span>
+                      </Link>
+                      <Link
+                        to="/agent-profile-edit"
+                        className="flex items-center space-x-2 w-full px-4 py-2 text-left text-sm text-vm-gray-700 hover:bg-vm-gray-50 transition-colors"
+                      >
+                        <Edit className="w-4 h-4" />
+                        <span>Edit Profile</span>
+                      </Link>
+                      <button className="flex items-center space-x-2 w-full px-4 py-2 text-left text-sm text-vm-gray-700 hover:bg-vm-gray-50 transition-colors">
+                        <Settings className="w-4 h-4" />
+                        <span>Account Settings</span>
+                      </button>
+                      <hr className="my-1 border-vm-gray-200" />
+                      <Link
+                        to="/"
+                        className="flex items-center space-x-2 w-full px-4 py-2 text-left text-sm text-red-600 hover:bg-red-50 transition-colors"
+                      >
+                        <LogOut className="w-4 h-4" />
+                        <span>Logout</span>
+                      </Link>
                     </div>
                   </div>
                 </div>
-              ) : (
-                // Login/Signup buttons for non-logged-in users
-                <>
-                  <Link to="/login">
-                    <Button
-                      variant="ghost"
-                      size="sm"
-                      className="text-vm-gray-700 hover:text-vm-green hover:bg-vm-green/5 transition-all duration-300 transform hover:scale-105 hover:shadow-sm"
-                    >
-                      Login
-                    </Button>
-                  </Link>
-                  <Link to="/signup">
-                    <Button
-                      size="sm"
-                      className="bg-vm-green hover:bg-vm-green-600 text-white transition-all duration-300 transform hover:scale-105 hover:shadow-lg hover:-translate-y-0.5"
-                    >
-                      Sign Up
-                    </Button>
-                  </Link>
-                </>
-              )}
-            </div>
+              </div>
+            ) : (
+              // Login/Signup buttons for non-logged-in users
+              <>
+                <Link to="/login">
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    className="text-vm-gray-700 hover:text-vm-green hover:bg-vm-green/5 transition-all duration-300 transform hover:scale-105 hover:shadow-sm"
+                  >
+                    Login
+                  </Button>
+                </Link>
+                <Link to="/signup">
+                  <Button
+                    size="sm"
+                    className="bg-vm-green hover:bg-vm-green-600 text-white transition-all duration-300 transform hover:scale-105 hover:shadow-lg hover:-translate-y-0.5"
+                  >
+                    Sign Up
+                  </Button>
+                </Link>
+              </>
+            )}
           </div>
 
           {/* Mobile menu button */}
@@ -254,7 +260,7 @@ export default function Navigation() {
         </div>
 
         {/* Mobile Navigation */}
-        {isMenuOpen && (
+        {isMenuOpen && !isAgentDashboard && (
           <div className="md:hidden border-t border-vm-gray-200 py-4">
             <div className="flex flex-col space-y-4">
               {/* Country Selector Mobile */}
@@ -344,7 +350,9 @@ export default function Navigation() {
                   <>
                     <button className="flex items-center space-x-3 text-sm font-medium text-vm-gray-700 hover:text-vm-gray-900 py-2 transition-colors">
                       <div className="w-6 h-6 bg-vm-green rounded-full flex items-center justify-center">
-                        <span className="text-white text-xs">JD</span>
+                        <span className="text-white text-xs">
+                          {isAgentDashboard ? "SJ" : "JD"}
+                        </span>
                       </div>
                       <span>Profile Settings</span>
                     </button>
