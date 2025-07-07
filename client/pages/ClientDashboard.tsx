@@ -949,6 +949,16 @@ export default function ClientDashboard() {
               {activeTab === "documents" && <DocumentUpload />}
 
               {activeTab === "agents" && <AgentsSection />}
+
+              {activeTab === "messages" && (
+                <div className="h-[600px]">
+                  <Messages
+                    userType="client"
+                    currentUserId="client_001"
+                    currentUserName="John Doe"
+                  />
+                </div>
+              )}
             </div>
           </div>
         </div>
