@@ -256,27 +256,70 @@ export default function ClientDashboard() {
               <CardContent
                 className={`${sidebarCollapsed ? "p-3" : "p-6"} transition-all duration-300`}
               >
-                {/* Profile Header */}
-                <div className="text-center mb-6">
-                  <div className="relative mx-auto w-24 h-24 mb-4">
-                    <img
-                      src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150"
-                      alt="John Doe"
-                      className="w-24 h-24 rounded-full object-cover border-4 border-vm-green/20"
-                    />
-                    <div className="absolute bottom-0 right-0 w-6 h-6 bg-green-500 rounded-full border-2 border-white"></div>
-                  </div>
-                  <h2 className="text-xl font-bold text-vm-gray-900">
-                    John Doe
-                  </h2>
-                  <p className="text-sm text-vm-gray-600 mb-2">
-                    Client ID: #VM2024001
-                  </p>
-                  <div className="inline-flex items-center px-2 py-1 bg-green-100 text-green-800 rounded-full text-xs font-medium">
-                    <CheckCircle className="w-3 h-3 mr-1" />
-                    Verified Member
-                  </div>
+                {/* Sidebar Header with Toggle */}
+                <div className="flex items-center justify-between mb-6">
+                  {!sidebarCollapsed && (
+                    <div className="flex items-center space-x-3">
+                      <div className="w-8 h-8 bg-gradient-to-r from-vm-green to-vm-green-600 rounded-lg flex items-center justify-center">
+                        <Users className="w-4 h-4 text-white" />
+                      </div>
+                      <div>
+                        <h3 className="font-semibold text-vm-gray-900 text-sm">
+                          Client
+                        </h3>
+                        <p className="text-xs text-vm-gray-500">Dashboard</p>
+                      </div>
+                    </div>
+                  )}
+
+                  <button
+                    onClick={toggleSidebar}
+                    className={`p-2 rounded-lg bg-vm-gray-100 hover:bg-vm-gray-200 text-vm-gray-600 hover:text-vm-gray-900 transition-all duration-200 ${
+                      sidebarCollapsed ? "mx-auto" : ""
+                    }`}
+                  >
+                    {sidebarCollapsed ? (
+                      <ChevronRight className="w-4 h-4" />
+                    ) : (
+                      <ChevronLeft className="w-4 h-4" />
+                    )}
+                  </button>
                 </div>
+
+                {/* Profile Header */}
+                {!sidebarCollapsed ? (
+                  <div className="text-center mb-6">
+                    <div className="relative mx-auto w-24 h-24 mb-4">
+                      <img
+                        src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150"
+                        alt="John Doe"
+                        className="w-24 h-24 rounded-full object-cover border-4 border-vm-green/20"
+                      />
+                      <div className="absolute bottom-0 right-0 w-6 h-6 bg-green-500 rounded-full border-2 border-white"></div>
+                    </div>
+                    <h2 className="text-xl font-bold text-vm-gray-900">
+                      John Doe
+                    </h2>
+                    <p className="text-sm text-vm-gray-600 mb-2">
+                      Client ID: #VM2024001
+                    </p>
+                    <div className="inline-flex items-center px-2 py-1 bg-green-100 text-green-800 rounded-full text-xs font-medium">
+                      <CheckCircle className="w-3 h-3 mr-1" />
+                      Verified Member
+                    </div>
+                  </div>
+                ) : (
+                  <div className="text-center mb-6">
+                    <div className="relative mx-auto w-10 h-10 mb-2">
+                      <img
+                        src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150"
+                        alt="John Doe"
+                        className="w-10 h-10 rounded-full object-cover border-2 border-vm-green/20"
+                      />
+                      <div className="absolute bottom-0 right-0 w-3 h-3 bg-green-500 rounded-full border border-white"></div>
+                    </div>
+                  </div>
+                )}
 
                 {/* Quick Stats */}
                 <div className="grid grid-cols-2 gap-4 mb-6">
