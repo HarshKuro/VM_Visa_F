@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -27,11 +27,44 @@ import {
   DollarSign,
   Star,
   Activity,
+  Menu,
+  ChevronLeft,
+  ChevronRight,
 } from "lucide-react";
 
 export default function OrganizationDashboard() {
   const [activeTab, setActiveTab] = useState("overview");
   const [showAddAgentModal, setShowAddAgentModal] = useState(false);
+  const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+
+  // Check for mobile viewport and load sidebar state
+  useEffect(() => {
+    const checkMobile = () => {
+      const mobile = window.innerWidth < 768;
+      setIsMobile(mobile);
+      if (mobile) {
+        setSidebarCollapsed(true);
+      }
+    };
+
+    const savedSidebarState = localStorage.getItem("sidebarCollapsed");
+    if (savedSidebarState && !window.innerWidth < 768) {
+      setSidebarCollapsed(JSON.parse(savedSidebarState));
+    }
+
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
+
+  // Save sidebar state to localStorage
+  const toggleSidebar = () => {
+    const newState = !sidebarCollapsed;
+    setSidebarCollapsed(newState);
+    localStorage.setItem("sidebarCollapsed", JSON.stringify(newState));
+  };
 
   // Mock organization data
   const organizationData = {
@@ -551,87 +584,202 @@ export default function OrganizationDashboard() {
       </nav>
 
       <div className="flex">
+        {/* Mobile Overlay */}
+        {isMobile && !sidebarCollapsed && (
+          <div
+            className="fixed inset-0 bg-black/50 z-40 lg:hidden"
+            onClick={() => setSidebarCollapsed(true)}
+          />
+        )}
+
         {/* Sidebar */}
-        <div className="w-64 bg-gradient-to-b from-vm-gray-900 to-vm-gray-800 border-r border-vm-gray-700 min-h-screen shadow-xl">
-          <div className="p-6">
-            <nav className="space-y-1">
+        <div
+          className={`${
+            sidebarCollapsed ? "w-16" : "w-64"
+          } bg-white/95 backdrop-blur-md border-r border-vm-gray-200 min-h-screen shadow-lg transition-all duration-300 ease-in-out z-50 ${
+            isMobile ? "fixed" : "relative"
+          }`}
+        >
+          <div className="p-4">
+            {/* Sidebar Header with Toggle */}
+            <div className="flex items-center justify-between mb-6">
+              {!sidebarCollapsed && (
+                <div className="flex items-center space-x-3">
+                  <div className="w-8 h-8 bg-gradient-to-r from-vm-green to-vm-green-600 rounded-lg flex items-center justify-center">
+                    <Building className="w-4 h-4 text-white" />
+                  </div>
+                  <div className="overflow-hidden">
+                    <h3 className="font-semibold text-vm-gray-900 text-sm truncate">
+                      Organization
+                    </h3>
+                    <p className="text-xs text-vm-gray-500 truncate">
+                      Dashboard
+                    </p>
+                  </div>
+                </div>
+              )}
+
+              <button
+                onClick={toggleSidebar}
+                className={`p-2 rounded-lg bg-vm-gray-100 hover:bg-vm-gray-200 text-vm-gray-600 hover:text-vm-gray-900 transition-all duration-200 ${
+                  sidebarCollapsed ? "mx-auto" : ""
+                }`}
+              >
+                {sidebarCollapsed ? (
+                  <ChevronRight className="w-4 h-4" />
+                ) : (
+                  <ChevronLeft className="w-4 h-4" />
+                )}
+              </button>
+            </div>
+
+            <nav className="space-y-2">
               {sidebarItems.map((item, index) => {
                 const Icon = item.icon;
                 return (
-                  <button
-                    key={item.id}
-                    onClick={() => setActiveTab(item.id)}
-                    className={`w-full flex items-center space-x-3 px-4 py-3 rounded-xl text-left transition-all duration-300 transform hover:scale-105 group ${
-                      activeTab === item.id
-                        ? "bg-gradient-to-r from-vm-green to-vm-green-600 text-white shadow-lg shadow-vm-green/25 scale-105"
-                        : "text-vm-gray-300 hover:bg-vm-gray-700/50 hover:text-white"
-                    }`}
-                    style={{
-                      animationDelay: `${index * 100}ms`,
-                    }}
-                  >
-                    <Icon
-                      className={`w-4 h-4 transition-all duration-300 ${
+                  <div key={item.id} className="relative group">
+                    <button
+                      onClick={() => setActiveTab(item.id)}
+                      className={`w-full flex items-center ${
+                        sidebarCollapsed
+                          ? "justify-center px-3"
+                          : "space-x-3 px-4"
+                      } py-3 rounded-xl text-left transition-all duration-300 transform hover:scale-105 group/btn ${
                         activeTab === item.id
-                          ? "text-white scale-110"
-                          : "text-vm-gray-400 group-hover:text-vm-green group-hover:scale-110"
+                          ? "bg-gradient-to-r from-vm-green/10 to-vm-green/5 text-vm-green border border-vm-green/20 shadow-lg shadow-vm-green/10"
+                          : "text-vm-gray-600 hover:bg-vm-gray-50 hover:text-vm-gray-900"
                       }`}
-                    />
-                    <span
-                      className={`font-medium transition-all duration-300 ${
-                        activeTab === item.id
-                          ? "text-white"
-                          : "group-hover:text-white"
-                      }`}
+                      style={{
+                        animationDelay: `${index * 50}ms`,
+                      }}
                     >
-                      {item.label}
-                    </span>
+                      <Icon
+                        className={`w-4 h-4 transition-all duration-300 ${
+                          activeTab === item.id
+                            ? "text-vm-green scale-110"
+                            : "text-vm-gray-500 group-hover/btn:text-vm-green group-hover/btn:scale-110"
+                        }`}
+                      />
+                      {!sidebarCollapsed && (
+                        <>
+                          <span
+                            className={`font-medium transition-all duration-300 ${
+                              activeTab === item.id
+                                ? "text-vm-green"
+                                : "group-hover/btn:text-vm-gray-900"
+                            }`}
+                          >
+                            {item.label}
+                          </span>
 
-                    {/* Active indicator */}
-                    {activeTab === item.id && (
-                      <div className="ml-auto">
-                        <div className="w-2 h-2 bg-white rounded-full animate-pulse"></div>
+                          {/* Active indicator */}
+                          {activeTab === item.id && (
+                            <div className="ml-auto">
+                              <div className="w-2 h-2 bg-vm-green rounded-full animate-pulse"></div>
+                            </div>
+                          )}
+                        </>
+                      )}
+
+                      {/* Left border indicator */}
+                      <div
+                        className={`absolute left-0 w-1 h-8 bg-vm-green rounded-r-full transition-all duration-300 ${
+                          activeTab === item.id
+                            ? "opacity-100 scale-y-100"
+                            : "opacity-0 scale-y-0 group-hover/btn:opacity-100 group-hover/btn:scale-y-100"
+                        }`}
+                      ></div>
+                    </button>
+
+                    {/* Tooltip for collapsed state */}
+                    {sidebarCollapsed && (
+                      <div className="absolute left-full ml-2 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none z-50">
+                        <div className="bg-vm-gray-900 text-white text-sm px-3 py-2 rounded-lg shadow-lg whitespace-nowrap">
+                          {item.label}
+                          <div className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-1 w-2 h-2 bg-vm-gray-900 rotate-45"></div>
+                        </div>
                       </div>
                     )}
-
-                    {/* Hover indicator */}
-                    <div
-                      className={`absolute left-0 w-1 h-8 bg-vm-green rounded-r-full transition-all duration-300 ${
-                        activeTab === item.id
-                          ? "opacity-100 scale-y-100"
-                          : "opacity-0 scale-y-0 group-hover:opacity-100 group-hover:scale-y-100"
-                      }`}
-                    ></div>
-                  </button>
+                  </div>
                 );
               })}
             </nav>
 
             {/* Sidebar Footer */}
-            <div className="mt-8 pt-6 border-t border-vm-gray-700">
-              <div className="bg-vm-gray-800/50 rounded-xl p-4 backdrop-blur-sm">
-                <div className="text-center">
-                  <div className="w-8 h-8 bg-vm-green rounded-full flex items-center justify-center mx-auto mb-2">
-                    <Building className="w-4 h-4 text-white" />
-                  </div>
-                  <p className="text-xs text-vm-gray-400 mb-1">Organization</p>
-                  <p className="text-sm font-medium text-white truncate">
-                    {organizationData.name}
-                  </p>
-                  {organizationData.verified && (
-                    <div className="flex items-center justify-center mt-2">
-                      <CheckCircle className="w-3 h-3 text-vm-green mr-1" />
-                      <span className="text-xs text-vm-green">Verified</span>
+            {!sidebarCollapsed && (
+              <div className="mt-8 pt-6 border-t border-vm-gray-200">
+                <div className="bg-gradient-to-r from-vm-green/5 to-vm-green/10 border border-vm-green/20 rounded-xl p-4 backdrop-blur-sm">
+                  <div className="text-center">
+                    <div className="w-8 h-8 bg-gradient-to-r from-vm-green to-vm-green-600 rounded-full flex items-center justify-center mx-auto mb-2">
+                      <Building className="w-4 h-4 text-white" />
                     </div>
-                  )}
+                    <p className="text-xs text-vm-gray-500 mb-1">
+                      Organization
+                    </p>
+                    <p className="text-sm font-medium text-vm-gray-900 truncate">
+                      {organizationData.name}
+                    </p>
+                    {organizationData.verified && (
+                      <div className="flex items-center justify-center mt-2">
+                        <CheckCircle className="w-3 h-3 text-vm-green mr-1" />
+                        <span className="text-xs text-vm-green font-medium">
+                          Verified
+                        </span>
+                      </div>
+                    )}
+                  </div>
                 </div>
               </div>
-            </div>
+            )}
+
+            {/* Collapsed organization info */}
+            {sidebarCollapsed && (
+              <div className="mt-8 pt-6 border-t border-vm-gray-200">
+                <div className="flex justify-center group relative">
+                  <div className="w-8 h-8 bg-gradient-to-r from-vm-green to-vm-green-600 rounded-full flex items-center justify-center">
+                    <Building className="w-4 h-4 text-white" />
+                  </div>
+                  {organizationData.verified && (
+                    <div className="absolute -top-1 -right-1">
+                      <CheckCircle className="w-3 h-3 text-vm-green bg-white rounded-full" />
+                    </div>
+                  )}
+
+                  {/* Tooltip */}
+                  <div className="absolute left-full ml-2 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none z-50">
+                    <div className="bg-vm-gray-900 text-white text-sm px-3 py-2 rounded-lg shadow-lg whitespace-nowrap">
+                      {organizationData.name}
+                      {organizationData.verified && (
+                        <span className="block text-xs text-vm-green">
+                          ✓ Verified
+                        </span>
+                      )}
+                      <div className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-1 w-2 h-2 bg-vm-gray-900 rotate-45"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            )}
           </div>
         </div>
 
         {/* Main Content */}
-        <div className="flex-1 p-8">{renderContent()}</div>
+        <div
+          className={`flex-1 p-8 transition-all duration-300 ${isMobile && !sidebarCollapsed ? "blur-sm" : ""}`}
+        >
+          {/* Mobile menu button */}
+          {isMobile && sidebarCollapsed && (
+            <div className="mb-6">
+              <button
+                onClick={() => setSidebarCollapsed(false)}
+                className="p-3 bg-white rounded-lg shadow-md border border-vm-gray-200 hover:shadow-lg transition-all duration-200"
+              >
+                <Menu className="w-5 h-5 text-vm-gray-600" />
+              </button>
+            </div>
+          )}
+          {renderContent()}
+        </div>
       </div>
     </div>
   );
