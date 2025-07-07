@@ -343,12 +343,57 @@ export default function AgentDashboard() {
               </div>
             </div>
 
+            {/* Profile Strength Meter */}
+            <div className="mb-6 p-4 bg-gradient-to-r from-vm-green/10 to-vm-green/5 rounded-xl border border-vm-green/20">
+              <div className="flex items-center justify-between mb-2">
+                <span className="text-sm font-medium text-vm-gray-700">
+                  Profile Strength
+                </span>
+                <span className="text-sm font-bold text-vm-green">
+                  {profileStrength}%
+                </span>
+              </div>
+              <Progress value={profileStrength} className="h-2 mb-2" />
+              <p className="text-xs text-vm-gray-600">
+                {profileStrength === 100
+                  ? "Complete!"
+                  : "Keep building your profile to attract more clients"}
+              </p>
+            </div>
+
+            {/* Navigation Tabs */}
+            <div className="space-y-2 mb-6">
+              <h3 className="text-sm font-semibold text-vm-gray-900 mb-3">
+                Profile Sections
+              </h3>
+              {tabs.map((tab) => {
+                const Icon = tab.icon;
+                return (
+                  <button
+                    key={tab.id}
+                    onClick={() => setActiveTab(tab.id)}
+                    className={`w-full flex items-center space-x-3 px-3 py-2 rounded-lg text-left transition-all duration-200 ${
+                      activeTab === tab.id
+                        ? "bg-vm-green text-white shadow-md"
+                        : "text-vm-gray-600 hover:bg-vm-gray-100 hover:text-vm-gray-900"
+                    }`}
+                  >
+                    <Icon
+                      className={`w-4 h-4 ${activeTab === tab.id ? "text-white" : "text-vm-gray-500"}`}
+                    />
+                    <span className="text-sm font-medium">{tab.label}</span>
+                    {tab.id === "specializations" && hasUnsavedChanges && (
+                      <div className="ml-auto">
+                        <div className="w-2 h-2 bg-orange-500 rounded-full animate-pulse"></div>
+                      </div>
+                    )}
+                  </button>
+                );
+              })}
+            </div>
+
             {/* Action Buttons */}
             <div className="space-y-3">
-              <Button className="w-full bg-vm-green hover:bg-vm-green-600">
-                <Edit className="w-4 h-4 mr-2" />
-                Edit Profile
-              </Button>
               <Button variant="outline" className="w-full">
                 <Settings className="w-4 h-4 mr-2" />
                 Account Settings
