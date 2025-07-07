@@ -775,7 +775,7 @@ export default function AgentProfileEdit() {
               <p className="text-vm-gray-700 mb-2">{exp.description}</p>
               {exp.license && (
                 <p className="text-sm text-vm-gray-600">
-                  📄 License: {exp.license}
+                  ��� License: {exp.license}
                 </p>
               )}
             </div>
@@ -1313,39 +1313,54 @@ export default function AgentProfileEdit() {
           <div className="w-80 space-y-6">
             {/* Profile Header */}
             <div className="bg-white rounded-lg border border-vm-gray-200 p-6">
-              <div className="flex items-center space-x-4">
+              <div className="flex items-center space-x-4 mb-4">
                 <div className="w-12 h-12 bg-vm-green rounded-lg flex items-center justify-center text-white font-bold text-lg">
                   SJ
                 </div>
                 <div className="flex-1">
-                  <h3 className="font-semibold text-vm-gray-900">
+                  <h3 className="font-semibold text-vm-gray-900 text-lg">
                     Sarah Johnson
                   </h3>
-                  <p className="text-sm text-vm-gray-600">
+                  <p className="text-sm text-vm-gray-600 mb-2">
                     Your trusted partner in immigration success
                   </p>
-                  <div className="flex items-center space-x-1 mt-1">
-                    <span className="text-xs text-vm-gray-500">✓ Live</span>
-                    <span className="text-xs text-vm-gray-500">✓ Skill</span>
-                    <span className="text-xs text-vm-gray-500">📍 1 Lang</span>
-                    <span className="text-xs text-vm-gray-500">🥇 1 Cert</span>
+                  <div className="flex items-center space-x-3 text-xs">
+                    <div className="flex items-center space-x-1">
+                      <div className="w-2 h-2 bg-vm-green rounded-full"></div>
+                      <span className="text-vm-gray-500">1 Exp</span>
+                    </div>
+                    <div className="flex items-center space-x-1">
+                      <div className="w-2 h-2 bg-vm-blue rounded-full"></div>
+                      <span className="text-vm-gray-500">3 Skills</span>
+                    </div>
+                    <div className="flex items-center space-x-1">
+                      <div className="w-2 h-2 bg-vm-purple-600 rounded-full"></div>
+                      <span className="text-vm-gray-500">1 Lang</span>
+                    </div>
+                    <div className="flex items-center space-x-1">
+                      <div className="w-2 h-2 bg-yellow-500 rounded-full"></div>
+                      <span className="text-vm-gray-500">1 Cert</span>
+                    </div>
                   </div>
                 </div>
               </div>
 
               {/* Profile Strength */}
-              <div className="mt-4 pt-4 border-t border-vm-gray-200">
-                <div className="flex items-center justify-between mb-2">
-                  <span className="text-sm font-medium text-vm-gray-700">
-                    Profile Strength
-                  </span>
-                  <span className="text-sm font-bold text-vm-green">100%</span>
-                </div>
-                <Progress value={100} className="h-2" />
-                <div className="flex justify-between text-xs text-vm-gray-500 mt-1">
-                  <span>Completed</span>
-                  <span>9/9</span>
-                </div>
+              <div className="flex items-center justify-between mb-2">
+                <span className="text-sm font-medium text-vm-gray-900">
+                  ✓ Profile Strength
+                </span>
+                <span className="text-sm font-bold text-vm-green">100%</span>
+              </div>
+              <div className="w-full bg-vm-gray-200 rounded-full h-2 mb-2">
+                <div
+                  className="bg-vm-green h-2 rounded-full"
+                  style={{ width: "100%" }}
+                ></div>
+              </div>
+              <div className="flex justify-between text-xs text-vm-gray-500">
+                <span>Completed</span>
+                <span>9/9</span>
               </div>
             </div>
 
