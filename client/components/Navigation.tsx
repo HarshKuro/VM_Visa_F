@@ -24,6 +24,8 @@ export default function Navigation() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [selectedCountry, setSelectedCountry] = useState("United States");
   const location = useLocation();
+  const navigate = useNavigate();
+  const { user, isAuthenticated, logout } = useUser();
 
   // Check if user is on dashboard pages (logged in)
   const isLoggedIn =
