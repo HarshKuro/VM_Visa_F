@@ -236,10 +236,26 @@ export default function ClientDashboard() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Dashboard Layout with Sidebar */}
         <div className="flex gap-8">
+          {/* Mobile Overlay */}
+          {isMobile && !sidebarCollapsed && (
+            <div
+              className="fixed inset-0 bg-black/50 z-40 lg:hidden"
+              onClick={() => setSidebarCollapsed(true)}
+            />
+          )}
+
           {/* Left Sidebar - User Profile */}
-          <div className="w-80 flex-shrink-0">
-            <Card className="sticky top-24">
-              <CardContent className="p-6">
+          <div
+            className={`${
+              sidebarCollapsed ? "w-16" : "w-80"
+            } flex-shrink-0 transition-all duration-300 ease-in-out ${
+              isMobile ? "fixed z-50" : "relative"
+            }`}
+          >
+            <Card className="sticky top-24 h-fit">
+              <CardContent
+                className={`${sidebarCollapsed ? "p-3" : "p-6"} transition-all duration-300`}
+              >
                 {/* Profile Header */}
                 <div className="text-center mb-6">
                   <div className="relative mx-auto w-24 h-24 mb-4">
