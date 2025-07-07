@@ -518,7 +518,35 @@ export default function OrganizationDashboard() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-vm-gray-50 to-vm-gray-100/50">
+    <>
+      {/* Custom styles for smooth sidebar transitions */}
+      <style jsx>{`
+        .sidebar-transition {
+          transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .tooltip-enter {
+          animation: tooltipFadeIn 0.2s ease-out;
+        }
+        @keyframes tooltipFadeIn {
+          from {
+            opacity: 0;
+            transform: translateX(-10px);
+          }
+          to {
+            opacity: 1;
+            transform: translateX(0);
+          }
+        }
+        .mobile-sidebar {
+          transform: translateX(-100%);
+          transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .mobile-sidebar.open {
+          transform: translateX(0);
+        }
+      `}</style>
+
+      <div className="min-h-screen bg-gradient-to-br from-vm-gray-50 to-vm-gray-100/50">
       {/* Top Navigation */}
       <nav className="bg-white/95 backdrop-blur-sm border-b border-vm-gray-200 sticky top-0 z-40 shadow-sm">
         <div className="max-w-full px-4 sm:px-6 lg:px-8">
