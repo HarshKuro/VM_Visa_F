@@ -475,50 +475,88 @@ export default function ClientDashboard() {
                 )}
 
                 {/* Action Buttons */}
-                <div className="space-y-3">
-                  <Button
-                    onClick={() => setActiveTab("documents")}
-                    variant="outline"
-                    className="w-full justify-start"
-                  >
-                    <Eye className="w-4 h-4 mr-2" />
-                    View Documents
-                  </Button>
-                  <Button
-                    onClick={() => setShowPostModal(true)}
-                    className="w-full bg-vm-green hover:bg-vm-green-600"
-                  >
-                    <Plus className="w-4 h-4 mr-2" />
-                    Post New Request
-                  </Button>
-                </div>
-
-                {/* Recent Activity Preview */}
-                <div className="mt-6 pt-6 border-t border-vm-gray-200">
-                  <h3 className="text-sm font-semibold text-vm-gray-900 mb-3">
-                    Recent Activity
-                  </h3>
-                  <div className="space-y-2">
-                    <div className="flex items-center text-xs">
-                      <div className="w-2 h-2 bg-green-500 rounded-full mr-2"></div>
-                      <span className="text-vm-gray-600">
-                        New proposal received
-                      </span>
+                {!sidebarCollapsed ? (
+                  <div className="space-y-3">
+                    <Button
+                      onClick={() => setActiveTab("documents")}
+                      variant="outline"
+                      className="w-full justify-start"
+                    >
+                      <Eye className="w-4 h-4 mr-2" />
+                      View Documents
+                    </Button>
+                    <Button
+                      onClick={() => setShowPostModal(true)}
+                      className="w-full bg-vm-green hover:bg-vm-green-600"
+                    >
+                      <Plus className="w-4 h-4 mr-2" />
+                      Post New Request
+                    </Button>
+                  </div>
+                ) : (
+                  <div className="space-y-3">
+                    <div className="group relative">
+                      <Button
+                        onClick={() => setActiveTab("documents")}
+                        variant="outline"
+                        size="sm"
+                        className="w-8 h-8 p-0 mx-auto block"
+                      >
+                        <Eye className="w-4 h-4" />
+                      </Button>
+                      <div className="absolute left-full ml-2 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none z-50">
+                        <div className="bg-vm-gray-900 text-white text-sm px-3 py-2 rounded-lg shadow-lg whitespace-nowrap">
+                          View Documents
+                          <div className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-1 w-2 h-2 bg-vm-gray-900 rotate-45"></div>
+                        </div>
+                      </div>
                     </div>
-                    <div className="flex items-center text-xs">
-                      <div className="w-2 h-2 bg-blue-500 rounded-full mr-2"></div>
-                      <span className="text-vm-gray-600">
-                        Documents uploaded
-                      </span>
-                    </div>
-                    <div className="flex items-center text-xs">
-                      <div className="w-2 h-2 bg-yellow-500 rounded-full mr-2"></div>
-                      <span className="text-vm-gray-600">
-                        Application updated
-                      </span>
+                    <div className="group relative">
+                      <Button
+                        onClick={() => setShowPostModal(true)}
+                        size="sm"
+                        className="w-8 h-8 p-0 mx-auto block bg-vm-green hover:bg-vm-green-600"
+                      >
+                        <Plus className="w-4 h-4" />
+                      </Button>
+                      <div className="absolute left-full ml-2 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none z-50">
+                        <div className="bg-vm-gray-900 text-white text-sm px-3 py-2 rounded-lg shadow-lg whitespace-nowrap">
+                          Post New Request
+                          <div className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-1 w-2 h-2 bg-vm-gray-900 rotate-45"></div>
+                        </div>
+                      </div>
                     </div>
                   </div>
-                </div>
+                )}
+
+                {/* Recent Activity Preview */}
+                {!sidebarCollapsed && (
+                  <div className="mt-6 pt-6 border-t border-vm-gray-200">
+                    <h3 className="text-sm font-semibold text-vm-gray-900 mb-3">
+                      Recent Activity
+                    </h3>
+                    <div className="space-y-2">
+                      <div className="flex items-center text-xs">
+                        <div className="w-2 h-2 bg-green-500 rounded-full mr-2"></div>
+                        <span className="text-vm-gray-600">
+                          New proposal received
+                        </span>
+                      </div>
+                      <div className="flex items-center text-xs">
+                        <div className="w-2 h-2 bg-blue-500 rounded-full mr-2"></div>
+                        <span className="text-vm-gray-600">
+                          Documents uploaded
+                        </span>
+                      </div>
+                      <div className="flex items-center text-xs">
+                        <div className="w-2 h-2 bg-yellow-500 rounded-full mr-2"></div>
+                        <span className="text-vm-gray-600">
+                          Application updated
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                )}
               </CardContent>
             </Card>
           </div>
