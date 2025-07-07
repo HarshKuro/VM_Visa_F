@@ -514,29 +514,6 @@ export default function AgentDashboard() {
 
         {/* Main Content Area */}
         <div className="flex-1 p-8">
-          {/* Unsaved Changes Banner */}
-          {hasUnsavedChanges && (
-            <div className="mb-6 p-4 bg-orange-50 border border-orange-200 rounded-lg flex items-center justify-between">
-              <div className="flex items-center space-x-3">
-                <AlertCircle className="w-5 h-5 text-orange-600" />
-                <div>
-                  <p className="font-medium text-orange-800">Unsaved Changes</p>
-                  <p className="text-sm text-orange-600">
-                    You have unsaved changes in your Immigration Specializations
-                  </p>
-                </div>
-              </div>
-              <Button
-                onClick={saveSpecializations}
-                size="sm"
-                className="bg-orange-600 hover:bg-orange-700"
-              >
-                <Save className="w-4 h-4 mr-2" />
-                Save Now
-              </Button>
-            </div>
-          )}
-
           {/* Content Header */}
           <div className="mb-8">
             <div className="bg-gradient-to-r from-vm-green to-vm-green-600 rounded-lg p-6 text-white">
