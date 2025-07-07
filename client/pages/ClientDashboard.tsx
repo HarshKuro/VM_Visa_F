@@ -402,6 +402,11 @@ export default function ClientDashboard() {
                       },
                       { id: "documents", label: "Documents", icon: Upload },
                       { id: "agents", label: "Browse Agents", icon: Users },
+                      {
+                        id: "messages",
+                        label: "Messages",
+                        icon: MessageSquare,
+                      },
                     ].map((section) => {
                       const Icon = section.icon;
                       return (
