@@ -910,7 +910,10 @@ export default function AgentDashboard() {
               </p>
             </Card>
           )}
-                    {[
+        </div>
+      </div>
+    </div>
+  );
                       {
                         id: 1,
                         title: "H1-B Visa Application Review",
