@@ -37,6 +37,8 @@ export default function AgentsSection() {
     messages: [],
     newMessage: "",
   });
+  const [showChat, setShowChat] = useState(false);
+  const [selectedAgent, setSelectedAgent] = useState<any>(null);
   const agents = [
     {
       id: "1",
