@@ -664,6 +664,214 @@ export default function AgentDashboard() {
                   );
                 })}
               </div>
+
+              {/* Main Content Grid */}
+              <div className="grid lg:grid-cols-3 gap-8">
+                {/* Pending Requests */}
+                <div className="lg:col-span-2">
+                  <Card>
+                    <CardHeader>
+                      <CardTitle className="flex items-center space-x-2">
+                        <Clock className="w-5 h-5" />
+                        <span>Pending Requests</span>
+                      </CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                      <div className="space-y-4">
+                        {[
+                          {
+                            id: 1,
+                            title: "H1-B Visa Application Review",
+                            client: "John Smith",
+                            budget: "$2,500",
+                            time: "2 hours ago",
+                            status: "awaiting_review",
+                            urgent: true,
+                          },
+                          {
+                            id: 2,
+                            title: "Canada Express Entry Documents",
+                            client: "Maria Garcia",
+                            budget: "$3,200",
+                            time: "5 hours ago",
+                            status: "pending_response",
+                            urgent: false,
+                          },
+                          {
+                            id: 3,
+                            title: "Family Sponsorship Status Update",
+                            client: "Ahmed Hassan",
+                            budget: "$800",
+                            time: "1 day ago",
+                            status: "action_required",
+                            urgent: false,
+                          },
+                        ].map((request) => (
+                          <div
+                            key={request.id}
+                            className="p-4 border border-vm-gray-200 rounded-lg hover:shadow-md transition-shadow"
+                          >
+                            <div className="flex items-start justify-between">
+                              <div className="flex-1">
+                                <div className="flex items-center space-x-2 mb-2">
+                                  <h3 className="font-semibold text-vm-gray-900">
+                                    {request.title}
+                                  </h3>
+                                  {request.urgent && (
+                                    <span className="px-2 py-1 bg-red-100 text-red-800 text-xs rounded-full">
+                                      Urgent
+                                    </span>
+                                  )}
+                                  <span className="px-2 py-1 bg-orange-100 text-orange-800 text-xs rounded-full">
+                                    {request.status.replace("_", " ")}
+                                  </span>
+                                </div>
+                                <p className="text-sm text-vm-gray-600 mb-2">
+                                  Client: {request.client}
+                                </p>
+                                <div className="flex items-center space-x-4 text-xs text-vm-gray-500">
+                                  <span className="flex items-center">
+                                    <DollarSign className="w-3 h-3 mr-1" />
+                                    {request.budget}
+                                  </span>
+                                  <span className="flex items-center">
+                                    <Clock className="w-3 h-3 mr-1" />
+                                    {request.time}
+                                  </span>
+                                </div>
+                              </div>
+                              <div className="flex items-center space-x-2">
+                                <Button
+                                  size="sm"
+                                  className="bg-vm-green hover:bg-vm-green-600"
+                                >
+                                  Take Action
+                                </Button>
+                                <Button size="sm" variant="outline">
+                                  View Details
+                                </Button>
+                              </div>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                      <div className="mt-4">
+                        <Button variant="outline" className="w-full">
+                          View All Pending Requests
+                        </Button>
+                      </div>
+                    </CardContent>
+                  </Card>
+                </div>
+
+                {/* Right Sidebar */}
+                <div className="space-y-6">
+                  {/* Quick Actions */}
+                  <Card>
+                    <CardHeader>
+                      <CardTitle>Quick Actions</CardTitle>
+                    </CardHeader>
+                    <CardContent className="space-y-3">
+                      <Button className="w-full bg-vm-green hover:bg-vm-green-600">
+                        Submit Proposal
+                      </Button>
+                      <Button variant="outline" className="w-full">
+                        Update Profile
+                      </Button>
+                      <Button variant="outline" className="w-full">
+                        View Analytics
+                      </Button>
+                    </CardContent>
+                  </Card>
+
+                  {/* Performance Overview */}
+                  <Card>
+                    <CardHeader>
+                      <CardTitle className="flex items-center space-x-2">
+                        <TrendingUp className="w-5 h-5" />
+                        <span>This Month</span>
+                      </CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                      <div className="space-y-4">
+                        <div className="flex justify-between items-center">
+                          <span className="text-sm text-vm-gray-600">
+                            Proposals Sent
+                          </span>
+                          <span className="font-semibold">24</span>
+                        </div>
+                        <div className="flex justify-between items-center">
+                          <span className="text-sm text-vm-gray-600">
+                            Success Rate
+                          </span>
+                          <span className="font-semibold text-green-600">
+                            87%
+                          </span>
+                        </div>
+                        <div className="flex justify-between items-center">
+                          <span className="text-sm text-vm-gray-600">
+                            Avg Response Time
+                          </span>
+                          <span className="font-semibold">2.3 hours</span>
+                        </div>
+                        <div className="flex justify-between items-center">
+                          <span className="text-sm text-vm-gray-600">
+                            Client Satisfaction
+                          </span>
+                          <span className="font-semibold text-yellow-600">
+                            4.9/5
+                          </span>
+                        </div>
+                      </div>
+                    </CardContent>
+                  </Card>
+
+                  {/* Upcoming Deadlines */}
+                  <Card>
+                    <CardHeader>
+                      <CardTitle className="flex items-center space-x-2">
+                        <Calendar className="w-5 h-5" />
+                        <span>Upcoming Deadlines</span>
+                      </CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                      <div className="space-y-3">
+                        <div className="flex items-center space-x-3">
+                          <div className="w-2 h-2 bg-red-500 rounded-full"></div>
+                          <div className="flex-1">
+                            <p className="text-sm font-medium">
+                              H1-B Filing Deadline
+                            </p>
+                            <p className="text-xs text-vm-gray-500">Tomorrow</p>
+                          </div>
+                        </div>
+                        <div className="flex items-center space-x-3">
+                          <div className="w-2 h-2 bg-yellow-500 rounded-full"></div>
+                          <div className="flex-1">
+                            <p className="text-sm font-medium">
+                              Client Meeting
+                            </p>
+                            <p className="text-xs text-vm-gray-500">
+                              Dec 28, 2024
+                            </p>
+                          </div>
+                        </div>
+                        <div className="flex items-center space-x-3">
+                          <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
+                          <div className="flex-1">
+                            <p className="text-sm font-medium">
+                              Document Review
+                            </p>
+                            <p className="text-xs text-vm-gray-500">
+                              Dec 30, 2024
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    </CardContent>
+                  </Card>
+                </div>
+              </div>
             </>
           )}
 
