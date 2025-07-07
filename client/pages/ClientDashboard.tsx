@@ -378,27 +378,101 @@ export default function ClientDashboard() {
                   </div>
                 )}
 
-                {/* Profile Details */}
-                <div className="space-y-4 mb-6">
-                  <div className="flex items-center text-sm">
-                    <Mail className="w-4 h-4 text-vm-gray-400 mr-3" />
-                    <span className="text-vm-gray-600">john.doe@email.com</span>
-                  </div>
-                  <div className="flex items-center text-sm">
-                    <Users className="w-4 h-4 text-vm-gray-400 mr-3" />
-                    <span className="text-vm-gray-600">+1 (555) 123-4567</span>
-                  </div>
-                  <div className="flex items-center text-sm">
-                    <Globe className="w-4 h-4 text-vm-gray-400 mr-3" />
-                    <span className="text-vm-gray-600">United States</span>
-                  </div>
-                  <div className="flex items-center text-sm">
-                    <Calendar className="w-4 h-4 text-vm-gray-400 mr-3" />
-                    <span className="text-vm-gray-600">
-                      Member since Jan 2024
-                    </span>
-                  </div>
+                {/* Dashboard Navigation */}
+                <div className="mb-6">
+                  {!sidebarCollapsed && (
+                    <h3 className="text-sm font-semibold text-vm-gray-900 mb-3">
+                      Dashboard Sections
+                    </h3>
+                  )}
+                  <nav className="space-y-1">
+                    {[
+                      { id: "overview", label: "Overview", icon: TrendingUp },
+                      { id: "requests", label: "My Requests", icon: FileText },
+                      {
+                        id: "proposals",
+                        label: "Proposals",
+                        icon: MessageSquare,
+                      },
+                      {
+                        id: "applications",
+                        label: "Applications",
+                        icon: CheckCircle,
+                      },
+                      { id: "documents", label: "Documents", icon: Upload },
+                      { id: "agents", label: "Browse Agents", icon: Users },
+                    ].map((section) => {
+                      const Icon = section.icon;
+                      return (
+                        <div key={section.id} className="relative group">
+                          <button
+                            onClick={() => setActiveTab(section.id)}
+                            className={`w-full flex items-center ${
+                              sidebarCollapsed
+                                ? "justify-center px-2"
+                                : "space-x-3 px-3"
+                            } py-2 rounded-lg text-left transition-all duration-200 ${
+                              activeTab === section.id
+                                ? "bg-vm-green text-white"
+                                : "text-vm-gray-600 hover:bg-vm-gray-100 hover:text-vm-gray-900"
+                            }`}
+                          >
+                            <Icon
+                              className={`w-4 h-4 ${
+                                activeTab === section.id
+                                  ? "text-white"
+                                  : "text-vm-gray-500"
+                              }`}
+                            />
+                            {!sidebarCollapsed && (
+                              <span className="text-sm font-medium">
+                                {section.label}
+                              </span>
+                            )}
+                          </button>
+
+                          {/* Tooltip for collapsed state */}
+                          {sidebarCollapsed && (
+                            <div className="absolute left-full ml-2 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none z-50">
+                              <div className="bg-vm-gray-900 text-white text-sm px-3 py-2 rounded-lg shadow-lg whitespace-nowrap">
+                                {section.label}
+                                <div className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-1 w-2 h-2 bg-vm-gray-900 rotate-45"></div>
+                              </div>
+                            </div>
+                          )}
+                        </div>
+                      );
+                    })}
+                  </nav>
                 </div>
+
+                {/* Profile Details */}
+                {!sidebarCollapsed && (
+                  <div className="space-y-4 mb-6">
+                    <div className="flex items-center text-sm">
+                      <Mail className="w-4 h-4 text-vm-gray-400 mr-3" />
+                      <span className="text-vm-gray-600">
+                        john.doe@email.com
+                      </span>
+                    </div>
+                    <div className="flex items-center text-sm">
+                      <Users className="w-4 h-4 text-vm-gray-400 mr-3" />
+                      <span className="text-vm-gray-600">
+                        +1 (555) 123-4567
+                      </span>
+                    </div>
+                    <div className="flex items-center text-sm">
+                      <Globe className="w-4 h-4 text-vm-gray-400 mr-3" />
+                      <span className="text-vm-gray-600">United States</span>
+                    </div>
+                    <div className="flex items-center text-sm">
+                      <Calendar className="w-4 h-4 text-vm-gray-400 mr-3" />
+                      <span className="text-vm-gray-600">
+                        Member since Jan 2024
+                      </span>
+                    </div>
+                  </div>
+                )}
 
                 {/* Action Buttons */}
                 <div className="space-y-3">
