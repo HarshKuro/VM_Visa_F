@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -27,10 +27,43 @@ import {
   Save,
   AlertCircle,
   BarChart3,
+  Menu,
+  ChevronLeft,
+  ChevronRight,
 } from "lucide-react";
 
 export default function AgentDashboard() {
   const [activeTab, setActiveTab] = useState("clients");
+  const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+
+  // Check for mobile viewport and load sidebar state
+  useEffect(() => {
+    const checkMobile = () => {
+      const mobile = window.innerWidth < 768;
+      setIsMobile(mobile);
+      if (mobile) {
+        setSidebarCollapsed(true);
+      }
+    };
+
+    const savedSidebarState = localStorage.getItem("agentSidebarCollapsed");
+    if (savedSidebarState && !window.innerWidth < 768) {
+      setSidebarCollapsed(JSON.parse(savedSidebarState));
+    }
+
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
+
+  // Save sidebar state to localStorage
+  const toggleSidebar = () => {
+    const newState = !sidebarCollapsed;
+    setSidebarCollapsed(newState);
+    localStorage.setItem("agentSidebarCollapsed", JSON.stringify(newState));
+  };
 
   // Navigation tabs
   const tabs = [
