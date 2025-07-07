@@ -454,24 +454,6 @@ export default function AgentDashboard() {
               </div>
             </div>
 
-            {/* Profile Strength Meter */}
-            <div className="mb-6 p-4 bg-gradient-to-r from-vm-green/10 to-vm-green/5 rounded-xl border border-vm-green/20">
-              <div className="flex items-center justify-between mb-2">
-                <span className="text-sm font-medium text-vm-gray-700">
-                  Profile Strength
-                </span>
-                <span className="text-sm font-bold text-vm-green">
-                  {profileStrength}%
-                </span>
-              </div>
-              <Progress value={profileStrength} className="h-2 mb-2" />
-              <p className="text-xs text-vm-gray-600">
-                {profileStrength === 100
-                  ? "Complete!"
-                  : "Keep building your profile to attract more clients"}
-              </p>
-            </div>
-
             {/* Navigation Tabs */}
             <div className="space-y-2 mb-6">
               <h3 className="text-sm font-semibold text-vm-gray-900 mb-3">
