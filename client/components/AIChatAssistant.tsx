@@ -413,9 +413,22 @@ export default function AIChatAssistant() {
     }
   };
 
-  // Static chat - always visible when open, minimized when needed
+  // Show floating button when chat is closed
   if (!isOpen) {
-    return null; // No floating button needed
+    return (
+      <div className="fixed bottom-6 right-20 z-50">
+        <button
+          onClick={() => setIsOpen(true)}
+          className="w-14 h-14 bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white rounded-full shadow-lg flex items-center justify-center transition-all duration-200 hover:scale-105"
+        >
+          <MessageCircle className="w-6 h-6" />
+        </button>
+        <div className="absolute right-full mr-3 top-1/2 transform -translate-y-1/2 bg-vm-gray-900 text-white px-3 py-2 rounded-lg text-sm whitespace-nowrap opacity-0 hover:opacity-100 transition-opacity duration-200 pointer-events-none">
+          AI Assistant
+          <div className="absolute left-full top-1/2 transform -translate-y-1/2 border-4 border-transparent border-l-vm-gray-900"></div>
+        </div>
+      </div>
+    );
   }
 
   if (isMinimized) {
