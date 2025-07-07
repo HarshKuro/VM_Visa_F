@@ -504,64 +504,58 @@ export default function AIChatAssistant() {
               </div>
             </div>
 
-            {/* Contextual Suggestions */}
-            {!message.isUser && message.suggestions && showSuggestions && (
-              <div
-                className="mt-3 ml-11 space-y-2 animate-in fade-in duration-500"
-                style={{ animationDelay: "300ms" }}
-              >
-                <p className="text-xs font-medium text-vm-gray-600 mb-2">
-                  💡 Suggested questions:
-                </p>
-                <div className="flex flex-wrap gap-2">
-                  {message.suggestions.map((suggestion, idx) => (
-                    <button
-                      key={idx}
-                      onClick={() => handleSendMessage(suggestion)}
-                      className="text-xs px-3 py-2 bg-blue-50 hover:bg-blue-100 text-blue-700 rounded-full border border-blue-200 transition-all duration-200 hover:scale-105 hover:shadow-sm"
-                    >
-                      {suggestion}
-                    </button>
-                  ))}
+            {/* Quick Reply Suggestions */}
+            {!message.isUser &&
+              message.suggestions &&
+              showSuggestions &&
+              index === messages.length - 1 && (
+                <div className="mt-3 space-y-2">
+                  <div className="flex flex-wrap gap-2 justify-start">
+                    {message.suggestions.map((suggestion, idx) => (
+                      <button
+                        key={idx}
+                        onClick={() => handleSendMessage(suggestion)}
+                        className="text-xs px-3 py-2 bg-white border border-vm-green text-vm-green rounded-full hover:bg-vm-green hover:text-white transition-colors duration-200"
+                      >
+                        {suggestion}
+                      </button>
+                    ))}
+                  </div>
                 </div>
-              </div>
-            )}
+              )}
 
             {/* Action Buttons */}
-            {!message.isUser && message.actionButtons && showSuggestions && (
-              <div
-                className="mt-3 ml-11 space-y-2 animate-in fade-in duration-500"
-                style={{ animationDelay: "400ms" }}
-              >
-                <p className="text-xs font-medium text-vm-gray-600 mb-2">
-                  🚀 Quick actions:
-                </p>
-                <div className="flex flex-wrap gap-2">
-                  {message.actionButtons.map((button, idx) => {
-                    const Icon = button.icon;
-                    return (
-                      <Button
-                        key={idx}
-                        onClick={button.action}
-                        size="sm"
-                        variant={
-                          button.variant === "primary" ? "default" : "outline"
-                        }
-                        className={`text-xs transition-all duration-200 hover:scale-105 ${
-                          button.variant === "primary"
-                            ? "bg-vm-green hover:bg-vm-green-600 text-white"
-                            : "border-vm-green text-vm-green hover:bg-vm-green/10"
-                        }`}
-                      >
-                        {Icon && <Icon className="w-3 h-3 mr-1" />}
-                        {button.text}
-                        <ExternalLink className="w-3 h-3 ml-1" />
-                      </Button>
-                    );
-                  })}
+            {!message.isUser &&
+              message.actionButtons &&
+              showSuggestions &&
+              index === messages.length - 1 && (
+                <div className="mt-3 space-y-2">
+                  <div className="flex flex-wrap gap-2 justify-start">
+                    {message.actionButtons.map((button, idx) => {
+                      const Icon = button.icon;
+                      return (
+                        <Button
+                          key={idx}
+                          onClick={button.action}
+                          size="sm"
+                          variant={
+                            button.variant === "primary" ? "default" : "outline"
+                          }
+                          className={`text-xs ${
+                            button.variant === "primary"
+                              ? "bg-vm-green hover:bg-vm-green-600 text-white"
+                              : "border-vm-green text-vm-green hover:bg-vm-green hover:text-white"
+                          }`}
+                        >
+                          {Icon && <Icon className="w-3 h-3 mr-1" />}
+                          {button.text}
+                          <ExternalLink className="w-3 h-3 ml-1" />
+                        </Button>
+                      );
+                    })}
+                  </div>
                 </div>
-              </div>
-            )}
+              )}
           </div>
         ))}
 
