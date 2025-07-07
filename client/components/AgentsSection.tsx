@@ -217,6 +217,7 @@ export default function AgentsSection() {
                   </span>
                   <Button
                     size="sm"
+                    onClick={() => openAgentChat(agent)}
                     className="bg-vm-green hover:bg-vm-green-600"
                   >
                     <MessageSquare className="w-4 h-4 mr-2" />
