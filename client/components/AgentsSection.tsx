@@ -2,7 +2,17 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
-import { MessageSquare, Star, X, Send, Paperclip, Smile } from "lucide-react";
+import {
+  MessageSquare,
+  Star,
+  X,
+  Send,
+  Paperclip,
+  Smile,
+  Phone,
+  Video,
+} from "lucide-react";
+import Messages from "./Messages";
 
 interface ChatMessage {
   id: string;
