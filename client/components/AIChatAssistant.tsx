@@ -50,19 +50,33 @@ interface UserContext {
 
 export default function AIChatAssistant() {
   const navigate = useNavigate();
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(true); // Always start open
+  const [isMinimized, setIsMinimized] = useState(false);
   const [userContext, setUserContext] = useState<UserContext>({});
   const [messages, setMessages] = useState<Message[]>([
     {
       id: "1",
-      text: "👋 Hello! I'm your Immigration Assistant AI. I can help you with visa questions, document analysis, application guidance, and connect you with verified experts.\n\nTo provide personalized assistance, may I know your name?",
+      text: "Welcome to VM Visa Support! 👋",
       isUser: false,
-      timestamp: new Date(),
+      timestamp: new Date(Date.now() - 10000),
+    },
+    {
+      id: "2",
+      text: "I'm your AI immigration assistant. I can help you with visa applications, document requirements, connect you with expert agents, and answer any immigration questions you have.",
+      isUser: false,
+      timestamp: new Date(Date.now() - 8000),
+    },
+    {
+      id: "3",
+      text: "How can I assist you today? 😊",
+      isUser: false,
+      timestamp: new Date(Date.now() - 5000),
       suggestions: [
-        "My name is [Your Name]",
-        "Skip and ask a question",
-        "I need help with work visa",
-        "Tell me about student visas",
+        "I need help with H1-B visa",
+        "What documents do I need?",
+        "Find immigration agents",
+        "Student visa information",
+        "Processing times",
       ],
     },
   ]);
