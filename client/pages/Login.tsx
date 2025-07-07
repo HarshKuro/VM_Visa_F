@@ -10,6 +10,7 @@ import { Users, Briefcase, Building } from "lucide-react";
 
 export default function Login() {
   const navigate = useNavigate();
+  const { login } = useUser();
   const [selectedRole, setSelectedRole] = useState<UserRole>("client");
   const [formData, setFormData] = useState({
     email: "",
