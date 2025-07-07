@@ -630,12 +630,12 @@ export default function AgentDashboard() {
                 </Button>
               </div>
             ) : (
-              <div className="space-y-3">
+              <div className="flex flex-col items-center space-y-2">
                 <div className="group relative">
                   <Button
                     variant="outline"
                     size="sm"
-                    className="w-8 h-8 p-0 mx-auto block"
+                    className="w-10 h-10 p-0 flex items-center justify-center"
                   >
                     <Settings className="w-4 h-4" />
                   </Button>
@@ -650,7 +650,7 @@ export default function AgentDashboard() {
                   <Button
                     variant="outline"
                     size="sm"
-                    className="w-8 h-8 p-0 mx-auto block"
+                    className="w-10 h-10 p-0 flex items-center justify-center"
                   >
                     <Award className="w-4 h-4" />
                   </Button>
