@@ -236,6 +236,63 @@ export default function AgentsSection() {
           Load More Agents
         </Button>
       </div>
+
+      {/* Chat Modal */}
+      {showChat && selectedAgentForChat && (
+        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
+          <div className="bg-white rounded-lg shadow-2xl w-full max-w-4xl h-[600px] flex flex-col">
+            {/* Chat Header */}
+            <div className="flex items-center justify-between p-4 border-b border-vm-gray-200 bg-vm-green text-white rounded-t-lg">
+              <div className="flex items-center space-x-3">
+                <img
+                  src={selectedAgentForChat.avatar}
+                  alt={selectedAgentForChat.name}
+                  className="w-10 h-10 rounded-full object-cover border-2 border-white"
+                />
+                <div>
+                  <h3 className="font-semibold">{selectedAgentForChat.name}</h3>
+                  <p className="text-sm text-white/80">
+                    {selectedAgentForChat.title}
+                  </p>
+                </div>
+              </div>
+              <div className="flex items-center space-x-2">
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  className="text-white hover:bg-white/10"
+                >
+                  <Phone className="w-4 h-4" />
+                </Button>
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  className="text-white hover:bg-white/10"
+                >
+                  <Video className="w-4 h-4" />
+                </Button>
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={closeAgentChat}
+                  className="text-white hover:bg-white/10"
+                >
+                  <X className="w-4 h-4" />
+                </Button>
+              </div>
+            </div>
+
+            {/* Chat Content */}
+            <div className="flex-1">
+              <Messages
+                userType="client"
+                currentUserId="client_001"
+                currentUserName="John Doe"
+              />
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
