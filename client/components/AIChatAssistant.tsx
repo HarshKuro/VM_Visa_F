@@ -413,32 +413,22 @@ export default function AIChatAssistant() {
     }
   };
 
+  // Static chat - always visible when open, minimized when needed
   if (!isOpen) {
+    return null; // No floating button needed
+  }
+
+  if (isMinimized) {
     return (
       <div className="fixed bottom-6 right-6 z-50">
         <button
-          onClick={() => setIsOpen(true)}
-          className="relative w-16 h-16 bg-gradient-to-r from-vm-green to-vm-green-600 hover:from-vm-green-600 hover:to-vm-green-700 text-white rounded-full shadow-xl hover:shadow-2xl transition-all duration-300 flex items-center justify-center group transform hover:scale-110 animate-pulse hover:animate-none"
+          onClick={() => setIsMinimized(false)}
+          className="w-16 h-16 bg-vm-green hover:bg-vm-green-600 text-white rounded-full shadow-lg flex items-center justify-center transition-colors duration-200"
         >
-          <div className="relative">
-            <MessageCircle className="w-7 h-7" />
-            <div className="absolute -top-2 -right-2 w-6 h-6 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full flex items-center justify-center animate-bounce">
-              <Wand2 className="w-3 h-3 text-white" />
-            </div>
+          <MessageCircle className="w-7 h-7" />
+          <div className="absolute -top-1 -right-1 w-5 h-5 bg-red-500 rounded-full flex items-center justify-center">
+            <span className="text-xs font-bold text-white">3</span>
           </div>
-          <div className="absolute right-full mr-4 bg-vm-gray-900 text-white px-4 py-3 rounded-xl text-sm whitespace-nowrap opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-x-2 group-hover:translate-x-0 shadow-lg">
-            <div className="flex items-center space-x-2">
-              <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
-              <span className="font-medium">Immigration Assistant AI 👋</span>
-            </div>
-            <div className="text-xs text-gray-300 mt-1">
-              Ask me anything about visas!
-            </div>
-            <div className="absolute left-full top-1/2 transform -translate-y-1/2 border-4 border-transparent border-l-vm-gray-900"></div>
-          </div>
-
-          {/* Ripple effect */}
-          <div className="absolute inset-0 rounded-full bg-vm-green animate-ping opacity-20"></div>
         </button>
       </div>
     );
