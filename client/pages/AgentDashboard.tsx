@@ -48,46 +48,6 @@ interface Specialization {
 
 export default function AgentDashboard() {
   const [activeTab, setActiveTab] = useState("clients");
-  const [hasUnsavedChanges, setHasUnsavedChanges] = useState(false);
-  const [specializations, setSpecializations] = useState<Specialization[]>([
-    {
-      id: "1",
-      area: "H1-B Visa",
-      yearsExperience: 8,
-      expertiseLevel: "Expert",
-    },
-    {
-      id: "2",
-      area: "Green Card",
-      yearsExperience: 6,
-      expertiseLevel: "Expert",
-    },
-    {
-      id: "3",
-      area: "Family Immigration",
-      yearsExperience: 5,
-      expertiseLevel: "Intermediate",
-    },
-  ]);
-
-  // Profile completion calculation
-  const calculateProfileStrength = () => {
-    const sections = {
-      basicDetails: 100, // Assuming complete
-      contactDetails: 100, // Assuming complete
-      specializations: specializations.length > 0 ? 100 : 0,
-      experience: 100, // Assuming complete
-      documents: 80, // Can be dynamic
-    };
-
-    const total = Object.values(sections).reduce(
-      (sum, value) => sum + value,
-      0,
-    );
-    return Math.round(total / Object.keys(sections).length);
-  };
-
-  const profileStrength = calculateProfileStrength();
 
   // Navigation tabs
   const tabs = [
