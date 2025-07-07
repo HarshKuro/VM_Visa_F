@@ -47,7 +47,7 @@ interface Specialization {
 }
 
 export default function AgentDashboard() {
-  const [activeTab, setActiveTab] = useState("overview");
+  const [activeTab, setActiveTab] = useState("clients");
   const [hasUnsavedChanges, setHasUnsavedChanges] = useState(false);
   const [specializations, setSpecializations] = useState<Specialization[]>([
     {
@@ -91,15 +91,9 @@ export default function AgentDashboard() {
 
   // Navigation tabs
   const tabs = [
-    { id: "overview", label: "Overview", icon: BarChart3 },
-    { id: "profile", label: "Profile", icon: User },
-    {
-      id: "specializations",
-      label: "Immigration Specializations",
-      icon: Award,
-    },
-    { id: "experience", label: "Experience", icon: Briefcase },
-    { id: "documents", label: "Documents", icon: FileText },
+    { id: "clients", label: "Clients", icon: Users },
+    { id: "new-query", label: "New Query", icon: Plus },
+    { id: "chat", label: "Chat", icon: MessageSquare },
   ];
 
   // Specialization areas
