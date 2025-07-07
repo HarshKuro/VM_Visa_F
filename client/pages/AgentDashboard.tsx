@@ -4,6 +4,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import Navigation from "@/components/Navigation";
 import Messages from "@/components/Messages";
+import FloatingChatButton from "@/components/FloatingChatButton";
 import {
   Users,
   MessageSquare,
