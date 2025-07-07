@@ -416,9 +416,9 @@ export default function ClientDashboard() {
                             onClick={() => setActiveTab(section.id)}
                             className={`w-full flex items-center ${
                               sidebarCollapsed
-                                ? "justify-center px-2"
-                                : "space-x-3 px-3"
-                            } py-2 rounded-lg text-left transition-all duration-200 ${
+                                ? "justify-center px-0 mx-auto w-10 h-10"
+                                : "space-x-3 px-3 py-2"
+                            } ${!sidebarCollapsed ? "py-2" : ""} rounded-lg text-left transition-all duration-200 ${
                               activeTab === section.id
                                 ? "bg-vm-green text-white"
                                 : "text-vm-gray-600 hover:bg-vm-gray-100 hover:text-vm-gray-900"
