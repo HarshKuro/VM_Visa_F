@@ -162,6 +162,164 @@ export default function AgentDashboard() {
     // Show success message
   };
 
+  const renderImmigrationSpecializations = () => (
+    <div className="space-y-6">
+      {/* Header with Add Button */}
+      <div className="flex items-center justify-between">
+        <div>
+          <h2 className="text-xl font-semibold text-vm-gray-900">
+            Immigration Specializations
+          </h2>
+          <p className="text-sm text-vm-gray-600 mt-1">
+            Add your areas of expertise to help clients find the right agent for
+            their needs
+          </p>
+        </div>
+        <Button
+          onClick={addSpecialization}
+          className="bg-vm-green hover:bg-vm-green-600"
+        >
+          <Plus className="w-4 h-4 mr-2" />
+          Add Specialization
+        </Button>
+      </div>
+
+      {/* Specialization Cards */}
+      <div className="grid gap-4">
+        {specializations.map((spec, index) => (
+          <Card key={spec.id} className="p-6 hover:shadow-md transition-shadow">
+            <div className="flex items-start justify-between mb-4">
+              <h3 className="font-medium text-vm-gray-900">
+                Specialization #{index + 1}
+              </h3>
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={() => removeSpecialization(spec.id)}
+                className="text-red-500 hover:text-red-700 hover:bg-red-50"
+              >
+                <X className="w-4 h-4" />
+              </Button>
+            </div>
+
+            <div className="grid md:grid-cols-3 gap-4">
+              {/* Specialization Area */}
+              <div className="space-y-2">
+                <Label htmlFor={`area-${spec.id}`}>Specialization Area *</Label>
+                <Select
+                  value={spec.area}
+                  onValueChange={(value) =>
+                    updateSpecialization(spec.id, "area", value)
+                  }
+                >
+                  <SelectTrigger>
+                    <SelectValue placeholder="Select specialization" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {specializationAreas.map((area) => (
+                      <SelectItem key={area} value={area}>
+                        {area}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              </div>
+
+              {/* Years of Experience */}
+              <div className="space-y-2">
+                <Label htmlFor={`years-${spec.id}`}>
+                  Years of Experience *
+                </Label>
+                <Input
+                  id={`years-${spec.id}`}
+                  type="number"
+                  min="1"
+                  max="50"
+                  value={spec.yearsExperience}
+                  onChange={(e) =>
+                    updateSpecialization(
+                      spec.id,
+                      "yearsExperience",
+                      parseInt(e.target.value) || 1,
+                    )
+                  }
+                  placeholder="Years"
+                />
+              </div>
+
+              {/* Expertise Level */}
+              <div className="space-y-2">
+                <Label htmlFor={`level-${spec.id}`}>Expertise Level *</Label>
+                <Select
+                  value={spec.expertiseLevel}
+                  onValueChange={(value) =>
+                    updateSpecialization(spec.id, "expertiseLevel", value)
+                  }
+                >
+                  <SelectTrigger>
+                    <SelectValue placeholder="Select level" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {expertiseLevels.map((level) => (
+                      <SelectItem key={level.value} value={level.value}>
+                        {level.label}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              </div>
+            </div>
+
+            {/* Display current selection */}
+            {spec.area && spec.expertiseLevel && (
+              <div className="mt-4 p-3 bg-vm-green/10 rounded-lg border border-vm-green/20">
+                <p className="text-sm text-vm-green font-medium">
+                  {spec.area} | {spec.yearsExperience} years |{" "}
+                  {spec.expertiseLevel}
+                </p>
+              </div>
+            )}
+          </Card>
+        ))}
+      </div>
+
+      {/* Empty State */}
+      {specializations.length === 0 && (
+        <Card className="p-12 text-center">
+          <Certificate className="w-12 h-12 text-vm-gray-400 mx-auto mb-4" />
+          <h3 className="text-lg font-medium text-vm-gray-900 mb-2">
+            No specializations added yet
+          </h3>
+          <p className="text-vm-gray-600 mb-4">
+            Add your immigration law specializations to showcase your expertise
+            to potential clients
+          </p>
+          <Button
+            onClick={addSpecialization}
+            className="bg-vm-green hover:bg-vm-green-600"
+          >
+            <Plus className="w-4 h-4 mr-2" />
+            Add Your First Specialization
+          </Button>
+        </Card>
+      )}
+
+      {/* Save Button */}
+      {specializations.length > 0 && (
+        <div className="flex justify-end pt-4 border-t border-vm-gray-200">
+          <Button
+            onClick={saveSpecializations}
+            disabled={!hasUnsavedChanges}
+            className="bg-vm-green hover:bg-vm-green-600 disabled:opacity-50"
+          >
+            <Save className="w-4 h-4 mr-2" />
+            {hasUnsavedChanges ? "Save Changes" : "Saved"}
+          </Button>
+        </div>
+      )}
+    </div>
+  );
+
   // Mock agent data
   const agentProfile = {
     name: "Sarah Johnson",
