@@ -562,7 +562,21 @@ export default function ClientDashboard() {
           </div>
 
           {/* Main Content Area */}
-          <div className="flex-1 min-w-0">
+          <div
+            className={`flex-1 min-w-0 transition-all duration-300 ${isMobile && !sidebarCollapsed ? "blur-sm" : ""}`}
+          >
+            {/* Mobile menu button */}
+            {isMobile && sidebarCollapsed && (
+              <div className="mb-6">
+                <button
+                  onClick={() => setSidebarCollapsed(false)}
+                  className="p-3 bg-white rounded-lg shadow-md border border-vm-gray-200 hover:shadow-lg transition-all duration-200"
+                >
+                  <Menu className="w-5 h-5 text-vm-gray-600" />
+                </button>
+              </div>
+            )}
+
             {/* Main Content Header */}
             <div className="mb-8">
               <div className="bg-white rounded-lg shadow-sm border border-vm-gray-200 p-6">
