@@ -50,7 +50,7 @@ interface UserContext {
 
 export default function AIChatAssistant() {
   const navigate = useNavigate();
-  const [isOpen, setIsOpen] = useState(true); // Always start open
+  const [isOpen, setIsOpen] = useState(false); // Start closed, only open when clicked
   const [isMinimized, setIsMinimized] = useState(false);
   const [userContext, setUserContext] = useState<UserContext>({});
   const [messages, setMessages] = useState<Message[]>([
