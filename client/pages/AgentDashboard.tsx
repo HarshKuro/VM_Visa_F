@@ -852,38 +852,20 @@ export default function AgentDashboard() {
             </>
           )}
 
-          {activeTab === "specializations" &&
-            renderImmigrationSpecializations()}
-
-          {activeTab === "profile" && (
+          {activeTab === "new-query" && (
             <Card className="p-8">
-              <h3 className="text-lg font-semibold mb-4">
-                Basic Profile Information
-              </h3>
+              <h3 className="text-lg font-semibold mb-4">Create New Query</h3>
               <p className="text-vm-gray-600">
-                Profile editing functionality coming soon...
+                Post a new query or request for clients...
               </p>
             </Card>
           )}
 
-          {activeTab === "experience" && (
+          {activeTab === "chat" && (
             <Card className="p-8">
-              <h3 className="text-lg font-semibold mb-4">
-                Professional Experience
-              </h3>
+              <h3 className="text-lg font-semibold mb-4">Chat with Clients</h3>
               <p className="text-vm-gray-600">
-                Experience management functionality coming soon...
-              </p>
-            </Card>
-          )}
-
-          {activeTab === "documents" && (
-            <Card className="p-8">
-              <h3 className="text-lg font-semibold mb-4">
-                Documents & Certificates
-              </h3>
-              <p className="text-vm-gray-600">
-                Document management functionality coming soon...
+                Chat functionality for communicating with your clients...
               </p>
             </Card>
           )}
