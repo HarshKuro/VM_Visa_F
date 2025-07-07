@@ -962,12 +962,13 @@ export default function AgentDashboard() {
           )}
 
           {activeTab === "chat" && (
-            <Card className="p-8">
-              <h3 className="text-lg font-semibold mb-4">Chat with Clients</h3>
-              <p className="text-vm-gray-600">
-                Chat functionality for communicating with your clients...
-              </p>
-            </Card>
+            <div className="h-[600px]">
+              <Messages
+                userType="agent"
+                currentUserId="agent_001"
+                currentUserName="Sarah Johnson"
+              />
+            </div>
           )}
         </div>
       </div>
