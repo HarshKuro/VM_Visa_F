@@ -128,30 +128,6 @@ interface ChatConversation {
 }
 
 export default function AgentsSection() {
-  // Mock data
-  const agentRequests: Request[] = [
-    {
-      id: "1",
-      title: "H1-B Visa Application for Software Engineer",
-      type: "Work Visa",
-      country: "United States",
-      status: "open",
-      createdAt: "2024-12-20",
-      proposalsCount: 5,
-      budget: "$2,500",
-    },
-    {
-      id: "2",
-      title: "Canada Express Entry Application",
-      type: "Permanent Residence",
-      country: "Canada",
-      status: "in_progress",
-      createdAt: "2024-12-18",
-      proposalsCount: 3,
-      budget: "$3,200",
-    },
-  ];
-
   const proposals: Proposal[] = [
     {
       id: "1",
